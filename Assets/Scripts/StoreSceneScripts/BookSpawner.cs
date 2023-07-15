@@ -30,12 +30,14 @@ public class BookSpawner : MonoBehaviour
 
     [SerializeField] private GameObject _dummyBookGroupOne;
     [SerializeField] private GameObject _dummyBookGroupTwo;
+    [SerializeField] private TextAsset _bookDB;
 
     private List<List<float>> _bookLocations = new List<List<float>>();
 
-
+    private CSVReader _csv;
     private void Start()
     {
+        _csv = new CSVReader(_bookDB, true, '\t');
         for (int i = 0; i < 4; ++i)
         {
             _bookLocations.Add(new List<float>());
@@ -50,8 +52,11 @@ public class BookSpawner : MonoBehaviour
             SpawnBook(BookType.DummyGroupOne);
             SpawnBook(BookType.DummyGroupTwo);
         }
-        BookManager.Instance.setBookUnlocked("judgment", 2);
-        BookManager.Instance.setBookUnlocked("tenacity", 1);
+        //For debugging purposes, two books are unlocked artificially
+        BookManager.Instance.setBookUnlocked("Judgment", 2);
+        BookManager.Instance.setBookUnlocked("Tenacity", 1);
+        BookManager.Instance.setBookUnlocked("Challenge", 2);
+        BookManager.Instance.setBookUnlocked("Alertness", 2);
         SpawnRealBooks();
     }
 
@@ -62,15 +67,15 @@ public class BookSpawner : MonoBehaviour
             if (BookManager.Instance.checkBookUnlocked(bookName) >= 2)
             {
                 var book = SpawnBook(BookType.RealTwo);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 0.2f);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, ScanSCVForPrice(bookName, 2));
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, ScanSCVForPrice(bookName, 1));
             }
             else if (BookManager.Instance.checkBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, ScanSCVForPrice(bookName, 1));
             }
         }
     }
@@ -92,6 +97,21 @@ public class BookSpawner : MonoBehaviour
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
 
         return book;
+    }
+
+    private float ScanSCVForPrice(string bookName, int level)
+    {
+
+        var i = 0;
+        while (i < _csv.data.Count)
+        {
+            if (_csv.data[i][1] == bookName && Convert.ToInt32(_csv.data[i][3]) == level)
+            {
+                return Convert.ToSingle(_csv.data[i][4]);
+            }
+            i += 1;
+        }
+        return 0f;
     }
 
     private Vector3 spawnPosition(BookType bookType)

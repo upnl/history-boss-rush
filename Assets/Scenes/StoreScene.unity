@@ -282,7 +282,6 @@ MonoBehaviour:
   - challenge
   - tenacity
   - alertness
-  blood: 10000
 --- !u!4 &396617403
 Transform:
   m_ObjectHideFlags: 0
@@ -565,6 +564,7 @@ MonoBehaviour:
   _dummyBookRightTilt: {fileID: 1876754409217682203, guid: fdd3b1c53f6ac4695802296fbe826cc2, type: 3}
   _dummyBookGroupOne: {fileID: 3666180886430149254, guid: 16cf37b05e1c8441c99a21a65655daca, type: 3}
   _dummyBookGroupTwo: {fileID: 5905043570763456021, guid: 9924c8fb4f28c4c2b88c70540fc9fffd, type: 3}
+  _bookDB: {fileID: 4900000, guid: cc436d12d0e8c7647835c7a7941e395f, type: 3}
 --- !u!4 &1299921623
 Transform:
   m_ObjectHideFlags: 0

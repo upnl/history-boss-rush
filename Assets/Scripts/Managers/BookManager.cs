@@ -6,7 +6,7 @@ public class BookManager : MonoBehaviour
 {
     public static BookManager Instance { get; private set; }
 
-    public string[] bookList = new string[] {"judgment", "challenge", "tenacity", "alertness"};
+    public string[] bookList;
     private BookData _bookData = new BookData();
     private float _blood;
     public float blood => _blood;
@@ -22,8 +22,9 @@ public class BookManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(this.gameObject);
-        _blood = 10f;
-        Debug.Log(blood);
+        bookList = new string[] {"Judgment", "Challenge", "Tenacity", "Alertness"};
+        _blood = 100f;
+
     }
 
     public int checkBookUnlocked(string bookName)
@@ -70,6 +71,10 @@ public class BookManager : MonoBehaviour
 
     public void setBookEquipped(string bookName, int level, float price)
     {
+        if (price > _blood)
+        {
+            return;
+        }
         try
         {
             if (_bookData.bookEquipped[bookName] < level)

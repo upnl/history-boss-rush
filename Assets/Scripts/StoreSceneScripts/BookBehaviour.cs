@@ -17,7 +17,5 @@ public class BookBehaviour : MonoBehaviour
     public void OnMouseDown()
     {
         BookManager.Instance.setBookEquipped(_content, _level, _price);
-        Debug.Log(BookManager.Instance.blood);
-        Debug.Log(BookManager.Instance.checkBookEquipped(_content));
     }
 }
