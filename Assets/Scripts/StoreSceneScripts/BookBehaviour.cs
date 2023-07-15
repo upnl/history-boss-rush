@@ -57,6 +57,7 @@ public class BookBehaviour : MonoBehaviour
     public void OnMouseDown()
     {
         BookManager.Instance.SetBookEquipped(_content, _level, _price);
+        transform.position = new Vector3(10000f, 10000f, -15f);
     }
 
     public void OnMouseEnter()

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priceLabelPrefab: {fileID: 4534549155972983253, guid: 1295e529750264f5a9b11093f7b05400, type: 3}
   _contentLabelPrefab: {fileID: 4534549155972983253, guid: f68dca3409639435fb31efe15ad14a40, type: 3}
+  _bookDescription: {fileID: 7371477972614469267, guid: 2f39bb75800ae4a67b84e935eec800a9, type: 3}
 --- !u!61 &3051384819956119350
 BoxCollider2D:
   m_ObjectHideFlags: 0
