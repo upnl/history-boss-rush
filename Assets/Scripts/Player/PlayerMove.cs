@@ -5,27 +5,35 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private float playerSpeed = 5f;
-    private float rollDistance = 10f;
-    private float rollTime = 0.5f;
+    private float dashDistance = 10f;
+    private float dashTime = 0.5f;
     private Vector3 nowPlayerDirecton = new Vector3(0f, 1f, 0f);
-    private bool isRolling = false;
-    private bool canRolling = true;
+    public bool isdash = false;
+    public bool canDash = true;
     private float rollingCoolTime = 3f;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && canRolling)
-        {   float hValue = Input.GetAxisRaw("Horizontal");
-            float vValue = Input.GetAxisRaw("Vertical");
-            if(hValue != 0 || vValue != 0)
+        if(Input.GetKeyDown(KeyCode.Space) && canDash)
+        {
+            if(GameManager.Instance.GameStateManager.dashTemp)
             {
-                nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
+                GameManager.Instance.GameStateManager.dashTemp = false;
             }
-            isRolling = true;
-            canRolling = false;
-            StartCoroutine(Roll());
+            else
+            {
+                float hValue = Input.GetAxisRaw("Horizontal");
+                float vValue = Input.GetAxisRaw("Vertical");
+                if(hValue != 0 || vValue != 0)
+                {
+                    nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
+                }
+                isdash = true;
+                canDash = false;
+                StartCoroutine(Dash());
+            }
         }
-        else if(!isRolling)
+        else if(!isdash)
         {
             float hValue = Input.GetAxisRaw("Horizontal");
             float vValue = Input.GetAxisRaw("Vertical");
@@ -40,18 +48,18 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    private IEnumerator Roll()
+    private IEnumerator Dash()
     {
         float elapsedTime = 0f;
-        while(elapsedTime < rollTime)
+        while(elapsedTime < dashTime)
         {
             Debug.Log(nowPlayerDirecton);
-            transform.position = transform.position + nowPlayerDirecton * rollDistance * Time.deltaTime;
+            transform.position = transform.position + nowPlayerDirecton * dashDistance * Time.deltaTime;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        isRolling = false;
-        yield return new WaitForSeconds(rollingCoolTime - rollTime);
-        canRolling = true;
+        isdash = false;
+        yield return new WaitForSeconds(rollingCoolTime - dashTime);
+        canDash = true;
     }
 }

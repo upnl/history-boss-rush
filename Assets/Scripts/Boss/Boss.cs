@@ -12,5 +12,10 @@ public class Boss : MonoBehaviour
     public void GetDamaged(int attackBookLevel)
     {
         nowHP -= normalDamage + attackBookLevel;
+        hpSlider.value = nowHP/maxHP;
+        if(nowHP <= 0f)
+        {
+            GameManager.Instance.GameStateManager.Win();
+        }
     }
 }
