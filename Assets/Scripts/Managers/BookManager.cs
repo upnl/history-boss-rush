@@ -10,12 +10,15 @@ public class BookManager : MonoBehaviour
     private BookData _bookData = new BookData();
     private float _blood;
     public float blood => _blood;
+    public CSVReader bookDB;
+
+    [SerializeField] private TextAsset _bookDB;
 
     public string bookDescription;
 
     void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this);
             return;
@@ -26,6 +29,7 @@ public class BookManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4", "Challenge", "Tenacity", "Alertness"};
         _blood = 100f;
+        bookDB = new CSVReader(_bookDB, true, '\t');
         bookDescription = "탐색할 역사책을 선택하자";
     }
 
