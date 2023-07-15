@@ -1128,7 +1128,7 @@ MonoBehaviour:
   hitFan120Prefab: {fileID: 8185774758853152804, guid: 5e27c890947f92240b411863eaa761e8, type: 3}
   hitAreaParent: {fileID: 232505336}
   mjolnir: {fileID: 372160546}
-  mjolnirSpeed: 10
+  mjolnirSpeed: 30
 --- !u!1 &372160546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5187,6 +5187,7 @@ MonoBehaviour:
   - tenacity
   - alertness
   _bookDB: {fileID: 4900000, guid: cc436d12d0e8c7647835c7a7941e395f, type: 3}
+  bookDescription: 
 --- !u!1 &1638829294
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,10 +43,10 @@ public class Thor : Boss
         // 얼만큼 기다려야 하는가: 0.5초 - effect1
         yield return new WaitForSeconds(0.5f - effect1);
 
-        // HitBoxAreaWarning을 (망치 앞 -> playerPos)과 네 외벽 근처에 생성
-        InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 0.5f);
-
         mjolnir.transform.localPosition = transform.localPosition;
+
+        // HitBoxAreaWarning을 (망치 앞 -> playerPos)과 네 외벽 근처에 생성
+        InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 1f);
 
         Vector3 v = playerPos - mjolnir.transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
@@ -73,7 +73,7 @@ public class Thor : Boss
             !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<BoxCollider2D>()))
         {
             yield return null;
-            mjolnir.transform.localPosition = mjolnir.transform.localPosition + velocity * mjolnirSpeed * Time.deltaTime;
+            mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
@@ -86,7 +86,7 @@ public class Thor : Boss
 
         // 시간 조금 기다리면서 다시 HitBoxAreaWarning을 (망치 앞 -> 토르)에 생성
         // TODO 돌아오는 망치의 경로 미리 표시하기
-        InstantiateHitBox(tempMjolnirPos, transform.position, 0.5f);
+        InstantiateHitBox(tempMjolnirPos, transform.position, 1f, Vector3.Distance(tempMjolnirPos, transform.position));
 
         yield return new WaitForSeconds(0.3f);
         // effect1 시간 기다리기
@@ -101,10 +101,13 @@ public class Thor : Boss
         while (!mjolnir.GetComponent<PolygonCollider2D>().IsTouching(this.GetComponent<BoxCollider2D>()))
         {
             yield return null;
-            mjolnir.transform.localPosition = mjolnir.transform.localPosition + velocity * mjolnirSpeed * Time.deltaTime;
+            mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
         }
         // 묠니르가 토르에 닿으면 패턴 종료
         // TODO 안 돌아오면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
+
+        mjolnir.transform.localPosition = transform.localPosition;
+
         Debug.Log("end");
         isBusy = false;
     }
