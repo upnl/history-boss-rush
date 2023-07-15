@@ -36,18 +36,19 @@ public class QuestManager : MonoBehaviour
     [HideInInspector] public bool UnlockBook = false;
     [HideInInspector] public bool HasQuest = false;
     private string bossName;
-    
+    [SerializeField] private TMP_Text bossNameText;
     private void Start()
     {
-        if(boss is Thor)
+        if (boss is Thor)
         {
             bossName = "Thor";
         }
-
-        else if(boss is Surtr)
+        else if (boss is Surtr)
         {
             bossName = "Surtr";
         }
+        bossNameText.text = bossName;
+
     }
 
     private void Update()

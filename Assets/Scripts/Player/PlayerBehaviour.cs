@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerBehaviour : MonoBehaviour
     private bool isAlive = true;
     private bool alreadyWriting = false;
     private bool alreadyAttack = false;
+    
+    [SerializeField] private Slider writingSlider;
 
     private void Start()
     {
@@ -62,15 +65,24 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator WritingBook()
     {
+        writingSlider.gameObject.SetActive(true);
+        writingSlider.value = 1f;
         alreadyWriting = true;
         playerMove.CanMove = false;
         GameManager.Instance.QuestManager.StopTimer = true;
-        yield return new WaitForSeconds(writingTime);
+        float elapsedTime = 0f;
+        while(elapsedTime < writingTime)
+        {
+            elapsedTime += Time.deltaTime;
+            writingSlider.value = 1f - elapsedTime/writingTime;
+            yield return null;
+        }
         if(isAlive)
         {
             playerMove.CanMove = true;
             GameManager.Instance.QuestManager.UnlockBook = true;
         }
+        writingSlider.gameObject.SetActive(false);
         alreadyWriting = false;
     }
 }
