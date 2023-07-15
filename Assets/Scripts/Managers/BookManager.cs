@@ -31,6 +31,8 @@ public class BookManager : MonoBehaviour
         _blood = 100f;
         bookDB = new CSVReader(_bookDB, true, '\t');
         bookDescription = "탐색할 역사책을 선택하자";
+
+        bookDB = new CSVReader(_bookDB, true, '\t');
     }
 
     public int CheckBookUnlocked(string bookName)
