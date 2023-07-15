@@ -10,7 +10,7 @@ public class Thor : Boss
 
         Vector3 playerPos = new Vector3();
         // TODO 플레이어의 현재 위치 파악
-        int historyLevel = BookManager.Instance.checkBookEquipped("Thor1");
+        int historyLevel = BookManager.Instance.CheckBookEquipped("Thor1");
 
         if (true)   // TODO DB에서 Thor1의 effect1(미리 보여주는 시간)을 가져오기 -> 이 값에 따라 조건문 분기
         {
