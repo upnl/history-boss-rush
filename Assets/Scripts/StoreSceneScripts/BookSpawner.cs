@@ -56,6 +56,7 @@ public class BookSpawner : MonoBehaviour
         BookManager.Instance.SetBookUnlocked("Tenacity", 1);
         BookManager.Instance.SetBookUnlocked("Challenge", 2);
         BookManager.Instance.SetBookUnlocked("Alertness", 2);
+        BookManager.Instance.SetBookUnlocked("Surtr4", 2);
         SpawnRealBooks();
     }
 
@@ -66,15 +67,18 @@ public class BookSpawner : MonoBehaviour
             if (BookManager.Instance.CheckBookUnlocked(bookName) >= 2)
             {
                 var book = SpawnBook(BookType.RealTwo);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, ScanCSVForPrice(bookName, 2));
+                var csvData = ScanCSVForRow(bookName, 2);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, Convert.ToSingle(csvData[4]), csvData[2], csvData[7]);
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, ScanCSVForPrice(bookName, 1));
+                csvData = ScanCSVForRow(bookName, 1);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], csvData[7]);
             }
             else if (BookManager.Instance.CheckBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, ScanCSVForPrice(bookName, 1));
+                var csvData = ScanCSVForRow(bookName, 1);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], csvData[7]);
             }
         }
     }
@@ -111,6 +115,21 @@ public class BookSpawner : MonoBehaviour
             i += 1;
         }
         return 0f;
+    }
+
+    private List<string> ScanCSVForRow(string bookName, int level)
+    {
+        var i = 0;
+        while (i < _csv.GetData().Count)
+        {
+            if (_csv.GetData()[i][1] == bookName && Convert.ToInt32(_csv.GetData()[i][3]) == level)
+            {
+                return _csv.GetData()[i];
+            }
+            i += 1;
+        }
+        Debug.Log("book name and level not found in csv file");
+        return new List<string>();
     }
 
     private Vector3 SpawnPosition(BookType bookType)

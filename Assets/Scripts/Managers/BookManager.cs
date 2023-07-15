@@ -22,7 +22,7 @@ public class BookManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(this.gameObject);
-        bookList = new string[] {"Judgment", "Challenge", "Tenacity", "Alertness"};
+        bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4", "Challenge", "Tenacity", "Alertness"};
         _blood = 100f;
 
     }
