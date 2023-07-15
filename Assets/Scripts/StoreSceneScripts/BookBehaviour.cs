@@ -56,7 +56,7 @@ public class BookBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (BookManager.Instance.blood > _price)
+        if (BookManager.Instance.blood >= _price && BookManager.Instance.CheckBookEquipped(_content) < _level)
         {
             var currentPosition = transform.position;
             currentPosition.z = -15f;
