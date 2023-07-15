@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.Image;
+
 public class Boss : MonoBehaviour
 {
     private float maxHP = 100f;
@@ -59,6 +61,15 @@ public class Boss : MonoBehaviour
         GameObject hit = Instantiate(hitCirclePrefab, hitAreaParent.transform);
         hit.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
         hit.transform.localPosition = center;
+    }
+
+    protected void InstantiateHitFan60(Vector3 center, Vector3 destination, float radius)
+    {
+        GameObject hit = Instantiate(hitFan60Prefab, hitAreaParent.transform);
+        hit.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
+        hit.transform.localPosition = center;
+        Vector3 v = destination - center;
+        hit.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
     }
 
     protected void RemoveAllHitArea()

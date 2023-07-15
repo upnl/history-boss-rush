@@ -41,6 +41,14 @@ public class BookSpawner : MonoBehaviour
         {
             _bookLocations.Add(new List<float>());
         }
+        //For debugging purposes, two books are unlocked artificially
+        BookManager.Instance.SetBookUnlocked("Tenacity", 1);
+        BookManager.Instance.SetBookUnlocked("Challenge", 2);
+        BookManager.Instance.SetBookUnlocked("Alertness", 2);
+        BookManager.Instance.SetBookUnlocked("Surtr4", 2);
+        BookManager.Instance.SetBookUnlocked("Thor3", 3);
+        SpawnRealBooks();
+
         for (int i = 0; i < 5; ++i)
         {
             SpawnBook(BookType.DummyLeft);
@@ -51,13 +59,6 @@ public class BookSpawner : MonoBehaviour
             SpawnBook(BookType.DummyGroupOne);
             SpawnBook(BookType.DummyGroupTwo);
         }
-        //For debugging purposes, two books are unlocked artificially
-        BookManager.Instance.SetBookUnlocked("Tenacity", 1);
-        BookManager.Instance.SetBookUnlocked("Challenge", 2);
-        BookManager.Instance.SetBookUnlocked("Alertness", 2);
-        BookManager.Instance.SetBookUnlocked("Surtr4", 2);
-        BookManager.Instance.SetBookUnlocked("Thor3", 3);
-        SpawnRealBooks();
     }
 
     private void SpawnRealBooks()
@@ -198,9 +199,19 @@ public class BookSpawner : MonoBehaviour
 
             foreach (float location in _bookLocations[yCase])
             {
-                if (x < location + _shelfData.overlapRange && x > location - _shelfData.overlapRange)
+                if (bookType == BookType.RealOne || bookType == BookType.RealTwo)
                 {
-                    overlap = true;
+                    if (x < location + _shelfData.overlapRange && x > location - _shelfData.overlapRange)
+                    {
+                        overlap = true;
+                    }
+                }
+                else
+                {
+                    if (x < location + _shelfData.dummyOverlapRange && x > location - _shelfData.dummyOverlapRange - 1f)
+                    {
+                        overlap = true;
+                    }
                 }
             }
         }
