@@ -19,6 +19,7 @@ public class BookBehaviour : MonoBehaviour
     private void Awake()
     {
         _canvasParent = GameObject.FindWithTag("EditorOnly");
+        _bookDescription.text = "가져갈 책을 구매하자";
     }
 
     public void SetProperties(string content, int level, float price, string koreanName, string description)
@@ -57,6 +58,7 @@ public class BookBehaviour : MonoBehaviour
     public void OnMouseDown()
     {
         BookManager.Instance.SetBookEquipped(_content, _level, _price);
+        transform.position = new Vector3(10000f, 10000f, -15f);
     }
 
     public void OnMouseEnter()
