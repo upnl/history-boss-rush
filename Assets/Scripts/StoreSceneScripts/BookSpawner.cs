@@ -56,6 +56,7 @@ public class BookSpawner : MonoBehaviour
         BookManager.Instance.SetBookUnlocked("Tenacity", 1);
         BookManager.Instance.SetBookUnlocked("Challenge", 2);
         BookManager.Instance.SetBookUnlocked("Alertness", 2);
+        BookManager.Instance.SetBookUnlocked("Surtr4", 2);
         SpawnRealBooks();
     }
 
