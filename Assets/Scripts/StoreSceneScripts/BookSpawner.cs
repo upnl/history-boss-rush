@@ -9,7 +9,10 @@ public enum BookType
     RealTwo,
     Dummy,
     DummyLeft,
-    DummyRight
+    DummyRight,
+
+    DummyGroupOne,
+    DummyGroupTwo
 }
 
 public enum BookContent
@@ -29,6 +32,9 @@ public class BookSpawner : MonoBehaviour
     [SerializeField] private GameObject _dummyBookLeftTilt;
     [SerializeField] private GameObject _dummyBookRightTilt;
 
+    [SerializeField] private GameObject _dummyBookGroupOne;
+    [SerializeField] private GameObject _dummyBookGroupTwo;
+
     private List<List<float>> _bookLocations = new List<List<float>>();
 
 
@@ -40,8 +46,14 @@ public class BookSpawner : MonoBehaviour
         }
         for (int i = 0; i < 5; ++i)
         {
-            SpawnBook(BookType.RealOne);
+            SpawnBook(BookType.DummyLeft);
         }
+        for (int i = 0; i < 5; ++i)
+        {
+            SpawnBook(BookType.DummyRight);
+        }
+        SpawnBook(BookType.DummyGroupOne);
+        SpawnBook(BookType.DummyGroupTwo);
     }
 
     private void SpawnBook(BookType bookType)
@@ -111,6 +123,12 @@ public class BookSpawner : MonoBehaviour
                 break;
             case BookType.DummyRight:
                 prefab = _dummyBookRightTilt;
+                break;
+            case BookType.DummyGroupOne:
+                prefab = _dummyBookGroupOne;
+                break;
+            case BookType.DummyGroupTwo:
+                prefab = _dummyBookGroupTwo;
                 break;
             default:
                 prefab = _dummyBook;
