@@ -68,7 +68,7 @@ public class BookSpawner : MonoBehaviour
             {
                 var book = SpawnBook(BookType.RealTwo);
                 var csvData = ScanCSVForRow(bookName, 2);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, Convert.ToSingle(csvData[4]), csvData[2], csvData[7]);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, Convert.ToSingle(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
                 csvData = ScanCSVForRow(bookName, 1);
@@ -130,6 +130,41 @@ public class BookSpawner : MonoBehaviour
         }
         Debug.Log("book name and level not found in csv file");
         return new List<string>();
+    }
+
+    private string ParseSentence(string original, int rowIndex)
+    {
+        List<int> parenStart = new List<int>();
+        List<int> parenEnd = new List<int>();
+
+        var i = 0;
+        while (i < original.Length)
+        {
+            if (Convert.ToString(original[i]) == "{")
+            {
+                parenStart.Add(i);
+            }
+            if (Convert.ToString(original[i]) == "}")
+            {
+                parenEnd.Add(i);
+            }
+            i += 1;
+        }
+
+        string newSentence = "";
+
+        int previousEnd = 0;
+        i = 0;
+        while (i < parenStart.Count)
+        {
+            newSentence = newSentence + original.Substring(previousEnd, parenStart[i] - previousEnd);
+            newSentence = newSentence + _csv.GetColumn(original.Substring(parenStart[i] + 1, parenEnd[i] - parenStart[i] - 1))[rowIndex];
+            previousEnd = parenEnd[i] + 1;
+            i += 1;
+        }
+        newSentence = newSentence + original.Substring(previousEnd);
+
+        return newSentence;
     }
 
     private Vector3 SpawnPosition(BookType bookType)
