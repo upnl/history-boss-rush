@@ -11,6 +11,8 @@ public class BookManager : MonoBehaviour
     private float _blood;
     public float blood => _blood;
 
+    public string bookDescription;
+
     void Awake()
     {
         if(Instance != null && Instance != this)
@@ -24,7 +26,7 @@ public class BookManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4", "Challenge", "Tenacity", "Alertness"};
         _blood = 100f;
-
+        bookDescription = "탐색할 역사책을 선택하자";
     }
 
     public int CheckBookUnlocked(string bookName)
