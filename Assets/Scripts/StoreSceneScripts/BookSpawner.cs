@@ -2,6 +2,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public enum BookType
 {
@@ -61,7 +62,7 @@ public class BookSpawner : MonoBehaviour
             if (BookManager.Instance.checkBookUnlocked(bookName) >= 2)
             {
                 var book = SpawnBook(BookType.RealTwo);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 20);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 20f);
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
                 book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 10);
@@ -69,7 +70,7 @@ public class BookSpawner : MonoBehaviour
             else if (BookManager.Instance.checkBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 10);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 10f);
             }
         }
     }

@@ -8,7 +8,7 @@ public class BookManager : MonoBehaviour
 
     public string[] bookList = new string[] {"judgment", "challenge", "tenacity", "alertness"};
     private BookData _bookData = new BookData();
-    public int blood = 10000;
+    public float blood = 10f;
 
     void Awake()
     {
@@ -65,7 +65,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    public void setBookEquipped(string bookName, int level, int price)
+    public void setBookEquipped(string bookName, int level, float price)
     {
         try
         {

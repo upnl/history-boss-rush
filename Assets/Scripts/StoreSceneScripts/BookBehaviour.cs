@@ -5,11 +5,9 @@ public class BookBehaviour : MonoBehaviour
 
     private string _content;
     private int _level;
-    private int _price;
+    private float _price;
 
-    public int price => _price;
-
-    public void setProperties(string content, int level, int price)
+    public void setProperties(string content, int level, float price)
     {
         _content = content;
         _level = level;
