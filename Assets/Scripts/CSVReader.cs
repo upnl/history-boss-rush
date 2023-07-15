@@ -53,6 +53,44 @@ public class CSVReader
     }
 
     /// <summary>
+    /// Unity TextAsset으로 된 csvFile을 읽고 그 데이터를 정리하여 보관합니다.
+    /// </summary>
+    /// <param name="filename">파일 이름(경로)</param>
+    /// <param name="hasHeader">첫 줄에 헤더가 오면 true, 헤더 없이 데이터가 바로 오면 false</param>
+    /// <param name="delimiter">열 구분 문자</param>
+    public CSVReader(TextAsset csvFile, bool hasHeader, char delimiter = ',')
+    {
+        int i = 0;
+        if (hasHeader)
+        {
+            i = -1;
+            this.hasHeader = true;
+        }
+        string[] lines = csvFile.text.Split('\n');
+        foreach (string s in lines)
+        {
+            if (i >= 0)
+            {
+                data.Add(new List<string>());
+                string[] temp = s.Split(delimiter);
+                for (int j = 0; j < temp.Length; j++)
+                {
+                    data[i].Add(temp[j]);
+                }
+            }
+            else
+            {
+                string[] temp = s.Split(delimiter);
+                for (int j = 0; j < temp.Length; j++)
+                {
+                    header.Add(temp[j]);
+                }
+            }
+            i++;
+        }
+    }
+
+    /// <summary>
     /// 주어진 headerName이 몇 번째 열(0부터 시작)의 헤더 이름인지 반환합니다.
     /// 없으면 -1을 반환합니다.
     /// </summary>
