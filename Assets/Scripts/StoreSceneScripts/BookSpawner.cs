@@ -62,15 +62,15 @@ public class BookSpawner : MonoBehaviour
             if (BookManager.Instance.checkBookUnlocked(bookName) >= 2)
             {
                 var book = SpawnBook(BookType.RealTwo);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 20f);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 0.2f);
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 10);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
             }
             else if (BookManager.Instance.checkBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 10f);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
             }
         }
     }

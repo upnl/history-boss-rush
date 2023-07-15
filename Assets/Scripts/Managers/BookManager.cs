@@ -8,7 +8,8 @@ public class BookManager : MonoBehaviour
 
     public string[] bookList = new string[] {"judgment", "challenge", "tenacity", "alertness"};
     private BookData _bookData = new BookData();
-    public float blood = 10f;
+    private float _blood;
+    public float blood => _blood;
 
     void Awake()
     {
@@ -21,6 +22,8 @@ public class BookManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(this.gameObject);
+        _blood = 10f;
+        Debug.Log(blood);
     }
 
     public int checkBookUnlocked(string bookName)
@@ -72,13 +75,13 @@ public class BookManager : MonoBehaviour
             if (_bookData.bookEquipped[bookName] < level)
             {
                 _bookData.bookEquipped[bookName] = level;
-                blood -= price;
+                _blood -= price;
             }
         }
         catch (KeyNotFoundException)
         {
             _bookData.bookEquipped[bookName] = level;
-            blood -= price;
+            _blood -= price;
         }
     }
 }
