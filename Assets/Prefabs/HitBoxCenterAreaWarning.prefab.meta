@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/HitBoxCenterAreaWarning.prefab.meta
 guid: 04903dc767ebde7469ed5b720329f3db
+========
+guid: e7b4ea651fb534beea119680e117094c
+>>>>>>>> 31b7d45 (shows book description on mouse hover):Assets/Prefabs/UIManager.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

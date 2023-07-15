@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Prefabs/BookDescription.prefab.meta
 guid: 915f864950647b04bbc59fbcb500b979
 ========
 guid: e7b4ea651fb534beea119680e117094c
 >>>>>>>> 9e520fc0d385298430e586841564d64684f41f15:Assets/Prefabs/UIManager.prefab.meta
+=======
+guid: e7b4ea651fb534beea119680e117094c
+>>>>>>> 74a02658f49408cbd02898430574b84acbcd68f9
 PrefabImporter:
   externalObjects: {}
   userData: 
