@@ -49,7 +49,7 @@ public class BookSpawner : MonoBehaviour
         BookManager.Instance.SetBookUnlocked("Thor3", 3);
         SpawnRealBooks();
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 8; ++i)
         {
             SpawnBook(BookType.DummyLeft);
             SpawnBook(BookType.DummyRight);
