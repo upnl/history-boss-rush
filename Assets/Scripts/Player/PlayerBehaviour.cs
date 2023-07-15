@@ -8,8 +8,10 @@ public class PlayerBehaviour : MonoBehaviour
     private QuestManager questManager;
 
     private float writingTime = 1f;
+    private float attackAfterDelay = 0.5f;
     private bool isAlive = true;
     private bool alreadyWriting = false;
+    private bool alreadyAttack = false;
 
     private void Start()
     {
@@ -19,15 +21,29 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F) && questManager.HasQuest && !alreadyWriting)
+        if(Input.GetKeyDown(KeyCode.F) && questManager.HasQuest && !alreadyWriting && !alreadyAttack)
         {
             StartCoroutine(WritingBook());
+        }
+        else if(Input.GetMouseButtonDown(0) && !alreadyAttack && !alreadyAttack && isAlive)
+        {
+            Attack();
         }
     }
 
     private void Attack()
     {
+        alreadyAttack = true;
         //TODO
+        StartCoroutine(AttackDelay());
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        playerMove.CanMove = false;
+        yield return new WaitForSeconds(attackAfterDelay);
+        playerMove.CanMove = true;
+        alreadyAttack = false;
     }
 
     public void GetDamaged()
