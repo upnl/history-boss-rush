@@ -1,20 +1,15 @@
 using UnityEngine;
 
-public enum BookContent
-    {
-        Challenge
-    }
-
 public class BookBehaviour : MonoBehaviour
 {
 
-    private BookContent _content;
+    private string _content;
     private int _level;
     private int _price;
 
     public int price => _price;
 
-    public void setProperties(BookContent content, int level, int price)
+    public void setProperties(string content, int level, int price)
     {
         _content = content;
         _level = level;
