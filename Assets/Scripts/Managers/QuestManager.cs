@@ -43,12 +43,11 @@ public class QuestManager : MonoBehaviour
         {
             bossName = "Thor";
         }
-        /*
+
         else if(boss is Surtr)
         {
             bossName = "Surtr";
         }
-        */
     }
 
     private void Update()

@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     public float MaxHP => maxHP;
     private float nowHP = 100f;
     public float NowHP => nowHP;
-    private float normalDamage;
+    private float normalDamage = 3f;
     [SerializeField] Slider hpSlider;
 
     public GameObject hitBoxPrefab;
@@ -51,7 +51,7 @@ public class Boss : MonoBehaviour
         hit.transform.localScale = new Vector3(width, hit.transform.localScale.y, 1f);
         hit.transform.localPosition = center;
         hit.transform.localRotation = Quaternion.Euler(0f, 0f, degree);
-        // degree°¡ 0ÀÏ ¶§ ¼¼·Î·Î ±ç
+        // degreeï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Î·ï¿½ ï¿½ï¿½
     }
 
     protected void InstantiateHitCircle(Vector3 center, float radius)
@@ -66,6 +66,14 @@ public class Boss : MonoBehaviour
         foreach (Transform t in hitAreaParent.GetComponentInChildren<Transform>())
         {
             Destroy(t.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Slash")
+        {
+            GetDamaged(BookManager.Instance.CheckBookEquipped("Challenge"));
         }
     }
 }
