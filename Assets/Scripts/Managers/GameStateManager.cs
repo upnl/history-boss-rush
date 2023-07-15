@@ -20,21 +20,21 @@ public class GameStateManager : MonoBehaviour
     {
         losePanel.SetActive(true);
         lose = true;
-        playerMove.canDash = false;
+        playerMove.CanDash = false;
     }
     public void Win()
     {
         winPanel.SetActive(true);
         win = true;
-        playerMove.canDash = false;
+        playerMove.CanDash = false;
     }
 
     public void Pause()
     {
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
-        previousPlayerCanDash = playerMove.canDash;
-        playerMove.canDash = false;
+        previousPlayerCanDash = playerMove.CanDash;
+        playerMove.CanDash = false;
         dashTemp = true;
         pausePanel.SetActive(true);
         
@@ -44,7 +44,7 @@ public class GameStateManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         Time.timeScale = previousTimeScale;
-        playerMove.canDash = previousPlayerCanDash;
+        playerMove.CanDash = previousPlayerCanDash;
     }
 
     public void Quit()

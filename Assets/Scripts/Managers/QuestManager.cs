@@ -28,19 +28,17 @@ public class QuestManager : MonoBehaviour
     private int justAvoidCountLevel2Cut;
     private bool justAvoidCount1Checked = false;
     private bool justAvoidCount2Checked = false;
-    private BookManager bookManager;
+    
     [SerializeField] private Boss boss;
     private float questDurationTime = 15f;
     [SerializeField] private List<GameObject> questPanels;
-    [HideInInspector] public string NowQuestBookName;
-    [HideInInspector] public int NowQuestLevel;
     [HideInInspector] public bool StopTimer = false; // it should be changed in PlayerBehaviour when Player write the history book
     [HideInInspector] public bool UnlockBook = false;
+    [HideInInspector] public bool HasQuest = false;
     private string bossName;
     
     private void Start()
     {
-        bookManager = BookManager.Instance;
         if(boss is Thor)
         {
             bossName = "Thor";
@@ -123,11 +121,6 @@ public class QuestManager : MonoBehaviour
             }
             else
             {
-                if(i==0)
-                {
-                    NowQuestBookName = bookName;
-                    NowQuestLevel = level;
-                }
                 questPanels[i].SetActive(true);
                 SetQuestPanel(i, bookName, level);
                 break;
@@ -144,12 +137,14 @@ public class QuestManager : MonoBehaviour
         questPanel.BookName = bookName;
         questPanel.Level = level;
 
+        HasQuest = true;
         questText.text = "It's able to write the history book.\nPress[F] to write";
         StartCoroutine(QuestPanelStart(questPanel, durationSlider));
     }
 
     public IEnumerator QuestPanelStart(QuestPanel questPanel, Slider slider)
     {
+        
         while (slider.value > 0f)
         {
             if (!StopTimer)
@@ -158,7 +153,7 @@ public class QuestManager : MonoBehaviour
             }
             if (UnlockBook)
             {
-                bookManager.SetBookUnlocked(questPanel.BookName, questPanel.Level);
+                BookManager.Instance.SetBookUnlocked(questPanel.BookName, questPanel.Level);
                 StopTimer = false;
                 break;
             }
@@ -183,6 +178,10 @@ public class QuestManager : MonoBehaviour
                 }
                 else
                 {
+                    if(i==0)
+                    {
+                        HasQuest = false;
+                    }
                     questPanels[i].SetActive(false);
                     break;
                 }
