@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameStateManager GameStateManager { get; private set; }
     public QuestManager QuestManager { get; private set; }
+    public FieldManager FieldManager { get; private set; }
     
     private void Awake()
     {
@@ -21,5 +22,6 @@ public class GameManager : MonoBehaviour
 
         GameStateManager = GetComponentInChildren<GameStateManager>();
         QuestManager = GetComponentInChildren<QuestManager>();
+        FieldManager = GetComponentInChildren<FieldManager>();
     }
 }

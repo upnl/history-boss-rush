@@ -38,18 +38,18 @@ public class Thor : Boss
 
         // 플레이어의 현재 위치 확인
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
-        playerPos.z = this.transform.localPosition.z;
 
         // DB에서 Thor1의 effect1(미리 보여주는 시간)을 가져오기
         // 얼만큼 기다려야 하는가: 0.5초 - effect1
         yield return new WaitForSeconds(0.5f - effect1);
 
         // HitBoxAreaWarning을 (망치 앞 -> playerPos)과 네 외벽 근처에 생성
+        InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 0.5f);
+
         mjolnir.transform.localPosition = transform.localPosition;
 
         Vector3 v = playerPos - mjolnir.transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
-        InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 0.5f);
 
         // effect1 시간 기다리기
         yield return new WaitForSeconds(effect1);
@@ -61,16 +61,18 @@ public class Thor : Boss
 
         InstantiateHitBoxInCenter(new Vector3(-9.5f, 0f, 0f), 0f);
         InstantiateHitBoxInCenter(new Vector3(9.5f, 0f, 0f), 0f);
-        InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 0f);
-        InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 0f);
+        InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
+        InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
 
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
         // 묠니르가 벽에 닿을 때까지 대기
-        while (mjolnir.transform.localPosition.x > -9.5f && mjolnir.transform.localPosition.x < 9.5f &&
-            mjolnir.transform.localPosition.y > -9.5f && mjolnir.transform.localPosition.y < 9.5f)
+        Vector3 velocity = (playerPos - transform.localPosition).normalized;
+        while (!mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall1.GetComponent<BoxCollider2D>()) &&
+            !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall2.GetComponent<BoxCollider2D>()) &&
+            !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall3.GetComponent<BoxCollider2D>()) &&
+            !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<BoxCollider2D>()))
         {
             yield return null;
-            Vector3 velocity = (playerPos - transform.localPosition).normalized;
             mjolnir.transform.localPosition = mjolnir.transform.localPosition + velocity * mjolnirSpeed * Time.deltaTime;
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
@@ -84,7 +86,7 @@ public class Thor : Boss
 
         // 시간 조금 기다리면서 다시 HitBoxAreaWarning을 (망치 앞 -> 토르)에 생성
         // TODO 돌아오는 망치의 경로 미리 표시하기
-        //InstantiateHitBox(망치 현재 포지션, 토르 몸체 포지션, 0.5f);
+        InstantiateHitBox(tempMjolnirPos, transform.position, 0.5f);
 
         yield return new WaitForSeconds(0.3f);
         // effect1 시간 기다리기
@@ -93,12 +95,12 @@ public class Thor : Boss
         RemoveAllHitArea();
 
         yield return null;
-        // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
 
+        // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
+        velocity = (transform.localPosition - tempMjolnirPos).normalized;
         while (!mjolnir.GetComponent<PolygonCollider2D>().IsTouching(this.GetComponent<BoxCollider2D>()))
         {
             yield return null;
-            Vector3 velocity = (transform.localPosition - tempMjolnirPos).normalized;
             mjolnir.transform.localPosition = mjolnir.transform.localPosition + velocity * mjolnirSpeed * Time.deltaTime;
         }
         // 묠니르가 토르에 닿으면 패턴 종료
