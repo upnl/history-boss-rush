@@ -7,6 +7,7 @@ public class BookBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject _priceLabelPrefab;
     [SerializeField] private GameObject _contentLabelPrefab;
+    [SerializeField] private GameObject _warningPrefab;
     private GameObject _canvasParent;
 
     private string _content;
@@ -61,6 +62,11 @@ public class BookBehaviour : MonoBehaviour
             var currentPosition = transform.position;
             currentPosition.z = -15f;
             transform.position = currentPosition;
+        }
+        if (BookManager.Instance.blood < _price)
+        {
+            var warningPosition = new Vector3(6.78f, 2.2f, -5f);
+            var warning = Instantiate<GameObject>(_warningPrefab, warningPosition, Quaternion.identity);
         }
         BookManager.Instance.SetBookEquipped(_content, _level, _price);
     }

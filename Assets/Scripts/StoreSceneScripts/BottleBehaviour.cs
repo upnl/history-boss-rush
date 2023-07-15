@@ -20,7 +20,7 @@ public class BottleBehaviour : MonoBehaviour
         if (BookManager.Instance.blood <= _startBlood * 0.25)
         {
             GetComponent<SpriteRenderer>().sprite = _emptyBottle;
-        } else if (BookManager.Instance.blood <= _startBlood * 0.75)
+        } else if (BookManager.Instance.blood < _startBlood * 0.7)
         {
             GetComponent<SpriteRenderer>().sprite = _halfBottle;
         }

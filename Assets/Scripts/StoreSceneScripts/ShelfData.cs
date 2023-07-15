@@ -12,4 +12,5 @@ public class ShelfData: ScriptableObject
     public float yRow4;
 
     public float overlapRange;
+    public float dummyOverlapRange;
 }
