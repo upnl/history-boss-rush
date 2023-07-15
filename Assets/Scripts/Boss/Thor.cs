@@ -168,12 +168,15 @@ public class Thor : Boss
         yield return null;
 
         StartCoroutine(PassivePattern());
-        isBusy = false;
     }
 
     // 전자 갑옷
     public IEnumerator PassivePattern()
     {
+        InstantiateHitCircle(transform.localPosition, 3f);
+        yield return new WaitForSeconds(3f);
+        RemoveAllHitArea();
         yield return null;
+        isBusy = false;
     }
 }
