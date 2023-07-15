@@ -186,7 +186,6 @@ public class QuestManager : MonoBehaviour
                     break;
                 }
             }
-        }
-        
+        } 
     }
 }
