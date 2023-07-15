@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8151771ad3e401a9e3365e3fdba079, type: 3}
   m_Name: Shelf
   m_EditorClassIdentifier: 
-  xMin: -8.3
-  xMax: 3.2
+  xMin: -7.25
+  xMax: 4.15
   yRow1: 2.73
   yRow2: 0.8
   yRow3: -1.14

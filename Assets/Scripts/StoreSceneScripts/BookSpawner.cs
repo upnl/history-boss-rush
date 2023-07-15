@@ -30,12 +30,14 @@ public class BookSpawner : MonoBehaviour
 
     [SerializeField] private GameObject _dummyBookGroupOne;
     [SerializeField] private GameObject _dummyBookGroupTwo;
+    [SerializeField] private TextAsset _bookDB;
 
     private List<List<float>> _bookLocations = new List<List<float>>();
 
-
+    private CSVReader _csv;
     private void Start()
     {
+        _csv = new CSVReader(_bookDB, true, '\t');
         for (int i = 0; i < 4; ++i)
         {
             _bookLocations.Add(new List<float>());
@@ -50,8 +52,10 @@ public class BookSpawner : MonoBehaviour
             SpawnBook(BookType.DummyGroupOne);
             SpawnBook(BookType.DummyGroupTwo);
         }
-        BookManager.Instance.setBookUnlocked("judgment", 2);
-        BookManager.Instance.setBookUnlocked("tenacity", 1);
+        //For debugging purposes, two books are unlocked artificially
+        BookManager.Instance.SetBookUnlocked("Tenacity", 1);
+        BookManager.Instance.SetBookUnlocked("Challenge", 2);
+        BookManager.Instance.SetBookUnlocked("Alertness", 2);
         SpawnRealBooks();
     }
 
@@ -59,26 +63,26 @@ public class BookSpawner : MonoBehaviour
     {
         foreach(string bookName in BookManager.Instance.bookList)
         {
-            if (BookManager.Instance.checkBookUnlocked(bookName) >= 2)
+            if (BookManager.Instance.CheckBookUnlocked(bookName) >= 2)
             {
                 var book = SpawnBook(BookType.RealTwo);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 0.2f);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, ScanCSVForPrice(bookName, 2));
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, ScanCSVForPrice(bookName, 1));
             }
-            else if (BookManager.Instance.checkBookUnlocked(bookName) >= 1)
+            else if (BookManager.Instance.CheckBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
-                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, ScanCSVForPrice(bookName, 1));
             }
         }
     }
 
     private GameObject SpawnBook(BookType bookType)
     {
-        var prefab = returnPrefab(bookType);
-        var position = spawnPosition(bookType);
+        var prefab = ReturnPrefab(bookType);
+        var position = SpawnPosition(bookType);
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
 
         return book;
@@ -86,7 +90,7 @@ public class BookSpawner : MonoBehaviour
 
     private GameObject SpawnBookClosely(BookType bookType, Vector3 previousPosition)
     {
-        var prefab = returnPrefab(bookType);
+        var prefab = ReturnPrefab(bookType);
         var position = previousPosition;
         position.x -= 0.5f;
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
@@ -94,7 +98,22 @@ public class BookSpawner : MonoBehaviour
         return book;
     }
 
-    private Vector3 spawnPosition(BookType bookType)
+    private float ScanCSVForPrice(string bookName, int level)
+    {
+
+        var i = 0;
+        while (i < _csv.GetData().Count)
+        {
+            if (_csv.GetData()[i][1] == bookName && Convert.ToInt32(_csv.GetData()[i][3]) == level)
+            {
+                return Convert.ToSingle(_csv.GetData()[i][4]);
+            }
+            i += 1;
+        }
+        return 0f;
+    }
+
+    private Vector3 SpawnPosition(BookType bookType)
     {
         var overlap = true;
         var x = 0f;
@@ -135,7 +154,7 @@ public class BookSpawner : MonoBehaviour
         return new Vector3(x, y, 0f);
     }
 
-    private GameObject returnPrefab(BookType bookType)
+    private GameObject ReturnPrefab(BookType bookType)
     {
         var prefab = _dummyBook;
         switch (bookType)
