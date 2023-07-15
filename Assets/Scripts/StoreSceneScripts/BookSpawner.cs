@@ -71,13 +71,13 @@ public class BookSpawner : MonoBehaviour
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
                 csvData = ScanCSVForRow(bookName, 1);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], csvData[7]);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
             }
             else if (BookManager.Instance.CheckBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
                 var csvData = ScanCSVForRow(bookName, 1);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], csvData[7]);
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
             }
         }
     }
