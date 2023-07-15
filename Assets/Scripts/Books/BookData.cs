@@ -5,8 +5,6 @@ public class BookData
 {
     public static BookData instance {get; private set;}
 
-    public string[] bookList = new string[] {"judgement", "challenge", "sanctuary", "alertness"};
-
-    public Dictionary<string, int> bookUnlocked;
-    public Dictionary<string, int> bookEquipped;
+    public Dictionary<string, int> bookUnlocked = new Dictionary<string, int>();
+    public Dictionary<string, int> bookEquipped = new Dictionary<string, int>();
 }

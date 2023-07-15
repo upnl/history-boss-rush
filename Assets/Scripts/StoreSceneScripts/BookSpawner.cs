@@ -2,6 +2,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public enum BookType
 {
@@ -39,7 +40,6 @@ public class BookSpawner : MonoBehaviour
         {
             _bookLocations.Add(new List<float>());
         }
-        SpawnBook(BookType.RealTwo);
         for (int i = 0; i < 5; ++i)
         {
             SpawnBook(BookType.DummyLeft);
@@ -50,23 +50,48 @@ public class BookSpawner : MonoBehaviour
             SpawnBook(BookType.DummyGroupOne);
             SpawnBook(BookType.DummyGroupTwo);
         }
+        BookManager.Instance.setBookUnlocked("judgment", 2);
+        BookManager.Instance.setBookUnlocked("tenacity", 1);
+        SpawnRealBooks();
     }
 
     private void SpawnRealBooks()
     {
-        
+        foreach(string bookName in BookManager.Instance.bookList)
+        {
+            if (BookManager.Instance.checkBookUnlocked(bookName) >= 2)
+            {
+                var book = SpawnBook(BookType.RealTwo);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 2, 0.2f);
+
+                book = SpawnBookClosely(BookType.RealOne, book.transform.position);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
+            }
+            else if (BookManager.Instance.checkBookUnlocked(bookName) >= 1)
+            {
+                var book = SpawnBook(BookType.RealOne);
+                book.GetComponent<BookBehaviour>().setProperties(bookName, 1, 0.1f);
+            }
+        }
     }
 
-    private void SpawnBook(BookType bookType)
+    private GameObject SpawnBook(BookType bookType)
     {
         var prefab = returnPrefab(bookType);
         var position = spawnPosition(bookType);
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
 
-        if (bookType == BookType.RealOne || bookType == BookType.RealTwo)
-        {
-            book.GetComponent<BookBehaviour>().setProperties("judgement", 1, 20);
-        }
+        return book;
+    }
+
+    private GameObject SpawnBookClosely(BookType bookType, Vector3 previousPosition)
+    {
+        var prefab = returnPrefab(bookType);
+        var position = previousPosition;
+        position.x -= 0.5f;
+        var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
+
+        return book;
     }
 
     private Vector3 spawnPosition(BookType bookType)
