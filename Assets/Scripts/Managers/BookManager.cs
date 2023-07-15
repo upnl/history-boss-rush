@@ -11,8 +11,11 @@ public class BookManager : MonoBehaviour
     private float _blood;
     public float blood => _blood;
     public CSVReader bookDB;
+    public CSVReader dialogueDB;
+    public int iteration { get; private set; }
 
     [SerializeField] private TextAsset _bookDB;
+    [SerializeField] private TextAsset _dialogueDB;
 
     public string bookDescription;
 
@@ -31,7 +34,10 @@ public class BookManager : MonoBehaviour
         _blood = 100f;
 
         bookDB = new CSVReader(_bookDB, true, '\t');
-        bookDescription = "탐색할 역사책을 선택하자";
+        dialogueDB = new CSVReader(_dialogueDB, true, ',');
+        iteration = 1;
+
+        bookDescription = "연구할 역사책을 선택하자";
     }
 
     public int CheckBookUnlocked(string bookName)
