@@ -18,4 +18,4 @@ MonoBehaviour:
   yRow2: 0.8
   yRow3: -1.14
   yRow4: -3.09
-  overlapRange: 1
+  overlapRange: 1.5

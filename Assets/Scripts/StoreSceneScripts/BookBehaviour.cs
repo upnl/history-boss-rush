@@ -58,7 +58,9 @@ public class BookBehaviour : MonoBehaviour
     {
         if (BookManager.Instance.blood > _price)
         {
-            transform.position = new Vector3(10000f, 10000f, -15f);
+            var currentPosition = transform.position;
+            currentPosition.z = -15f;
+            transform.position = currentPosition;
         }
         BookManager.Instance.SetBookEquipped(_content, _level, _price);
     }

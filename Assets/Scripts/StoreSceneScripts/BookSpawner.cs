@@ -57,6 +57,7 @@ public class BookSpawner : MonoBehaviour
         BookManager.Instance.SetBookUnlocked("Challenge", 2);
         BookManager.Instance.SetBookUnlocked("Alertness", 2);
         BookManager.Instance.SetBookUnlocked("Surtr4", 2);
+        BookManager.Instance.SetBookUnlocked("Thor3", 3);
         SpawnRealBooks();
     }
 
@@ -96,7 +97,7 @@ public class BookSpawner : MonoBehaviour
     {
         var prefab = ReturnPrefab(bookType);
         var position = previousPosition;
-        position.x -= 0.5f;
+        position.x -= 0.7f;
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
 
         return book;
