@@ -19,6 +19,7 @@ public class BookBehaviour : MonoBehaviour
     private void Awake()
     {
         _canvasParent = GameObject.FindWithTag("EditorOnly");
+        _bookDescription.text = "가져갈 책을 구매하자";
     }
 
     public void SetProperties(string content, int level, float price, string koreanName, string description)
