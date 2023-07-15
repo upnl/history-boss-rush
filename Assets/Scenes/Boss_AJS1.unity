@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 331207683}
   - component: {fileID: 331207685}
   - component: {fileID: 331207684}
+  - component: {fileID: 331207686}
   m_Layer: 5
   m_Name: QuestPanel3
   m_TagString: Untagged
@@ -791,6 +792,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331207682}
   m_CullTransparentMesh: 1
+--- !u!114 &331207686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331207682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa1b9ee82a8f9148a3611049c2ee07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookName: 
+  Level: 0
 --- !u!1 &347518680
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +817,7 @@ GameObject:
   - component: {fileID: 347518682}
   - component: {fileID: 347518681}
   - component: {fileID: 347518683}
+  - component: {fileID: 347518684}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -902,6 +918,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &347518684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347518680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32090dd75362e294f9b1d4ee9f4c05e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 726884614}
 --- !u!1 &383062638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,6 +1599,7 @@ GameObject:
   - component: {fileID: 598339492}
   - component: {fileID: 598339494}
   - component: {fileID: 598339493}
+  - component: {fileID: 598339495}
   m_Layer: 5
   m_Name: QuestPanel4
   m_TagString: Untagged
@@ -1637,6 +1667,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598339491}
   m_CullTransparentMesh: 1
+--- !u!114 &598339495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598339491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa1b9ee82a8f9148a3611049c2ee07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookName: 
+  Level: 0
 --- !u!1 &615663716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2325,7 @@ GameObject:
   - component: {fileID: 773520867}
   - component: {fileID: 773520866}
   - component: {fileID: 773520865}
+  - component: {fileID: 773520868}
   m_Layer: 5
   m_Name: QuestPanel6
   m_TagString: Untagged
@@ -2348,6 +2393,20 @@ RectTransform:
   m_AnchoredPosition: {x: -270, y: 1000}
   m_SizeDelta: {x: 480, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &773520868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773520864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa1b9ee82a8f9148a3611049c2ee07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookName: 
+  Level: 0
 --- !u!1 &861133662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2633,7 @@ MonoBehaviour:
   NowQuestBookName: 
   NowQuestLevel: 0
   StopTimer: 0
+  UnlockBook: 0
 --- !u!1 &981992623
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,6 +3856,7 @@ GameObject:
   - component: {fileID: 1296821989}
   - component: {fileID: 1296821991}
   - component: {fileID: 1296821990}
+  - component: {fileID: 1296821992}
   m_Layer: 5
   m_Name: QuestPanel5
   m_TagString: Untagged
@@ -3863,6 +3924,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296821988}
   m_CullTransparentMesh: 1
+--- !u!114 &1296821992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296821988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa1b9ee82a8f9148a3611049c2ee07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookName: 
+  Level: 0
 --- !u!1 &1490668974
 GameObject:
   m_ObjectHideFlags: 0
@@ -5079,6 +5154,7 @@ GameObject:
   - component: {fileID: 1819275926}
   - component: {fileID: 1819275928}
   - component: {fileID: 1819275927}
+  - component: {fileID: 1819275929}
   m_Layer: 5
   m_Name: QuestPanel2
   m_TagString: Untagged
@@ -5146,6 +5222,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819275925}
   m_CullTransparentMesh: 1
+--- !u!114 &1819275929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819275925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa1b9ee82a8f9148a3611049c2ee07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookName: 
+  Level: 0
 --- !u!1 &1881171826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5203,6 +5293,7 @@ GameObject:
   - component: {fileID: 1914146770}
   - component: {fileID: 1914146772}
   - component: {fileID: 1914146771}
+  - component: {fileID: 1914146773}
   m_Layer: 5
   m_Name: QuestPanel1
   m_TagString: Untagged
@@ -5270,6 +5361,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914146769}
   m_CullTransparentMesh: 1
+--- !u!114 &1914146773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914146769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa1b9ee82a8f9148a3611049c2ee07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BookName: 
+  Level: 0
 --- !u!1 &1914816202
 GameObject:
   m_ObjectHideFlags: 0
