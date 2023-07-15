@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2480c87c816241448ce5a5b09b27c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _priceLabelPrefab: {fileID: 4534549155972983253, guid: 1295e529750264f5a9b11093f7b05400, type: 3}
+  _canvasParent: {fileID: 5443461913111088702, guid: e02e4621d863d4cffae0e5ef9b641280, type: 3}
 --- !u!61 &-500472486973381886
 BoxCollider2D:
   m_ObjectHideFlags: 0

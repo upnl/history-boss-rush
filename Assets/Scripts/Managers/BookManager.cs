@@ -27,7 +27,7 @@ public class BookManager : MonoBehaviour
 
     }
 
-    public int checkBookUnlocked(string bookName)
+    public int CheckBookUnlocked(string bookName)
     {
         try
         {
@@ -40,7 +40,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    public int checkBookEquipped(string bookName)
+    public int CheckBookEquipped(string bookName)
     {
         try
         {
@@ -54,7 +54,7 @@ public class BookManager : MonoBehaviour
 
     }
 
-    public void setBookUnlocked(string bookName, int level)
+    public void SetBookUnlocked(string bookName, int level)
     {
         try
         {
@@ -69,7 +69,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    public void setBookEquipped(string bookName, int level, float price)
+    public void SetBookEquipped(string bookName, int level, float price)
     {
         if (price > _blood)
         {
