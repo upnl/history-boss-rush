@@ -10,6 +10,9 @@ public class BookManager : MonoBehaviour
     private BookData _bookData = new BookData();
     private float _blood;
     public float blood => _blood;
+    public CSVReader bookDB;
+
+    [SerializeField] private TextAsset _bookDB;
 
     void Awake()
     {
@@ -25,6 +28,7 @@ public class BookManager : MonoBehaviour
         bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4", "Challenge", "Tenacity", "Alertness"};
         _blood = 100f;
 
+        bookDB = new CSVReader(_bookDB, true, '\t');
     }
 
     public int CheckBookUnlocked(string bookName)

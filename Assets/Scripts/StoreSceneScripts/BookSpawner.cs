@@ -30,14 +30,13 @@ public class BookSpawner : MonoBehaviour
 
     [SerializeField] private GameObject _dummyBookGroupOne;
     [SerializeField] private GameObject _dummyBookGroupTwo;
-    [SerializeField] private TextAsset _bookDB;
 
     private List<List<float>> _bookLocations = new List<List<float>>();
 
     private CSVReader _csv;
     private void Start()
     {
-        _csv = new CSVReader(_bookDB, true, '\t');
+        _csv = BookManager.Instance.bookDB;
         for (int i = 0; i < 4; ++i)
         {
             _bookLocations.Add(new List<float>());

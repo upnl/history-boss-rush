@@ -8,15 +8,17 @@ public class Thor : Boss
     {
         // 패턴 사용 1초 전에 코루틴 Pattern1() 호출
 
-        Vector3 playerPos = new Vector3();
+        string skill = "Thor1";
+        CSVReader bookDB = BookManager.Instance.bookDB;
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position;
         // TODO 플레이어의 현재 위치 파악
-        int historyLevel = BookManager.Instance.CheckBookEquipped("Thor1");
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
 
-        if (true)   // TODO DB에서 Thor1의 effect1(미리 보여주는 시간)을 가져오기 -> 이 값에 따라 조건문 분기
-        {
-            // 얼만큼 기다려야 하는가 = 1초 - effect1
-            yield return new WaitForSeconds(0.1f);
-        }
+        // TODO DB에서 Thor1의 effect1(미리 보여주는 시간)을 가져오기 -> 이 값에 따라 조건문 분기
+        // 얼만큼 기다려야 하는가 = 1초 - effect1
+        yield return new WaitForSeconds(1f - float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]));
 
         // HitBoxAreaWarning을 (망치 앞 -> playerPos)과 네 외벽 근처에 생성
         // effect1 시간 기다리기
