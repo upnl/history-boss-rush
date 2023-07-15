@@ -78,7 +78,7 @@ public class Thor : Boss
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
-        Vector3 tempMjolnirPos = mjolnir.transform.position;
+        Vector3 tempMjolnirPos = mjolnir.transform.localPosition;
 
         // 묠니르가 벽에 닿으면 외벽 근처에 있는 플레이어 사망
         RemoveAllHitArea();
