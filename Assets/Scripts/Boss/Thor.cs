@@ -24,7 +24,6 @@ public class Thor : Boss
     {
         if (isBusy) yield break;
 
-<<<<<<< HEAD
         isBusy = true;
         // 패턴 사용 0.5초 전에 코루틴 Pattern1() 호출
 
