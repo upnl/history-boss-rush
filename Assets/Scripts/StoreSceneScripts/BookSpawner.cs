@@ -52,6 +52,11 @@ public class BookSpawner : MonoBehaviour
         }
     }
 
+    private void SpawnRealBooks()
+    {
+        
+    }
+
     private void SpawnBook(BookType bookType)
     {
         var prefab = returnPrefab(bookType);
@@ -60,7 +65,7 @@ public class BookSpawner : MonoBehaviour
 
         if (bookType == BookType.RealOne || bookType == BookType.RealTwo)
         {
-            book.GetComponent<BookBehaviour>().setProperties(BookContent.Challenge, 1, 20);
+            book.GetComponent<BookBehaviour>().setProperties("judgement", 1, 20);
         }
     }
 
