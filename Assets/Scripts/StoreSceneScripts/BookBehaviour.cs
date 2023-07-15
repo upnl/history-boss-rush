@@ -18,6 +18,8 @@ public class BookBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("Clicked");
+        BookManager.Instance.setBookEquipped(_content, _level, _price);
+        Debug.Log(BookManager.Instance.blood);
+        Debug.Log(BookManager.Instance.checkBookEquipped(_content));
     }
 }

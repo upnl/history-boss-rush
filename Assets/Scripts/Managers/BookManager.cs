@@ -6,8 +6,9 @@ public class BookManager : MonoBehaviour
 {
     public static BookManager Instance { get; private set; }
 
-
+    public string[] bookList = new string[] {"judgment", "challenge", "tenacity", "alertness"};
     private BookData _bookData = new BookData();
+    public int blood = 10000;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class BookManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    int checkBookUnlocked(string bookName)
+    public int checkBookUnlocked(string bookName)
     {
         try
         {
@@ -35,7 +36,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    int checkBookEquipped(string bookName)
+    public int checkBookEquipped(string bookName)
     {
         try
         {
@@ -49,7 +50,7 @@ public class BookManager : MonoBehaviour
 
     }
 
-    void setBookUnlocked(string bookName, int level)
+    public void setBookUnlocked(string bookName, int level)
     {
         try
         {
@@ -64,18 +65,20 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    void setBookEquipped(string bookName, int level)
+    public void setBookEquipped(string bookName, int level, int price)
     {
         try
         {
             if (_bookData.bookEquipped[bookName] < level)
             {
                 _bookData.bookEquipped[bookName] = level;
+                blood -= price;
             }
         }
         catch (KeyNotFoundException)
         {
             _bookData.bookEquipped[bookName] = level;
+            blood -= price;
         }
     }
 }
