@@ -38,10 +38,9 @@ public class Boss : MonoBehaviour
 
     protected void InstantiateHitBox(Vector3 origin, Vector3 destination, float width = 1f, float length = 28.4f)
     {
-        Debug.Log(origin + ", " + destination);
         GameObject hit = Instantiate(hitBoxPrefab, hitAreaParent.transform);
         hit.transform.localScale = new Vector3(width, length, 1f);
-        hit.transform.position = origin;
+        hit.transform.localPosition = origin;
         Vector3 v = destination - origin;
         hit.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
     }
@@ -50,9 +49,16 @@ public class Boss : MonoBehaviour
     {
         GameObject hit = Instantiate(hitBoxCenterPrefab, hitAreaParent.transform);
         hit.transform.localScale = new Vector3(width, hit.transform.localScale.y, 1f);
-        hit.transform.position = center;
+        hit.transform.localPosition = center;
         hit.transform.localRotation = Quaternion.Euler(0f, 0f, degree);
         // degree�� 0�� �� ���η� ��
+    }
+
+    protected void InstantiateHitCircle(Vector3 center, float radius)
+    {
+        GameObject hit = Instantiate(hitCirclePrefab, hitAreaParent.transform);
+        hit.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
+        hit.transform.localPosition = center;
     }
 
     protected void RemoveAllHitArea()
