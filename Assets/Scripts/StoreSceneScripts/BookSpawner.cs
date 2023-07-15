@@ -15,11 +15,6 @@ public enum BookType
     DummyGroupTwo
 }
 
-public enum BookContent
-{
-
-}
-
 public class BookSpawner : MonoBehaviour
 {
 
@@ -44,16 +39,17 @@ public class BookSpawner : MonoBehaviour
         {
             _bookLocations.Add(new List<float>());
         }
+        SpawnBook(BookType.RealTwo);
         for (int i = 0; i < 5; ++i)
         {
             SpawnBook(BookType.DummyLeft);
-        }
-        for (int i = 0; i < 5; ++i)
-        {
             SpawnBook(BookType.DummyRight);
         }
-        SpawnBook(BookType.DummyGroupOne);
-        SpawnBook(BookType.DummyGroupTwo);
+        for (int i = 0; i < 3; ++i)
+        {
+            SpawnBook(BookType.DummyGroupOne);
+            SpawnBook(BookType.DummyGroupTwo);
+        }
     }
 
     private void SpawnBook(BookType bookType)
@@ -61,6 +57,11 @@ public class BookSpawner : MonoBehaviour
         var prefab = returnPrefab(bookType);
         var position = spawnPosition(bookType);
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
+
+        if (bookType == BookType.RealOne || bookType == BookType.RealTwo)
+        {
+            book.GetComponent<BookBehaviour>().setProperties(BookContent.Challenge, 1, 20);
+        }
     }
 
     private Vector3 spawnPosition(BookType bookType)
