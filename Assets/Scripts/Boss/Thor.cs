@@ -223,13 +223,50 @@ public class Thor : Boss
 
         yield return null;
 
+        // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+
         isBusy = false;
     }
 
     // 정전기 폭발
     public IEnumerator Pattern3()
     {
+        if (isBusy) yield break;
+
+        isBusy = true;
+        // TODO 플레이어가 근접한 경우에 호출
+
+        string skill = "Thor3";
+
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
+        float effect1 = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+
+        // 플레이어의 현재 위치 확인
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
+
+        // TODO 망치 올리기
+
+        yield return new WaitForSeconds(1f - effect1);
+
+        InstantiateHitFan60(transform.localPosition, playerPos, 28.4f);
+
+        yield return new WaitForSeconds(effect1 - 0.2f);
+
+        // TODO 망치 내리기
+
+        yield return new WaitForSeconds(0.2f);
+
+        // 생성한 HitFan60AreaWarning 모두 제거하기
+        RemoveAllHitArea();
+        // TODO 전기 이펙트 및 플레이어 공격
+
         yield return null;
+
+        // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+
+        StartCoroutine(PassivePattern());
     }
 
     // 번개 흡수
