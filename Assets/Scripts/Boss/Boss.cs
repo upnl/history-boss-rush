@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     [SerializeField] Slider hpSlider;
 
     public GameObject hitBoxPrefab;
+    public GameObject hitBoxCenterPrefab;
     public GameObject hitCirclePrefab;
     public GameObject hitFan60Prefab;
     public GameObject hitFan120Prefab;
@@ -43,6 +44,15 @@ public class Boss : MonoBehaviour
         hit.transform.position = origin;
         Vector3 v = destination - origin;
         hit.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
+    }
+
+    protected void InstantiateHitBoxInCenter(Vector3 center, float degree, float width = 1f)
+    {
+        GameObject hit = Instantiate(hitBoxCenterPrefab, hitAreaParent.transform);
+        hit.transform.localScale = new Vector3(width, hit.transform.localScale.y, 1f);
+        hit.transform.position = center;
+        hit.transform.localRotation = Quaternion.Euler(0f, 0f, degree);
+        // degree가 0일 때 세로로 긺
     }
 
     protected void RemoveAllHitArea()
