@@ -7,6 +7,7 @@ using static UnityEngine.UI.Image;
 public class Thor : Boss
 {
     public GameObject mjolnir;
+    public GameObject stonePrefab;
 
     public float mjolnirSpeed = 3.5f;
 
@@ -23,6 +24,16 @@ public class Thor : Boss
         {
             Debug.Log("1 " + isBusy);
             StartCoroutine(Pattern1());
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("2 " + isBusy);
+            StartCoroutine(Pattern2());
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("3 " + isBusy);
+            StartCoroutine(Pattern3());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -121,13 +132,98 @@ public class Thor : Boss
 
         mjolnir.transform.localPosition = transform.localPosition;
 
+        // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+
         isBusy = false;
     }
 
     // 피뢰침 방전
     public IEnumerator Pattern2()
     {
+        if (isBusy) yield break;
+
+        isBusy = true;
+        // TODO 플레이어가 근접한 경우에 호출
+
+        string skill = "Thor2";
+
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
+        float effect1 = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+
+        Vector3 stone1Pos = new Vector3(), stone2Pos = new Vector3(), stone3Pos = new Vector3();
+        int r = UnityEngine.Random.Range(0, 4);
+        switch (r)
+        {
+            case 0:
+                stone1Pos = new Vector3(-6f, -4f, 0f);
+                stone2Pos = new Vector3(0f, 6f, 0f);
+                stone3Pos = new Vector3(3f, 0f, 0f);
+                break;
+            case 1:
+                stone1Pos = new Vector3(3f, -6f, 0f);
+                stone2Pos = new Vector3(0f, 4f, 0f);
+                stone3Pos = new Vector3(-4f, 0f, 0f);
+                break;
+            case 2:
+                stone1Pos = new Vector3(5f, 5f, 0f);
+                stone2Pos = new Vector3(0f, -5f, 0f);
+                stone3Pos = new Vector3(-5f, 0f, 0f);
+                break;
+            case 3:
+                stone1Pos = new Vector3(-3f, 3f, 0f);
+                stone2Pos = new Vector3(0f, -3f, 0f);
+                stone3Pos = new Vector3(4f, 0f, 0f);
+                break;
+        }
+
+        yield return new WaitForSeconds(0.7f - effect1);
+
+
+        InstantiateHitBoxInCenter(stone1Pos, 0f);
+        InstantiateHitBoxInCenter(stone1Pos, 90f);
+        InstantiateHitBoxInCenter(stone2Pos, 0f);
+        InstantiateHitBoxInCenter(stone2Pos, 90f);
+        InstantiateHitBoxInCenter(stone3Pos, 0f);
+        InstantiateHitBoxInCenter(stone3Pos, 90f);
+        InstantiateHitBoxInCenter(new Vector3(-9.5f, 0f, 0f), 0f);
+        InstantiateHitBoxInCenter(new Vector3(9.5f, 0f, 0f), 0f);
+        InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
+        InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
+
+        GameObject stone1, stone2, stone3;
+        stone1 = Instantiate(stonePrefab, stone1Pos, Quaternion.identity);
+        stone2 = Instantiate(stonePrefab, stone2Pos, Quaternion.identity);
+        stone3 = Instantiate(stonePrefab, stone3Pos, Quaternion.identity);
+
+        yield return new WaitForSeconds(effect1 - 0.3f);
+
+        // TODO 전기 충전되는 이펙트
+
+        yield return new WaitForSeconds(0.3f);
+
+        RemoveAllHitArea();
+        // TODO 공격 판정
+
+        for (int i = 25; i >= 1; i--)
+        {
+            stone1.GetComponent<SpriteRenderer>().color = new Color(stone1.GetComponent<SpriteRenderer>().color.r,
+                stone1.GetComponent<SpriteRenderer>().color.g, stone1.GetComponent<SpriteRenderer>().color.b, i / 25f);
+            stone2.GetComponent<SpriteRenderer>().color = new Color(stone2.GetComponent<SpriteRenderer>().color.r,
+                stone2.GetComponent<SpriteRenderer>().color.g, stone2.GetComponent<SpriteRenderer>().color.b, i / 25f);
+            stone3.GetComponent<SpriteRenderer>().color = new Color(stone3.GetComponent<SpriteRenderer>().color.r,
+                stone3.GetComponent<SpriteRenderer>().color.g, stone3.GetComponent<SpriteRenderer>().color.b, i / 25f);
+            yield return null;
+        }
+
+        Destroy(stone1);
+        Destroy(stone2);
+        Destroy(stone3);
+
         yield return null;
+
+        isBusy = false;
     }
 
     // 정전기 폭발
@@ -167,6 +263,8 @@ public class Thor : Boss
 
         yield return null;
 
+        // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+
         StartCoroutine(PassivePattern());
     }
 
@@ -174,6 +272,9 @@ public class Thor : Boss
     public IEnumerator PassivePattern()
     {
         InstantiateHitCircle(transform.localPosition, 3f);
+
+        // TODO 이 3초 동안 계속 데미지 가함
+        // TODO 플레이어의 공격 반사
         yield return new WaitForSeconds(3f);
         RemoveAllHitArea();
         yield return null;
