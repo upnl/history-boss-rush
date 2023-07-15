@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _priceLabelPrefab: {fileID: 4534549155972983253, guid: 1295e529750264f5a9b11093f7b05400, type: 3}
-  _canvasParent: {fileID: 5443461913111088702, guid: e02e4621d863d4cffae0e5ef9b641280, type: 3}
+  _contentLabelPrefab: {fileID: 4534549155972983253, guid: f68dca3409639435fb31efe15ad14a40, type: 3}
 --- !u!61 &3051384819956119350
 BoxCollider2D:
   m_ObjectHideFlags: 0

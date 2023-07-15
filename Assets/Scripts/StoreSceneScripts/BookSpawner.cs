@@ -53,7 +53,6 @@ public class BookSpawner : MonoBehaviour
             SpawnBook(BookType.DummyGroupTwo);
         }
         //For debugging purposes, two books are unlocked artificially
-        BookManager.Instance.SetBookUnlocked("Judgment", 2);
         BookManager.Instance.SetBookUnlocked("Tenacity", 1);
         BookManager.Instance.SetBookUnlocked("Challenge", 2);
         BookManager.Instance.SetBookUnlocked("Alertness", 2);

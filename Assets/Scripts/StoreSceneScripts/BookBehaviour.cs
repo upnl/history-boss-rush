@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class BookBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject _priceLabelPrefab;
+    [SerializeField] private GameObject _contentLabelPrefab;
     private GameObject _canvasParent;
 
     private string _content;
@@ -31,7 +32,19 @@ public class BookBehaviour : MonoBehaviour
         textField.transform.position = new Vector3(0, 0, 0);
 
         var rectTransform = priceLabel.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector3(priceLabelPosition.x * 100, priceLabelPosition.y * 100, 0f);
+        rectTransform.anchoredPosition = new Vector3(priceLabelPosition.x * 110, priceLabelPosition.y * 107 - 20, 0f);
+
+        if (_level == 1)
+        {
+            var contentLabel = Instantiate<GameObject>(_contentLabelPrefab, priceLabelPosition, Quaternion.identity);
+            var contentTextField = contentLabel.GetComponent<Text>();
+            contentTextField.text = Convert.ToString(_content);
+            contentLabel.transform.SetParent(_canvasParent.transform, false);
+            contentTextField.transform.position = new Vector3(0,0,0);
+
+            rectTransform = contentLabel.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector3(priceLabelPosition.x * 107, priceLabelPosition.y * 107 - 170, 0f);
+        }
     }
 
     public void OnMouseDown()
