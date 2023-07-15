@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     private float maxHP = 100f;
+    public float MaxHP => maxHP;
     private float nowHP = 100f;
+    public float NowHP => nowHP;
     private float normalDamage;
     [SerializeField] Slider hpSlider;
     

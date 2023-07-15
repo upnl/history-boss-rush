@@ -14,9 +14,9 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
-            if(GameManager.Instance.GameStateManager.dashTemp)
+            if (GameManager.Instance.GameStateManager.dashTemp)
             {
                 GameManager.Instance.GameStateManager.dashTemp = false;
             }
@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
             {
                 float hValue = Input.GetAxisRaw("Horizontal");
                 float vValue = Input.GetAxisRaw("Vertical");
-                if(hValue != 0 || vValue != 0)
+                if (hValue != 0 || vValue != 0)
                 {
                     nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
                 }
@@ -33,11 +33,11 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(Dash());
             }
         }
-        else if(!isdash)
+        else if (!isdash)
         {
             float hValue = Input.GetAxisRaw("Horizontal");
             float vValue = Input.GetAxisRaw("Vertical");
-            if(hValue != 0 || vValue != 0)
+            if (hValue != 0 || vValue != 0)
             {
                 nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
             }
@@ -51,9 +51,8 @@ public class PlayerMove : MonoBehaviour
     private IEnumerator Dash()
     {
         float elapsedTime = 0f;
-        while(elapsedTime < dashTime)
+        while (elapsedTime < dashTime)
         {
-            Debug.Log(nowPlayerDirecton);
             transform.position = transform.position + nowPlayerDirecton * dashDistance * Time.deltaTime;
             elapsedTime += Time.deltaTime;
             yield return null;

@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameStateManager GameStateManager { get; private set; }
+    public QuestManager QuestManager { get; private set; }
     
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this);
             return;
@@ -19,5 +20,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         GameStateManager = GetComponentInChildren<GameStateManager>();
+        QuestManager = GetComponentInChildren<QuestManager>();
     }
 }

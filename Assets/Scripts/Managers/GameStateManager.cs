@@ -58,14 +58,14 @@ public class GameStateManager : MonoBehaviour
 
     private void Update()
     {
-        if(lose || win)
+        if (lose || win)
         {
-            if(Input.anyKeyDown)
+            if (Input.anyKeyDown)
             {
                 SceneManager.LoadScene(shopSceneName);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
         }
