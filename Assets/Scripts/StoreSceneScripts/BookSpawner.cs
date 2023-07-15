@@ -9,12 +9,10 @@ public enum BookType
     RealTwo,
     Dummy,
     DummyLeft,
-    DummyRight
-}
+    DummyRight,
 
-public enum BookContent
-{
-
+    DummyGroupOne,
+    DummyGroupTwo
 }
 
 public class BookSpawner : MonoBehaviour
@@ -29,6 +27,9 @@ public class BookSpawner : MonoBehaviour
     [SerializeField] private GameObject _dummyBookLeftTilt;
     [SerializeField] private GameObject _dummyBookRightTilt;
 
+    [SerializeField] private GameObject _dummyBookGroupOne;
+    [SerializeField] private GameObject _dummyBookGroupTwo;
+
     private List<List<float>> _bookLocations = new List<List<float>>();
 
 
@@ -38,9 +39,16 @@ public class BookSpawner : MonoBehaviour
         {
             _bookLocations.Add(new List<float>());
         }
+        SpawnBook(BookType.RealTwo);
         for (int i = 0; i < 5; ++i)
         {
-            SpawnBook(BookType.RealOne);
+            SpawnBook(BookType.DummyLeft);
+            SpawnBook(BookType.DummyRight);
+        }
+        for (int i = 0; i < 3; ++i)
+        {
+            SpawnBook(BookType.DummyGroupOne);
+            SpawnBook(BookType.DummyGroupTwo);
         }
     }
 
@@ -49,6 +57,11 @@ public class BookSpawner : MonoBehaviour
         var prefab = returnPrefab(bookType);
         var position = spawnPosition(bookType);
         var book = Instantiate<GameObject>(prefab, position, Quaternion.identity);
+
+        if (bookType == BookType.RealOne || bookType == BookType.RealTwo)
+        {
+            book.GetComponent<BookBehaviour>().setProperties(BookContent.Challenge, 1, 20);
+        }
     }
 
     private Vector3 spawnPosition(BookType bookType)
@@ -111,6 +124,12 @@ public class BookSpawner : MonoBehaviour
                 break;
             case BookType.DummyRight:
                 prefab = _dummyBookRightTilt;
+                break;
+            case BookType.DummyGroupOne:
+                prefab = _dummyBookGroupOne;
+                break;
+            case BookType.DummyGroupTwo:
+                prefab = _dummyBookGroupTwo;
                 break;
             default:
                 prefab = _dummyBook;
