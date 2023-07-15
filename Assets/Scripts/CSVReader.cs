@@ -14,11 +14,11 @@ public class CSVReader
     Dictionary<int, List<string>> columns = new Dictionary<int, List<string>>();
 
     /// <summary>
-    /// filenameÀÇ .csv ÆÄÀÏÀ» ÀĞ°í ±× µ¥ÀÌÅÍ¸¦ Á¤¸®ÇÏ¿© º¸°üÇÕ´Ï´Ù.
+    /// filenameì˜ .csv íŒŒì¼ì„ ì½ê³  ê·¸ ë°ì´í„°ë¥¼ ì •ë¦¬í•˜ì—¬ ë³´ê´€í•©ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="filename">ÆÄÀÏ ÀÌ¸§(°æ·Î)</param>
-    /// <param name="hasHeader">Ã¹ ÁÙ¿¡ Çì´õ°¡ ¿À¸é true, Çì´õ ¾øÀÌ µ¥ÀÌÅÍ°¡ ¹Ù·Î ¿À¸é false</param>
-    /// <param name="delimiter">¿­ ±¸ºĞ ¹®ÀÚ</param>
+    /// <param name="filename">íŒŒì¼ ì´ë¦„(ê²½ë¡œ)</param>
+    /// <param name="hasHeader">ì²« ì¤„ì— í—¤ë”ê°€ ì˜¤ë©´ true, í—¤ë” ì—†ì´ ë°ì´í„°ê°€ ë°”ë¡œ ì˜¤ë©´ false</param>
+    /// <param name="delimiter">ì—´ êµ¬ë¶„ ë¬¸ì</param>
     public CSVReader(string filename, bool hasHeader, char delimiter = ',')
     {
         streamReader = new StreamReader(filename, Encoding.GetEncoding("UTF-8"));
@@ -53,10 +53,10 @@ public class CSVReader
     }
 
     /// <summary>
-    /// ÁÖ¾îÁø headerNameÀÌ ¸î ¹øÂ° ¿­(0ºÎÅÍ ½ÃÀÛ)ÀÇ Çì´õ ÀÌ¸§ÀÎÁö ¹İÈ¯ÇÕ´Ï´Ù.
-    /// ¾øÀ¸¸é -1À» ¹İÈ¯ÇÕ´Ï´Ù.
+    /// ì£¼ì–´ì§„ headerNameì´ ëª‡ ë²ˆì§¸ ì—´(0ë¶€í„° ì‹œì‘)ì˜ í—¤ë” ì´ë¦„ì¸ì§€ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// ì—†ìœ¼ë©´ -1ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="headerName">Çì´õ ÀÌ¸§</param>
+    /// <param name="headerName">í—¤ë” ì´ë¦„</param>
     /// <returns></returns>
     public int GetHeaderIndex(string headerName)
     {
@@ -64,10 +64,10 @@ public class CSVReader
     }
 
     /// <summary>
-    /// index(0ºÎÅÍ ½ÃÀÛ)¹øÂ° ÇàÀÇ µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-    /// ¹İÈ¯µÈ µ¥ÀÌÅÍ¸¦ ÇÔºÎ·Î ¼öÁ¤ÇÏÁö ¸¶¼¼¿ä.
+    /// index(0ë¶€í„° ì‹œì‘)ë²ˆì§¸ í–‰ì˜ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// ë°˜í™˜ëœ ë°ì´í„°ë¥¼ í•¨ë¶€ë¡œ ìˆ˜ì •í•˜ì§€ ë§ˆì„¸ìš”.
     /// </summary>
-    /// <param name="index">Çà ÀÎµ¦½º (0 ÀÌ»ó)</param>
+    /// <param name="index">í–‰ ì¸ë±ìŠ¤ (0 ì´ìƒ)</param>
     /// <returns></returns>
     public List<string> GetRow(int index)
     {
@@ -76,12 +76,12 @@ public class CSVReader
     }
 
     /// <summary>
-    /// headerIndex(0ºÎÅÍ ½ÃÀÛ)¹øÂ° ¿­ÀÇ µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-    /// Æ¯Á¤ headerIndex¿¡ ´ëÇØ Ã³À½ È£ÃâÇÏ¸é ½Ã°£ÀÌ Á¶±İ °É¸± ¼ö ÀÖ½À´Ï´Ù.
-    /// µ¥ÀÌÅÍÀÇ ¾î¶² Çà¿¡ headerIndex¹øÂ° °ªÀÌ ¾øÀ¸¸é
-    /// ±× ÇàÀÇ °ªÀº null·Î Ã¤¿öÁı´Ï´Ù.
+    /// headerIndex(0ë¶€í„° ì‹œì‘)ë²ˆì§¸ ì—´ì˜ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// íŠ¹ì • headerIndexì— ëŒ€í•´ ì²˜ìŒ í˜¸ì¶œí•˜ë©´ ì‹œê°„ì´ ì¡°ê¸ˆ ê±¸ë¦´ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+    /// ë°ì´í„°ì˜ ì–´ë–¤ í–‰ì— headerIndexë²ˆì§¸ ê°’ì´ ì—†ìœ¼ë©´
+    /// ê·¸ í–‰ì˜ ê°’ì€ nullë¡œ ì±„ì›Œì§‘ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="headerIndex">¿­ ÀÎµ¦½º (0 ÀÌ»ó)</param>
+    /// <param name="headerIndex">ì—´ ì¸ë±ìŠ¤ (0 ì´ìƒ)</param>
     /// <returns></returns>
     public List<string> GetColumn(int headerIndex)
     {
@@ -113,10 +113,10 @@ public class CSVReader
     }
 
     /// <summary>
-    /// headerNameÀ» Çì´õ ÀÌ¸§À¸·Î ÇÏ´Â ¿­ÀÇ µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-    /// Æ¯Á¤ headerName¿¡ ´ëÇØ Ã³À½ È£ÃâÇÏ¸é ½Ã°£ÀÌ Á¶±İ °É¸± ¼ö ÀÖ½À´Ï´Ù.
+    /// headerNameì„ í—¤ë” ì´ë¦„ìœ¼ë¡œ í•˜ëŠ” ì—´ì˜ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// íŠ¹ì • headerNameì— ëŒ€í•´ ì²˜ìŒ í˜¸ì¶œí•˜ë©´ ì‹œê°„ì´ ì¡°ê¸ˆ ê±¸ë¦´ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
     /// </summary>
-    /// <param name="headerName">Çì´õ ÀÌ¸§</param>
+    /// <param name="headerName">í—¤ë” ì´ë¦„</param>
     /// <returns></returns>
     public List<string> GetColumn(string headerName)
     {
@@ -124,8 +124,8 @@ public class CSVReader
     }
 
     /// <summary>
-    /// Çì´õ°¡ ÀÖ´Â °æ¿ì Çì´õ ¸ñ·ÏÀ» ¹İÈ¯ÇÕ´Ï´Ù.
-    /// ¾øÀ¸¸é nullÀ» ¹İÈ¯ÇÕ´Ï´Ù.
+    /// í—¤ë”ê°€ ìˆëŠ” ê²½ìš° í—¤ë” ëª©ë¡ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// ì—†ìœ¼ë©´ nullì„ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
     /// <returns></returns>
     public List<string> GetHeader()
@@ -136,10 +136,10 @@ public class CSVReader
     }
 
     /// <summary>
-    /// µ¥ÀÌÅÍ ÀüÃ¼¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-    /// ¹İÈ¯µÈ ÀÌÁß ¹è¿­ÀÇ Ã¹ ¹øÂ° ÀÎµ¦½º´Â Çà ÀÎµ¦½º,
-    /// µÎ ¹øÂ° ÀÎµ¦½º´Â ¿­ ÀÎµ¦½ºÀÔ´Ï´Ù.
-    /// ¹İÈ¯µÈ µ¥ÀÌÅÍ¸¦ ÇÔºÎ·Î ¼öÁ¤ÇÏÁö ¸¶¼¼¿ä.
+    /// ë°ì´í„° ì „ì²´ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// ë°˜í™˜ëœ ì´ì¤‘ ë°°ì—´ì˜ ì²« ë²ˆì§¸ ì¸ë±ìŠ¤ëŠ” í–‰ ì¸ë±ìŠ¤,
+    /// ë‘ ë²ˆì§¸ ì¸ë±ìŠ¤ëŠ” ì—´ ì¸ë±ìŠ¤ì…ë‹ˆë‹¤.
+    /// ë°˜í™˜ëœ ë°ì´í„°ë¥¼ í•¨ë¶€ë¡œ ìˆ˜ì •í•˜ì§€ ë§ˆì„¸ìš”.
     /// </summary>
     /// <returns></returns>
     public List<List<string>> GetData()
