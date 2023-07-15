@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 726884614}
+<<<<<<< HEAD
   hitBoxPrefab: {fileID: 3766056137057522998, guid: e311ccedee2e89e4daa87c68e38bb4e2, type: 3}
   hitBoxCenterPrefab: {fileID: 1882484684472248752, guid: 04903dc767ebde7469ed5b720329f3db, type: 3}
   hitCirclePrefab: {fileID: 7425782035017000770, guid: a1a4cb1f3056b204c98d99ec4ba4d59b, type: 3}
@@ -1111,6 +1112,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+=======
+>>>>>>> 9e520fc0d385298430e586841564d64684f41f15
 --- !u!1 &383062638
 GameObject:
   m_ObjectHideFlags: 0
