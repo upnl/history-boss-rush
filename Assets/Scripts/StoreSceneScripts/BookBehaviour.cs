@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BookBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject _priceLabelPrefab;
     [SerializeField] private GameObject _contentLabelPrefab;
-    [SerializeField] private Text _bookDescription;
     private GameObject _canvasParent;
 
     private string _content;
@@ -19,7 +19,6 @@ public class BookBehaviour : MonoBehaviour
     private void Awake()
     {
         _canvasParent = GameObject.FindWithTag("EditorOnly");
-        _bookDescription.text = "가져갈 책을 구매하자";
     }
 
     public void SetProperties(string content, int level, float price, string koreanName, string description)
@@ -57,12 +56,15 @@ public class BookBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (BookManager.Instance.blood > _price)
+        {
+            transform.position = new Vector3(10000f, 10000f, -15f);
+        }
         BookManager.Instance.SetBookEquipped(_content, _level, _price);
-        transform.position = new Vector3(10000f, 10000f, -15f);
     }
 
     public void OnMouseEnter()
     {
-        _bookDescription.text = _description;
+        BookManager.Instance.bookDescription = _description;
     }
 }
