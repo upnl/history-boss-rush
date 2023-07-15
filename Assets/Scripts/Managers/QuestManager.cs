@@ -50,11 +50,11 @@ public class QuestManager : MonoBehaviour
         liveTime += Time.deltaTime;
         if (liveTime > liveTimeLevel2Cut)
         {
-            ReadytoWriteBook("tenacity", 2);
+            ReadytoWriteBook("Tenacity", 2);
         }
         else if (liveTime > liveTimeLevel1Cut)
         {
-            ReadytoWriteBook("tenacity", 1);
+            ReadytoWriteBook("Tenacity", 1);
         }
     }
 
@@ -63,11 +63,11 @@ public class QuestManager : MonoBehaviour
         attackPercent = 1f - boss.NowHP/boss.MaxHP;
         if (attackPercent > attackPercentLevel2Cut)
         {
-            ReadytoWriteBook("challenge", 2);
+            ReadytoWriteBook("Challenge", 2);
         }
         else if (attackPercent > attackPercentLevel1Cut)
         {
-            ReadytoWriteBook("challenge", 1);
+            ReadytoWriteBook("Challenge", 1);
         }
     }
 
@@ -89,11 +89,11 @@ public class QuestManager : MonoBehaviour
         justAvoidCount += 1;
         if (justAvoidCount >= justAvoidCountLevel2Cut)
         {
-            ReadytoWriteBook("alertness", 2);
+            ReadytoWriteBook("Alertness", 2);
         }
         else if (justAvoidCount >= justAvoidCountLevel1Cut)
         {
-            ReadytoWriteBook("alertness", 1);
+            ReadytoWriteBook("Alertness", 1);
         }
     }
 
