@@ -19,6 +19,7 @@ public class Thor : Boss
         }
     }
 
+    // 천둥의 귀환
     public IEnumerator Pattern1()
     {
         if (isBusy) yield break;
@@ -108,7 +109,30 @@ public class Thor : Boss
 
         mjolnir.transform.localPosition = transform.localPosition;
 
-        Debug.Log("end");
         isBusy = false;
+    }
+
+    // 피뢰침 방전
+    public IEnumerator Pattern2()
+    {
+        yield return null;
+    }
+
+    // 정전기 폭발
+    public IEnumerator Pattern3()
+    {
+        yield return null;
+    }
+
+    // 번개 흡수
+    public IEnumerator Pattern4()
+    {
+        yield return null;
+    }
+
+    // 전자 갑옷
+    public IEnumerator PassivePattern()
+    {
+        yield return null;
     }
 }
