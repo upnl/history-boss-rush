@@ -5,20 +5,28 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private float playerSpeed = 5f;
-    private float dashDistance = 10f;
+    private float dashConstant = 80f;
     private float dashTime = 0.5f;
     private Vector3 nowPlayerDirecton = new Vector3(0f, 1f, 0f);
-    public bool isdash = false;
-    public bool canDash = true;
+    [HideInInspector] public bool IsDash = false;
+    [HideInInspector] public bool CanDash = true;
     private float rollingCoolTime = 3f;
+    [HideInInspector] public bool CanMove = true;
+
+    private GameStateManager gameStateManager;
+
+    private void Start()
+    {
+        gameStateManager = GameManager.Instance.GameStateManager;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && CanDash && CanMove)
         {
-            if (GameManager.Instance.GameStateManager.dashTemp)
+            if (gameStateManager.dashTemp)
             {
-                GameManager.Instance.GameStateManager.dashTemp = false;
+                gameStateManager.dashTemp = false;
             }
             else
             {
@@ -28,12 +36,12 @@ public class PlayerMove : MonoBehaviour
                 {
                     nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
                 }
-                isdash = true;
-                canDash = false;
+                IsDash = true;
+                CanDash = false;
                 StartCoroutine(Dash());
             }
         }
-        else if (!isdash)
+        else if (!IsDash && CanMove)
         {
             float hValue = Input.GetAxisRaw("Horizontal");
             float vValue = Input.GetAxisRaw("Vertical");
@@ -53,12 +61,12 @@ public class PlayerMove : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < dashTime)
         {
-            transform.position = transform.position + nowPlayerDirecton * dashDistance * Time.deltaTime;
+            transform.position += nowPlayerDirecton * dashConstant * Time.deltaTime * (dashTime - elapsedTime) * (dashTime - elapsedTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        isdash = false;
+        IsDash = false;
         yield return new WaitForSeconds(rollingCoolTime - dashTime);
-        canDash = true;
+        CanDash = true;
     }
 }
