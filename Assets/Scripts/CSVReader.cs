@@ -8,7 +8,7 @@ using UnityEngine;
 public class CSVReader
 {
     StreamReader streamReader;
-    public List<List<string>> data = new List<List<string>>();
+    List<List<string>> data = new List<List<string>>();
     List<string> header = new List<string>();
     bool hasHeader = false;
     Dictionary<int, List<string>> columns = new Dictionary<int, List<string>>();

@@ -103,11 +103,11 @@ public class BookSpawner : MonoBehaviour
     {
 
         var i = 0;
-        while (i < _csv.data.Count)
+        while (i < _csv.GetData().Count)
         {
-            if (_csv.data[i][1] == bookName && Convert.ToInt32(_csv.data[i][3]) == level)
+            if (_csv.GetData()[i][1] == bookName && Convert.ToInt32(_csv.GetData()[i][3]) == level)
             {
-                return Convert.ToSingle(_csv.data[i][4]);
+                return Convert.ToSingle(_csv.GetData()[i][4]);
             }
             i += 1;
         }
