@@ -1264,6 +1264,8 @@ MonoBehaviour:
   winPanel: {fileID: 1681372416}
   pausePanel: {fileID: 981992623}
   playerMove: {fileID: 1577423619}
+  previousPlayerCanDash: 0
+  dashTemp: 0
 --- !u!1 &896993112
 GameObject:
   m_ObjectHideFlags: 0
