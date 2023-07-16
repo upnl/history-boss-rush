@@ -9,7 +9,7 @@ public class Surtr : Boss
 {
     public GameObject sword;
     public GameObject flame;
-    public GameObject player;
+    //public GameObject player;
 
     Vector3 playerPos;
     Vector3 velocity;

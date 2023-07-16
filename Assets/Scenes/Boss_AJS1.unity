@@ -7094,7 +7094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slashPrefab: {fileID: 6031273806674958098, guid: b4d85ca247a44f2419438e23041d1dde, type: 3}
-  writingSlider: {fileID: 0}
+  writingSlider: {fileID: 1946073282}
 --- !u!114 &2067595994
 MonoBehaviour:
   m_ObjectHideFlags: 0
