@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _textBackground;
 
     private int dialogueIndex = 0;
+    public bool dialogueActive = true;
 
     void Awake()
     {
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour
         {
             _speaker.text = "";
             _dialogue.text = "";
+            dialogueActive = false;
             Destroy(_textBackground);
             Destroy(_nextButton);
         }
@@ -51,16 +53,19 @@ public class UIManager : MonoBehaviour
 
     public void OnClickFightButton()
     {
-        Debug.Log("Move To Fight Scene");
-        BookManager.Instance.ResetBlood();
-        BookManager.Instance.iteration += 1;
-        if (!BookManager.Instance.thorDefeated)
+        if (!dialogueActive)
         {
-            SceneManager.LoadScene("Boss_AJS1");
-        }
-        else if (!BookManager.Instance.surtrDefeated)
-        {
-            //SceneManager.LoadScene("");
+            Debug.Log("Move To Fight Scene");
+            BookManager.Instance.ResetBlood();
+            BookManager.Instance.iteration += 1;
+            if (!BookManager.Instance.thorDefeated)
+            {
+                SceneManager.LoadScene("Boss_AJS1");
+            }
+            else if (!BookManager.Instance.surtrDefeated)
+            {
+                //SceneManager.LoadScene("");
+            }
         }
     }
 
@@ -71,6 +76,7 @@ public class UIManager : MonoBehaviour
         {
             _speaker.text = "";
             _dialogue.text = "";
+            dialogueActive = false;
             Destroy(_textBackground);
             Destroy(_nextButton);
         }
