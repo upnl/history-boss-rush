@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.Image;
+
 public class Boss : MonoBehaviour
 {
     private float maxHP = 100f;
     public float MaxHP => maxHP;
     private float nowHP = 100f;
     public float NowHP => nowHP;
-    private float normalDamage;
+    private float normalDamage = 3f;
     [SerializeField] Slider hpSlider;
 
     public GameObject hitBoxPrefab;
@@ -51,7 +53,7 @@ public class Boss : MonoBehaviour
         hit.transform.localScale = new Vector3(width, hit.transform.localScale.y, 1f);
         hit.transform.localPosition = center;
         hit.transform.localRotation = Quaternion.Euler(0f, 0f, degree);
-        // degree°¡ 0ÀÏ ¶§ ¼¼·Î·Î ±ç
+        // degreeï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Î·ï¿½ ï¿½ï¿½
     }
 
     protected void InstantiateHitCircle(Vector3 center, float radius)
@@ -61,11 +63,28 @@ public class Boss : MonoBehaviour
         hit.transform.localPosition = center;
     }
 
+    protected void InstantiateHitFan60(Vector3 center, Vector3 destination, float radius)
+    {
+        GameObject hit = Instantiate(hitFan60Prefab, hitAreaParent.transform);
+        hit.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
+        hit.transform.localPosition = center;
+        Vector3 v = destination - center;
+        hit.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
+    }
+
     protected void RemoveAllHitArea()
     {
         foreach (Transform t in hitAreaParent.GetComponentInChildren<Transform>())
         {
             Destroy(t.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Slash")
+        {
+            GetDamaged(BookManager.Instance.CheckBookEquipped("Challenge"));
         }
     }
 }

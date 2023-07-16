@@ -1005,9 +1005,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 347518682}
+  - component: {fileID: 347518684}
   - component: {fileID: 347518681}
   - component: {fileID: 347518683}
-  - component: {fileID: 347518684}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -1128,6 +1128,7 @@ MonoBehaviour:
   hitFan120Prefab: {fileID: 8185774758853152804, guid: 5e27c890947f92240b411863eaa761e8, type: 3}
   hitAreaParent: {fileID: 232505336}
   mjolnir: {fileID: 372160546}
+  stonePrefab: {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
   mjolnirSpeed: 30
 --- !u!1 &372160546
 GameObject:
@@ -3191,10 +3192,9 @@ MonoBehaviour:
   - {fileID: 598339491}
   - {fileID: 1296821988}
   - {fileID: 773520864}
-  NowQuestBookName: 
-  NowQuestLevel: 0
   StopTimer: 0
   UnlockBook: 0
+  HasQuest: 0
 --- !u!1 &981992623
 GameObject:
   m_ObjectHideFlags: 0
@@ -5109,8 +5109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b663df5f56026479c5bdff524deed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isdash: 0
-  canDash: 1
+  IsDash: 0
+  CanDash: 1
+  CanMove: 1
 --- !u!61 &1577423620
 BoxCollider2D:
   m_ObjectHideFlags: 0
