@@ -34,16 +34,17 @@ public class UIManager : MonoBehaviour
         {
             dialogueIndex += 1;
         }
-        if (dialogueIndex == BookManager.Instance.dialogueDB.GetData().Count)
+        if (dialogueIndex >= BookManager.Instance.dialogueDB.GetData().Count)
         {
             _speaker.text = "";
             _dialogue.text = "";
             dialogueActive = false;
             Destroy(_textBackground);
             Destroy(_nextButton);
-        }
+        } else {
         _speaker.text = BookManager.Instance.dialogueDB.GetData()[dialogueIndex][1];
         _dialogue.text = BookManager.Instance.dialogueDB.GetData()[dialogueIndex][2];
+        }
     }
     void Update()
     {
