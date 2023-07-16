@@ -12,14 +12,16 @@ public class Surtr : Boss
     public GameObject player;
 
     Vector3 playerPos;
-    Vector3 velocity; 
+    Vector3 velocity;
 
     public float swordSpeed = 10f;
     private float distance = 0f;
     private float stopTime = 0f;
     private float stopCoolTime = 0f;
     private bool isFollow = true;
+
     CSVReader bookDB;
+
     private void Start()
     {
         bookDB = BookManager.Instance.bookDB;
@@ -106,7 +108,6 @@ public class Surtr : Boss
                 rot -= 360f;
             }
         }
-        
 
 
 
