@@ -141,11 +141,11 @@ public class BookManager : MonoBehaviour
     public void BossDefeated(string bossName)
     {
         ResetBookUnlocked();
-        if (bossName == "thor")
+        if (bossName == "Thor")
         {
             _thorDefeated = true;
         }
-        if (bossName == "surtr")
+        if (bossName == "Surtr")
         {
             _surtrDefeated = true;
         }
