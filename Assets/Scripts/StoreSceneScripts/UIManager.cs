@@ -21,8 +21,8 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        _fightButton.SetActive(false);
         bookDescription = "";
-        _fightButton.SetActive(true);
         if (BookManager.Instance.dialogueDB.GetData().Count == 0)
         {
             _speaker.text = "";
@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
             _speaker.text = "";
             _dialogue.text = "";
             dialogueActive = false;
+            _fightButton.SetActive(true);
             Destroy(_textBackground);
             Destroy(_nextButton);
         } else {
@@ -78,6 +79,7 @@ public class UIManager : MonoBehaviour
             _speaker.text = "";
             _dialogue.text = "";
             dialogueActive = false;
+            _fightButton.SetActive(true);
             Destroy(_textBackground);
             Destroy(_nextButton);
         }
