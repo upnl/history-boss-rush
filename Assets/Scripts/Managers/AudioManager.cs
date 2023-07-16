@@ -22,6 +22,11 @@ public class AudioManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        PlayBGM();
+    }
+    
     public void PlayBGM()
     {
         bgmPlayer.Play();

@@ -42,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
         alreadyAttack = true;
         float z = Quaternion.FromToRotation(Vector3.up, (targetPos - transform.position).normalized).eulerAngles.z;
+        AudioManager.Instance.PlaySfx(0);
         GameObject slash = Instantiate<GameObject>(slashPrefab, transform.position, Quaternion.identity);
         slash.transform.localRotation = Quaternion.Euler(slash.transform.localRotation.x, slash.transform.localRotation.y, z + 90f);
         StartCoroutine(AttackDelay());
