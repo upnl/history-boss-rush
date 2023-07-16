@@ -8,6 +8,8 @@ public class Thor : Boss
 {
     public GameObject mjolnir;
     public GameObject stonePrefab;
+    public Sprite thor1Sprite;
+    public Sprite thor2Sprite;
 
     public float mjolnirSpeed = 3.5f;
 
@@ -21,6 +23,8 @@ public class Thor : Boss
         pattern += UseAPattern;
         cooltime = Random.Range(1.5f, 3f);
         currentGauge = 0f;
+        mjolnir.transform.localPosition = transform.localPosition;
+        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
         isBusy = false;
     }
 
@@ -101,6 +105,7 @@ public class Thor : Boss
         Vector3 playerPos = player.GetComponent<Transform>().localPosition;
 
         // TODO 묠니르를 들어올리는 모션
+        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
 
         // DB에서 Thor1의 effect1(미리 보여주는 시간)을 가져오기
         // 얼만큼 기다려야 하는가: 0.5초 - effect1
@@ -184,6 +189,8 @@ public class Thor : Boss
 
         mjolnir.transform.localPosition = transform.localPosition;
 
+        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(0);
 
@@ -204,6 +211,8 @@ public class Thor : Boss
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+
+        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
 
         Vector3 stone1Pos = new Vector3(), stone2Pos = new Vector3(), stone3Pos = new Vector3();
         int r = UnityEngine.Random.Range(0, 4);
@@ -280,6 +289,8 @@ public class Thor : Boss
 
         yield return null;
 
+        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
+
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(1);
 
@@ -305,6 +316,7 @@ public class Thor : Boss
         Vector3 playerPos = player.GetComponent<Transform>().localPosition;
 
         // TODO 망치 올리기
+        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
 
         yield return new WaitForSeconds(1f - effect1);
 
@@ -325,6 +337,7 @@ public class Thor : Boss
         RemoveAllHitArea();
 
         yield return null;
+        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(2);
@@ -349,6 +362,7 @@ public class Thor : Boss
 
 
         // TODO 묠니르를 들어올리는 모션
+        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
 
         yield return new WaitForSeconds(1.4f - effect1);
 
@@ -366,6 +380,7 @@ public class Thor : Boss
         RemoveAllHitArea();
 
         yield return null;
+        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(3);

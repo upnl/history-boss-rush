@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
@@ -31,10 +32,16 @@ public class Boss : MonoBehaviour
 
     protected delegate void Pattern();
     protected Pattern pattern;
-
-    public void GetDamaged(int attackBookLevel)
+    public void GetDamaged()
     {
-        nowHP -= normalDamage + attackBookLevel*2; //TODO
+
+        int historyLevel = BookManager.Instance.CheckBookEquipped("Challenge");
+
+        float effect1 = float.Parse(BookManager.Instance.bookDB.GetData().Find(
+            e => e[BookManager.Instance.bookDB.GetHeaderIndex("title")].Equals("Challenge") &&
+            int.Parse(e[BookManager.Instance.bookDB.GetHeaderIndex("level")]) == historyLevel)[BookManager.Instance.bookDB.GetHeaderIndex("effect1")]);
+
+        nowHP -= normalDamage * effect1 / 100f;
         BookManager.Instance.AddBlood(10);
         hpSlider.value = nowHP/maxHP;
         GameManager.Instance.QuestManager.CheckAttackPercent();
@@ -109,7 +116,7 @@ public class Boss : MonoBehaviour
     {
         if(col.gameObject.tag == "Slash")
         {
-            GetDamaged(BookManager.Instance.CheckBookEquipped("Challenge"));
+            GetDamaged();
         }
     }
 }
