@@ -19,11 +19,11 @@ public class BookBehaviour : MonoBehaviour
     private string _koreanName;
     private string _description;
 
-    private void Awake()
+    private void Start()
     {
-        _canvasParent = GameObject.FindWithTag("EditorOnly");
-        _uiManager = GameObject.FindWithTag("GameController");
-        _bookDescription = GameObject.FindWithTag("Player");
+        _uiManager = UIManager.Instance.gameObject;
+        _canvasParent = _uiManager.GetComponent<UIManager>().canvasParent;
+        _bookDescription = _uiManager.GetComponent<UIManager>()._bookDescription.gameObject;
     }
 
     public void SetProperties(string content, int level, int price, string koreanName, string description)

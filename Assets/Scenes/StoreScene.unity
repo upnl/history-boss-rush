@@ -585,6 +585,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &478143491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5443461913111088702, guid: e02e4621d863d4cffae0e5ef9b641280, type: 3}
+  m_PrefabInstance: {fileID: 5663902018714099108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &596106514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,6 +1118,7 @@ MonoBehaviour:
   _speaker: {fileID: 290146871}
   _dialogue: {fileID: 112139042}
   _textBackground: {fileID: 1926547621}
+  canvasParent: {fileID: 478143491}
   dialogueActive: 1
 --- !u!4 &989267067
 Transform:

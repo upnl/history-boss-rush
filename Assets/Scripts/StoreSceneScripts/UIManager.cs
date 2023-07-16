@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
     public string bookDescription;
     [SerializeField] private Text _bloodAmount;
-    [SerializeField] private Text _bookDescription;
+    public Text _bookDescription;
 
     [SerializeField] private GameObject _fightButton;
 
@@ -16,11 +18,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text _dialogue;
     [SerializeField] private GameObject _textBackground;
 
+    public GameObject canvasParent;
+
     private int dialogueIndex = 0;
     public bool dialogueActive = true;
 
     void Awake()
     {
+        Instance = this;
         _fightButton.SetActive(false);
         bookDescription = "";
         if (BookManager.Instance.dialogueDB.GetData().Count == 0)
