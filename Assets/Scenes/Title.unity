@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmPlayer: {fileID: 1063320913}
   sfxPlayer: {fileID: 1063320912}
-  bgmClip: {fileID: 0}
+  bgmClip: {fileID: 8300000, guid: 354c9b40880bc6f4799ff746cdd99859, type: 3}
   sfxClips: []
 --- !u!1 &1092587007
 GameObject:
