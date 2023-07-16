@@ -2747,6 +2747,7 @@ MonoBehaviour:
   hitFan60Prefab: {fileID: 1794622899638778334, guid: 32ba6e45785a3184191837cfca99b503, type: 3}
   hitFan120Prefab: {fileID: 8185774758853152804, guid: 5e27c890947f92240b411863eaa761e8, type: 3}
   hitAreaParent: {fileID: 653994885}
+  player: {fileID: 1196932853}
   mjolnir: {fileID: 2097768914}
   stonePrefab: {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
   mjolnirSpeed: 30
@@ -6771,7 +6772,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.625, y: 0.9375}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.625, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -6825,7 +6826,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.625, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

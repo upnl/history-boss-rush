@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class QuestManager : MonoBehaviour
 {
     private float liveTime = 0f;
-    private float liveTimeLevel1Cut = 3f;
-    private float liveTimeLevel2Cut = 10f;
+    private float liveTimeLevel1Cut;
+    private float liveTimeLevel2Cut;
     private bool liveTime1Checked = false;
     private bool liveTimeLevel2Checked = false;
 
-    private float attackPercent = 0f;
-    private float attackPercentLevel1Cut;
-    private float attackPercentLevel2Cut;
+    private float remainedPercent = 0f;
+    private int remainedPercentLevel1Cut;
+    private int remainedPercentLevel2Cut;
     private bool attackPercent1Checked = false;
     private bool attackPercent2Checked = false;
 
@@ -35,7 +35,7 @@ public class QuestManager : MonoBehaviour
     [HideInInspector] public bool StopTimer = false; 
     [HideInInspector] public bool UnlockBook = false;
     [HideInInspector] public bool HasQuest = false;
-    [SerializeField] private CSVReader bookDB;
+    private CSVReader bookDB;
     private string bossName;
     [SerializeField] private TMP_Text bossNameText;
     private Dictionary<string, string> englishBossNameToKorean = new Dictionary<string, string>
@@ -54,24 +54,27 @@ public class QuestManager : MonoBehaviour
         {
             bossName = "Surtr";
         }
+        bookDB = BookManager.Instance.bookDB;
         bossNameText.text = englishBossNameToKorean[bossName];
+
+        liveTimeLevel1Cut = intParseConditionDB("Tenacity",1);
+        liveTimeLevel2Cut = intParseConditionDB("Tenacity",2);
+
+        remainedPercentLevel1Cut = intParseConditionDB("Challenge", 1);
+        remainedPercentLevel2Cut = intParseConditionDB("Challenge", 2);
+
+        patternSeeCountLevel1Cut = intParseConditionDB("Thor1", 1);
+        patternSeeCountLevel2Cut = intParseConditionDB("Thor1", 2);
+
+        // justAvoidCountLevel1Cut = intParseConditionDB("Alertness", 1, 2);
+        // justAvoidCountLevel2Cut = intParseConditionDB("Alertness", 2, 2);
     }
 
-    public int intParseConditionDB(string title)
+    public int intParseConditionDB(string title, int historyLevel, int conditionNum = 1)
     {
-        int historyLevel = BookManager.Instance.CheckBookEquipped(title);
         int result = int.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
-            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition1")]);
-        return result;
-    }
-
-    public float floatParseConditionDB(string title)
-    {
-        int historyLevel = BookManager.Instance.CheckBookEquipped(title);
-        float result = float.Parse(bookDB.GetData().Find(
-            e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
-            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition1")]);
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition"+conditionNum.ToString())]);
         return result;
     }
 
@@ -92,13 +95,13 @@ public class QuestManager : MonoBehaviour
 
     public void CheckAttackPercent()
     {
-        attackPercent = 1f - boss.NowHP/boss.MaxHP;
-        if (attackPercent > attackPercentLevel2Cut && !attackPercent2Checked)
+        remainedPercent = (boss.NowHP/boss.MaxHP) * 100;
+        if (remainedPercent < remainedPercentLevel2Cut && !attackPercent2Checked)
         {
             attackPercent2Checked = true;
             ReadytoWriteBook("Challenge", 2);
         }
-        else if (attackPercent > attackPercentLevel1Cut && !attackPercent1Checked)
+        else if (remainedPercent < remainedPercentLevel1Cut && !attackPercent1Checked)
         {
             attackPercent1Checked = true;
             ReadytoWriteBook("Challenge", 1);
@@ -189,16 +192,26 @@ public class QuestManager : MonoBehaviour
 
     private void CloseQuestPanel()
     {
-        for (int i=0; i<questPanels.Count-1; i++)
+        for (int i=0; i<questPanels.Count; i++)
         {
             if (questPanels[i].activeSelf)
             {
-                if (questPanels[i+1].activeSelf)
+                if(i == questPanels.Count - 1)
                 {
-                    questPanels[i].GetComponent<QuestPanel>().BookName = questPanels[i+1].GetComponent<QuestPanel>().BookName;
-                    questPanels[i].GetComponent<QuestPanel>().Level = questPanels[i+1].GetComponent<QuestPanel>().Level;
-                    questPanels[i].GetComponentInChildren<Slider>().value = questPanels[i+1].GetComponentInChildren<Slider>().value;
-                    StartCoroutine(QuestPanelStart(questPanels[i].GetComponent<QuestPanel>(), questPanels[i].GetComponentInChildren<Slider>()));
+                    questPanels[i].SetActive(false);
+                    break;
+                }
+                else if (questPanels[i+1].activeSelf)
+                {
+                    var tempBookName = questPanels[i+1].GetComponent<QuestPanel>().BookName;
+                    questPanels[i].GetComponent<QuestPanel>().BookName = tempBookName;
+                    var tempLevel = questPanels[i+1].GetComponent<QuestPanel>().Level;
+                    questPanels[i].GetComponent<QuestPanel>().Level = tempLevel;
+                    var tempValue = questPanels[i+1].GetComponentInChildren<Slider>().value;
+                    questPanels[i].GetComponentInChildren<Slider>().value = tempValue;
+                    var tempQuestPanel = questPanels[i].GetComponent<QuestPanel>();
+                    var tempSlider= questPanels[i].GetComponentInChildren<Slider>();
+                    StartCoroutine(QuestPanelStart(tempQuestPanel, tempSlider));
                 }
                 else
                 {
