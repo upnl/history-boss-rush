@@ -18,6 +18,10 @@ public class Thor : Boss
         bookDB = BookManager.Instance.bookDB;
         playerBehaviour = player.GetComponent<PlayerBehaviour>();
         playerCollider = player.GetComponentInChildren<Collider2D>();
+        pattern += UseAPattern;
+        cooltime = Random.Range(1.5f, 3f);
+        currentGauge = 0f;
+        isBusy = false;
     }
 
     private void Update()
@@ -41,6 +45,38 @@ public class Thor : Boss
         {
             Debug.Log("4 " + isBusy);
             StartCoroutine(Pattern4());
+        }
+
+        if (!isBusy)
+        {
+            currentGauge += Time.deltaTime;
+            if (currentGauge >= cooltime)
+            {
+                currentGauge = 0f;
+                cooltime = Random.Range(1.5f, 3f);
+                pattern();
+            }
+        }
+    }
+
+    public void UseAPattern()
+    {
+        Debug.LogWarning("UseAPattern");
+        int i = Random.Range(0, 4);
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(Pattern1());
+                break;
+            case 1:
+                StartCoroutine(Pattern2());
+                break;
+            case 2:
+                StartCoroutine(Pattern3());
+                break;
+            case 3:
+                StartCoroutine(Pattern4());
+                break;
         }
     }
 
