@@ -35,6 +35,7 @@ public class QuestManager : MonoBehaviour
     [HideInInspector] public bool StopTimer = false; 
     [HideInInspector] public bool UnlockBook = false;
     [HideInInspector] public bool HasQuest = false;
+    [SerializeField] private CSVReader bookDB;
     private string bossName;
     [SerializeField] private TMP_Text bossNameText;
     private Dictionary<string, string> englishBossNameToKorean = new Dictionary<string, string>
@@ -54,7 +55,24 @@ public class QuestManager : MonoBehaviour
             bossName = "Surtr";
         }
         bossNameText.text = englishBossNameToKorean[bossName];
+    }
 
+    public int intParseConditionDB(string title)
+    {
+        int historyLevel = BookManager.Instance.CheckBookEquipped(title);
+        int result = int.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+        return result;
+    }
+
+    public float floatParseConditionDB(string title)
+    {
+        int historyLevel = BookManager.Instance.CheckBookEquipped(title);
+        float result = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+        return result;
     }
 
     private void Update()
