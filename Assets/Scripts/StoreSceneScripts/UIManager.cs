@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -52,7 +53,14 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Move To Fight Scene");
         BookManager.Instance.ResetBlood();
-        // Code for changing to Boss Scene
+        if (BookManager.Instance.thorDefeated)
+        {
+            SceneManager.LoadScene("");
+        }
+        else if (BookManager.Instance.surtrDefeated)
+        {
+            SceneManager.LoadScene("");
+        }
     }
 
     public void OnClickNextButton()

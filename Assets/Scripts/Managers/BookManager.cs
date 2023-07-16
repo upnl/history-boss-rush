@@ -17,6 +17,12 @@ public class BookManager : MonoBehaviour
     public CSVReader dialogueDB;
     public int iteration { get; private set; }
 
+    private bool _thorDefeated = false;
+    private bool _surtrDefeated = false;
+
+    public bool thorDefeated => _thorDefeated;
+    public bool surtrDefeated => _surtrDefeated;
+
     [SerializeField] private TextAsset _bookDB;
     [SerializeField] private TextAsset _dialogueDB;
 
