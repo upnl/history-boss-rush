@@ -46,7 +46,7 @@ public class BookManager : MonoBehaviour
         dialogueDB = new CSVReader(_dialogueDB, true, ',');
         iteration = 1;
 
-        bookDescription = "연구할 역사책을 선택하자";
+        bookDescription = "";
     }
 
     public int CheckBookUnlocked(string bookName)

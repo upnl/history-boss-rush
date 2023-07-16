@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        bookDescription = "탐색할 역사책을 선택하자";
+        bookDescription = "";
         _fightButton.SetActive(true);
         if (BookManager.Instance.dialogueDB.GetData().Count == 0)
         {
