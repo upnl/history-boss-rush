@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -38,7 +39,11 @@ public class PlayerMove : MonoBehaviour
                 {
                     nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
                 }
-                if(vValue == 0)
+                else
+                {
+                    nowPlayerDirecton = new Vector3(0f, 0f, 0f);
+                }
+                if (vValue == 0)
                 {
                     if(hValue == 1)
                     {
@@ -70,7 +75,11 @@ public class PlayerMove : MonoBehaviour
             {
                 nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
             }
-            if(vValue == 0)
+            else
+            {
+                nowPlayerDirecton = new Vector3(0f, 0f, 0f);
+            }
+            if (vValue == 0)
             {
                 if(hValue == 1)
                 {
@@ -89,8 +98,11 @@ public class PlayerMove : MonoBehaviour
             {
                 animator.SetInteger("WalkInt", 0);
             }
-            var posX = transform.position.x + playerSpeed * hValue * Time.deltaTime;
-            var posY = transform.position.y + playerSpeed * vValue * Time.deltaTime;
+            hValue = nowPlayerDirecton.x;
+            vValue = nowPlayerDirecton.y;
+            int speedLvl = BookManager.Instance.CheckBookEquipped("Tenacity");
+            var posX = transform.position.x + (playerSpeed + speedLvl*2) * hValue * Time.deltaTime;
+            var posY = transform.position.y + (playerSpeed + speedLvl*2) * vValue * Time.deltaTime;
 
             transform.position = new Vector3(posX, posY, 0f);
         }
