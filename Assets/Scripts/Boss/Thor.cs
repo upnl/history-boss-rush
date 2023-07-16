@@ -26,6 +26,7 @@ public class Thor : Boss
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("1 " + isBusy);
@@ -46,6 +47,7 @@ public class Thor : Boss
             Debug.Log("4 " + isBusy);
             StartCoroutine(Pattern4());
         }
+        */
 
         if (!isBusy)
         {
