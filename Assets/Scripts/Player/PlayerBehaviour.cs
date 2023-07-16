@@ -46,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
         GameObject slash = Instantiate<GameObject>(slashPrefab, transform.position, Quaternion.identity);
         slash.transform.localRotation = Quaternion.Euler(slash.transform.localRotation.x, slash.transform.localRotation.y, z + 90f);
         StartCoroutine(AttackDelay());
-        Destroy(slash, 0.8f);
+        Destroy(slash, 0.4f);
     }
 
     private IEnumerator AttackDelay()

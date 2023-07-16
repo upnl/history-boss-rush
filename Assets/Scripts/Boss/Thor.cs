@@ -145,12 +145,14 @@ public class Thor : Boss
             mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
+                AudioManager.Instance.PlaySfx(3);
                 playerBehaviour.GetDamaged();
             }
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
         Vector3 tempMjolnirPos = mjolnir.transform.localPosition;
+        AudioManager.Instance.PlaySfx(3);
 
         // 묠니르가 벽에 닿으면 외벽 근처에 있는 플레이어 사망
         AttackOnAllHitArea();
@@ -184,6 +186,7 @@ public class Thor : Boss
             mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
+                AudioManager.Instance.PlaySfx(3);
                 playerBehaviour.GetDamaged();
             }
         }
@@ -269,6 +272,7 @@ public class Thor : Boss
         // TODO 전기 충전되는 이펙트
 
         yield return new WaitForSeconds(0.3f);
+        AudioManager.Instance.PlaySfx(3);
 
         AttackOnAllHitArea();
 
@@ -340,7 +344,8 @@ public class Thor : Boss
         mjolnir.transform.localRotation = Quaternion.identity;
 
         yield return new WaitForSeconds(0.2f);
-
+        
+        AudioManager.Instance.PlaySfx(3);
         // TODO 전기 이펙트 및 플레이어 공격
         AttackOnAllHitArea();
 
@@ -386,6 +391,7 @@ public class Thor : Boss
         yield return new WaitForSeconds(effect1);
 
         // TODO 전기 이펙트 및 플레이어 공격
+        AudioManager.Instance.PlaySfx(3);
         AttackOnAllHitArea();
 
         yield return null;
