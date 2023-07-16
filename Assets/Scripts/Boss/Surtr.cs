@@ -19,7 +19,6 @@ public class Surtr : Boss
     private float stopTime = 0f;
     private float stopCoolTime = 0f;
     private bool isFollow = true;
-
     CSVReader bookDB;
     private void Start()
     {
