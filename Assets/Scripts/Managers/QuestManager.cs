@@ -39,8 +39,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private TMP_Text bossNameText;
     private Dictionary<string, string> englishBossNameToKorean = new Dictionary<string, string>
     {
-        {"Thor", "토르"},
-        {"Surtr", "수르트"}
+        {"Thor", "천둥의 신 토르"},
+        {"Surtr", "불의 거인 수르트"}
     };
 
     private void Start()
