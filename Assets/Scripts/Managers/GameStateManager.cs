@@ -22,6 +22,7 @@ public class GameStateManager : MonoBehaviour
     }
     public void Lose()
     {
+        AudioManager.Instance.PlaySfx(1);
         losePanel.SetActive(true);
         lose = true;
         playerMove.CanDash = false;
@@ -29,6 +30,7 @@ public class GameStateManager : MonoBehaviour
     }
     public void Win()
     {
+        AudioManager.Instance.PlaySfx(2);
         winPanel.SetActive(true);
         win = true;
         playerMove.CanDash = false;

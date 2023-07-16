@@ -9,13 +9,13 @@ public class QuestManager : MonoBehaviour
     private float liveTimeLevel1Cut;
     private float liveTimeLevel2Cut;
     private bool liveTime1Checked = false;
-    private bool liveTimeLevel2Checked = false;
+    private bool liveTime2Checked = false;
 
     private float remainedPercent = 0f;
     private int remainedPercentLevel1Cut;
     private int remainedPercentLevel2Cut;
-    private bool attackPercent1Checked = false;
-    private bool attackPercent2Checked = false;
+    private bool remainedPercent1Checked = false;
+    private bool remainedPercent2Checked = false;
 
     private int[] patternSeeCount = new int[5]{0, 0, 0, 0, 0};
     private int patternSeeCountLevel1Cut;
@@ -68,6 +68,53 @@ public class QuestManager : MonoBehaviour
 
         // justAvoidCountLevel1Cut = intParseConditionDB("Alertness", 1, 2);
         // justAvoidCountLevel2Cut = intParseConditionDB("Alertness", 2, 2);
+
+        switch(BookManager.Instance.CheckBookUnlocked("Tenacity"))
+        {
+            case 0:
+                break;
+            case 1:
+                liveTime1Checked = true;
+                break;
+            case 2:
+                liveTime1Checked = true;
+                liveTime2Checked = true;
+                break;
+            default:
+                break;
+        }
+
+        switch(BookManager.Instance.CheckBookUnlocked("Challenge"))
+        {
+            case 0:
+                break;
+            case 1:
+                remainedPercent1Checked = true;
+                break;
+            case 2:
+                remainedPercent1Checked = true;
+                remainedPercent2Checked = true;
+                break;
+            default:
+                break;
+        }
+        for(int i=1; i<5; i++)
+        {
+            switch(BookManager.Instance.CheckBookUnlocked("Thor"+i.ToString()))
+            {
+                case 0:
+                    break;
+                case 1:
+                    patternSeeCount1Checked[i-1] = true;
+                    break;
+                case 2:
+                    patternSeeCount1Checked[i-1] = true;
+                    patternSeeCount2Checked[i-1] = true;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public int intParseConditionDB(string title, int historyLevel, int conditionNum = 1)
@@ -81,9 +128,9 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
         liveTime += Time.deltaTime;
-        if (liveTime > liveTimeLevel2Cut && !liveTimeLevel2Checked)
+        if (liveTime > liveTimeLevel2Cut && !liveTime2Checked)
         {
-            liveTimeLevel2Checked = true;
+            liveTime2Checked = true;
             ReadytoWriteBook("Tenacity", 2);
         }
         else if (liveTime > liveTimeLevel1Cut && !liveTime1Checked)
@@ -96,14 +143,14 @@ public class QuestManager : MonoBehaviour
     public void CheckAttackPercent()
     {
         remainedPercent = (boss.NowHP/boss.MaxHP) * 100;
-        if (remainedPercent < remainedPercentLevel2Cut && !attackPercent2Checked)
+        if (remainedPercent < remainedPercentLevel2Cut && !remainedPercent2Checked)
         {
-            attackPercent2Checked = true;
+            remainedPercent2Checked = true;
             ReadytoWriteBook("Challenge", 2);
         }
-        else if (remainedPercent < remainedPercentLevel1Cut && !attackPercent1Checked)
+        else if (remainedPercent < remainedPercentLevel1Cut && !remainedPercent1Checked)
         {
-            attackPercent1Checked = true;
+            remainedPercent1Checked = true;
             ReadytoWriteBook("Challenge", 1);
         }
     }
