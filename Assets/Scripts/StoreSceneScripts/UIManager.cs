@@ -54,13 +54,13 @@ public class UIManager : MonoBehaviour
         Debug.Log("Move To Fight Scene");
         BookManager.Instance.ResetBlood();
         BookManager.Instance.iteration += 1;
-        if (BookManager.Instance.thorDefeated)
+        if (!BookManager.Instance.thorDefeated)
         {
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene("Boss_AJS1");
         }
-        else if (BookManager.Instance.surtrDefeated)
+        else if (!BookManager.Instance.surtrDefeated)
         {
-            SceneManager.LoadScene("");
+            //SceneManager.LoadScene("");
         }
     }
 
