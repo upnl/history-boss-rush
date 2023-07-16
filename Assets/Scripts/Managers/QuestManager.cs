@@ -62,7 +62,7 @@ public class QuestManager : MonoBehaviour
         int historyLevel = BookManager.Instance.CheckBookEquipped(title);
         int result = int.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
-            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition1")]);
         return result;
     }
 
@@ -71,7 +71,7 @@ public class QuestManager : MonoBehaviour
         int historyLevel = BookManager.Instance.CheckBookEquipped(title);
         float result = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
-            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition1")]);
         return result;
     }
 
