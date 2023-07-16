@@ -10,6 +10,7 @@ public class BookBehaviour : MonoBehaviour
     [SerializeField] private GameObject _warningPrefab;
     private GameObject _canvasParent;
     private GameObject _uiManager;
+    private GameObject _bookDescription;
 
     private string _content;
     private int _level;
@@ -22,6 +23,7 @@ public class BookBehaviour : MonoBehaviour
     {
         _canvasParent = GameObject.FindWithTag("EditorOnly");
         _uiManager = GameObject.FindWithTag("GameController");
+        _bookDescription = GameObject.FindWithTag("Player");
     }
 
     public void SetProperties(string content, int level, int price, string koreanName, string description)
@@ -80,5 +82,7 @@ public class BookBehaviour : MonoBehaviour
     public void OnMouseEnter()
     {
         BookManager.Instance.bookDescription = _description;
+        var bookPosition = transform.position;
+        _bookDescription.GetComponent<Text>().transform.position = new Vector3(bookPosition.x * 107 + 960, bookPosition.y * 107 + 540, 0f);
     }
 }
