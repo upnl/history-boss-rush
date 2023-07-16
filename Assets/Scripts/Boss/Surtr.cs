@@ -9,7 +9,6 @@ public class Surtr : Boss
 {
     public GameObject sword;
     public GameObject flame;
-    public GameObject player;
 
     Vector3 playerPos;
     Vector3 velocity;
@@ -20,10 +19,17 @@ public class Surtr : Boss
     private float stopCoolTime = 0f;
     private bool isFollow = true;
     CSVReader bookDB;
+
     private void Start()
     {
         bookDB = BookManager.Instance.bookDB;
+        playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        playerCollider = player.GetComponentInChildren<Collider2D>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
+        pattern += UseAPattern;
+        cooltime = Random.Range(1.5f, 3f);
+        currentGauge = 0f;
+        isBusy = false;
     }
 
     private void Update()
@@ -81,6 +87,41 @@ public class Surtr : Boss
         {
             Debug.Log("5 " + isBusy);
             StartCoroutine(Pattern5());
+        }
+
+        if (!isBusy)
+        {
+            currentGauge += Time.deltaTime;
+            if (currentGauge >= cooltime)
+            {
+                currentGauge = 0f;
+                cooltime = Random.Range(1.5f, 3f);
+                pattern();
+            }
+        }
+    }
+
+    public void UseAPattern()
+    {
+        Debug.LogWarning("UseAPattern");
+        int i = Random.Range(0, 5);
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(Pattern1());
+                break;
+            case 1:
+                StartCoroutine(Pattern2());
+                break;
+            case 2:
+                StartCoroutine(Pattern3());
+                break;
+            case 3:
+                StartCoroutine(Pattern4());
+                break;
+            case 4:
+                StartCoroutine(Pattern5());
+                break;
         }
     }
 
