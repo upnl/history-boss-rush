@@ -16,17 +16,23 @@ public class GameStateManager : MonoBehaviour
     private float previousTimeScale;
     [HideInInspector] public bool previousPlayerCanDash;
     [HideInInspector] public bool dashTemp = false;
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
     public void Lose()
     {
         losePanel.SetActive(true);
         lose = true;
         playerMove.CanDash = false;
+        Time.timeScale = 0f;
     }
     public void Win()
     {
         winPanel.SetActive(true);
         win = true;
         playerMove.CanDash = false;
+        Time.timeScale = 0f;
     }
 
     public void Pause()
