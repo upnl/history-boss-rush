@@ -1001,7 +1001,9 @@ MonoBehaviour:
   - challenge
   - tenacity
   - alertness
+  iteration: 0
   _bookDB: {fileID: 4900000, guid: cc436d12d0e8c7647835c7a7941e395f, type: 3}
+  _dialogueDB: {fileID: 4900000, guid: db7e7b77dde5f4b7ba966915c2a4648f, type: 3}
   bookDescription: 
 --- !u!4 &362376581
 Transform:
@@ -2746,6 +2748,7 @@ MonoBehaviour:
   hitFan120Prefab: {fileID: 8185774758853152804, guid: 5e27c890947f92240b411863eaa761e8, type: 3}
   hitAreaParent: {fileID: 653994885}
   mjolnir: {fileID: 2097768914}
+  stonePrefab: {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
   mjolnirSpeed: 30
 --- !u!61 &1069674590
 BoxCollider2D:
@@ -3239,7 +3242,7 @@ GameObject:
   - component: {fileID: 1196932857}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

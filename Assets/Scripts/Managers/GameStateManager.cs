@@ -10,7 +10,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private PlayerMove playerMove;
-    private string shopSceneName;
+    private string shopSceneName = "StoreScene";
     private bool lose = false;
     private bool win = false;
     private float previousTimeScale;
