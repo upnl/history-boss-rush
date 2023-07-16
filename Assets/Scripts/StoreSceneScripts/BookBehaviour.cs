@@ -12,7 +12,7 @@ public class BookBehaviour : MonoBehaviour
 
     private string _content;
     private int _level;
-    private float _price;
+    private int _price;
 
     private string _koreanName;
     private string _description;
@@ -22,7 +22,7 @@ public class BookBehaviour : MonoBehaviour
         _canvasParent = GameObject.FindWithTag("EditorOnly");
     }
 
-    public void SetProperties(string content, int level, float price, string koreanName, string description)
+    public void SetProperties(string content, int level, int price, string koreanName, string description)
     {
         _content = content;
         _level = level;

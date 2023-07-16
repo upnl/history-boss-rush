@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Move To Fight Scene");
         BookManager.Instance.ResetBlood();
+        BookManager.Instance.iteration += 1;
         if (BookManager.Instance.thorDefeated)
         {
             SceneManager.LoadScene("");

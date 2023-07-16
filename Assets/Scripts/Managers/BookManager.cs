@@ -8,14 +8,14 @@ public class BookManager : MonoBehaviour
 
     public string[] bookList;
     private BookData _bookData = new BookData();
-    private float _blood;
-    public float blood => _blood;
+    private int _blood;
+    public int blood => _blood;
 
-    private float _baseBlood = 15f;
+    private int _baseBlood = 15;
 
     public CSVReader bookDB;
     public CSVReader dialogueDB;
-    public int iteration { get; private set; }
+    public int iteration;
 
     private bool _thorDefeated = false;
     private bool _surtrDefeated = false;
@@ -91,7 +91,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    public void SetBookEquipped(string bookName, int level, float price)
+    public void SetBookEquipped(string bookName, int level, int price)
     {
         if (price > _blood)
         {
@@ -112,8 +112,42 @@ public class BookManager : MonoBehaviour
         }
     }
 
+    public void ResetBookUnlocked()
+    {
+        foreach(string bookName in bookList)
+        {
+            _bookData.bookUnlocked[bookName] = 0;
+        }
+    }
+
+    public void ResetBookEquipped()
+    {
+        foreach(string bookName in bookList)
+        {
+            _bookData.bookEquipped[bookName] = 0;
+        }
+    }
+
     public void ResetBlood()
     {
         _blood = _baseBlood;
+    }
+
+    public void AddBlood(int amount)
+    {
+        _blood += amount;
+    }
+
+    public void BossDefeated(string bossName)
+    {
+        ResetBookUnlocked();
+        if (bossName == "thor")
+        {
+            _thorDefeated = true;
+        }
+        if (bossName == "surtr")
+        {
+            _surtrDefeated = true;
+        }
     }
 }
