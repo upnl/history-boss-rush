@@ -25,14 +25,12 @@ public class Boss : MonoBehaviour
     protected PlayerBehaviour playerBehaviour;
     protected Collider2D playerCollider;
 
-    protected bool isBusy = false;
+    protected bool isBusy = true;
+    protected float cooltime = 2f;
+    protected float currentGauge = 0f;
 
-    private void Start()
-    {
-        playerBehaviour = player.GetComponent<PlayerBehaviour>();
-        playerCollider = player.GetComponentInChildren<Collider2D>();
-        isBusy = false;
-    }
+    protected delegate void Pattern();
+    protected Pattern pattern;
 
     public void GetDamaged(int attackBookLevel)
     {

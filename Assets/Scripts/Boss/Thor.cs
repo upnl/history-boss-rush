@@ -18,10 +18,15 @@ public class Thor : Boss
         bookDB = BookManager.Instance.bookDB;
         playerBehaviour = player.GetComponent<PlayerBehaviour>();
         playerCollider = player.GetComponentInChildren<Collider2D>();
+        pattern += UseAPattern;
+        cooltime = Random.Range(1.5f, 3f);
+        currentGauge = 0f;
+        isBusy = false;
     }
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("1 " + isBusy);
@@ -41,6 +46,39 @@ public class Thor : Boss
         {
             Debug.Log("4 " + isBusy);
             StartCoroutine(Pattern4());
+        }
+        */
+
+        if (!isBusy)
+        {
+            currentGauge += Time.deltaTime;
+            if (currentGauge >= cooltime)
+            {
+                currentGauge = 0f;
+                cooltime = Random.Range(1.5f, 3f);
+                pattern();
+            }
+        }
+    }
+
+    public void UseAPattern()
+    {
+        Debug.LogWarning("UseAPattern");
+        int i = Random.Range(0, 4);
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(Pattern1());
+                break;
+            case 1:
+                StartCoroutine(Pattern2());
+                break;
+            case 2:
+                StartCoroutine(Pattern3());
+                break;
+            case 3:
+                StartCoroutine(Pattern4());
+                break;
         }
     }
 
@@ -147,6 +185,7 @@ public class Thor : Boss
         mjolnir.transform.localPosition = transform.localPosition;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(0);
 
         isBusy = false;
     }
@@ -242,6 +281,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(1);
 
         isBusy = false;
     }
@@ -287,6 +327,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(2);
 
         StartCoroutine(PassivePattern());
     }
@@ -327,6 +368,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(3);
 
         StartCoroutine(PassivePattern());
     }
