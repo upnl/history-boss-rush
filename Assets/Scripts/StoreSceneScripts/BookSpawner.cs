@@ -63,6 +63,8 @@ public class BookSpawner : MonoBehaviour
             SpawnBook(BookType.DummyGroupOne);
             SpawnBook(BookType.DummyGroupTwo);
         }
+
+        AudioManager.Instance.PlayBGM();
     }
 
     private void SpawnRealBooks()

@@ -68,6 +68,7 @@ public class BookBehaviour : MonoBehaviour
                 var currentPosition = transform.position;
                 currentPosition.z = -15f;
                 transform.position = currentPosition;
+                AudioManager.Instance.PlaySfx(0);
             }
             if (BookManager.Instance.blood < _price)
             {
