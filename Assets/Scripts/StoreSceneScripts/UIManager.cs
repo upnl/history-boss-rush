@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text _speaker;
     [SerializeField] private Text _dialogue;
     [SerializeField] private GameObject _textBackground;
+    [SerializeField] private GameObject _dialogueCurtain;
+    [SerializeField] private GameObject _keeper;
 
     private int dialogueIndex = 0;
     public bool dialogueActive = true;
@@ -22,6 +24,12 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         _fightButton.SetActive(false);
+        var curtainPosition = _dialogueCurtain.transform.position;
+        curtainPosition.z = 0f;
+        _dialogueCurtain.transform.position = curtainPosition;
+        var keeperPosition = _keeper.transform.position;
+        keeperPosition.z = -2f;
+        _keeper.transform.position = keeperPosition;
         bookDescription = "";
         if (BookManager.Instance.dialogueDB.GetData().Count == 0)
         {
@@ -29,6 +37,12 @@ public class UIManager : MonoBehaviour
             _dialogue.text = "";
             dialogueActive = false;
             _fightButton.SetActive(true);
+            curtainPosition = _dialogueCurtain.transform.position;
+            curtainPosition.z = -15f;
+            _dialogueCurtain.transform.position = curtainPosition;
+            keeperPosition = _keeper.transform.position;
+            keeperPosition.z = 2f;
+            _keeper.transform.position = keeperPosition;
             Destroy(_textBackground);
             Destroy(_nextButton);
         }
@@ -42,6 +56,12 @@ public class UIManager : MonoBehaviour
             _dialogue.text = "";
             dialogueActive = false;
             _fightButton.SetActive(true);
+            curtainPosition = _dialogueCurtain.transform.position;
+            curtainPosition.z = -15f;
+            _dialogueCurtain.transform.position = curtainPosition;
+            keeperPosition = _keeper.transform.position;
+            keeperPosition.z = 2f;
+            _keeper.transform.position = keeperPosition;
             Destroy(_textBackground);
             Destroy(_nextButton);
         } else {
@@ -82,6 +102,12 @@ public class UIManager : MonoBehaviour
             _dialogue.text = "";
             dialogueActive = false;
             _fightButton.SetActive(true);
+            var curtainPosition = _dialogueCurtain.transform.position;
+            curtainPosition.z = -15f;
+            _dialogueCurtain.transform.position = curtainPosition;
+            var keeperPosition = _keeper.transform.position;
+            keeperPosition.z = 2f;
+            _keeper.transform.position = keeperPosition;
             Destroy(_textBackground);
             Destroy(_nextButton);
         }
