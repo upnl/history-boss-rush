@@ -147,6 +147,7 @@ public class Thor : Boss
         mjolnir.transform.localPosition = transform.localPosition;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(0);
 
         isBusy = false;
     }
@@ -242,6 +243,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(1);
 
         isBusy = false;
     }
@@ -287,6 +289,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(2);
 
         StartCoroutine(PassivePattern());
     }
@@ -327,6 +330,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(3);
 
         StartCoroutine(PassivePattern());
     }
