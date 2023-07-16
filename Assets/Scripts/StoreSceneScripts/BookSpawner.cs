@@ -42,13 +42,13 @@ public class BookSpawner : MonoBehaviour
             _bookLocations.Add(new List<float>());
         }
         //For debugging purposes, two books are unlocked artificially
-        
+        /*
         BookManager.Instance.SetBookUnlocked("Tenacity", 1);
         BookManager.Instance.SetBookUnlocked("Challenge", 2);
         BookManager.Instance.SetBookUnlocked("Alertness", 2);
         BookManager.Instance.SetBookUnlocked("Surtr4", 2);
         BookManager.Instance.SetBookUnlocked("Thor3", 3);
-        
+        */
         BookManager.Instance.ResetBookEquipped();
 
         SpawnRealBooks();
