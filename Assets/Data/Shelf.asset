@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xMin: -7
   xMax: 3.75
-  yRow1: 2.33
-  yRow2: 0.4
-  yRow3: -1.54
-  yRow4: -3.49
+  yRow1: 3.03
+  yRow2: 1.1
+  yRow3: -0.84
+  yRow4: -2.79
   overlapRange: 1.8
   dummyOverlapRange: 0.7
