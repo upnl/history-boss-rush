@@ -9,6 +9,7 @@ public class BookBehaviour : MonoBehaviour
     [SerializeField] private GameObject _contentLabelPrefab;
     [SerializeField] private GameObject _warningPrefab;
     private GameObject _canvasParent;
+    private GameObject _uiManager;
 
     private string _content;
     private int _level;
@@ -20,6 +21,7 @@ public class BookBehaviour : MonoBehaviour
     private void Awake()
     {
         _canvasParent = GameObject.FindWithTag("EditorOnly");
+        _uiManager = GameObject.FindWithTag("GameController");
     }
 
     public void SetProperties(string content, int level, int price, string koreanName, string description)
@@ -57,18 +59,22 @@ public class BookBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (BookManager.Instance.blood >= _price && BookManager.Instance.CheckBookEquipped(_content) < _level)
+        if (!_uiManager.GetComponent<UIManager>().dialogueActive)
         {
-            var currentPosition = transform.position;
-            currentPosition.z = -15f;
-            transform.position = currentPosition;
+            if (BookManager.Instance.blood >= _price && BookManager.Instance.CheckBookEquipped(_content) < _level)
+            {
+                var currentPosition = transform.position;
+                currentPosition.z = -15f;
+                transform.position = currentPosition;
+            }
+            if (BookManager.Instance.blood < _price)
+            {
+                var warningPosition = transform.position;
+                warningPosition.z = -5f;
+                var warning = Instantiate<GameObject>(_warningPrefab, warningPosition, Quaternion.identity);
+            }
+            BookManager.Instance.SetBookEquipped(_content, _level, _price);
         }
-        if (BookManager.Instance.blood < _price)
-        {
-            var warningPosition = new Vector3(6.78f, 2.2f, -5f);
-            var warning = Instantiate<GameObject>(_warningPrefab, warningPosition, Quaternion.identity);
-        }
-        BookManager.Instance.SetBookEquipped(_content, _level, _price);
     }
 
     public void OnMouseEnter()
