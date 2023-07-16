@@ -42,14 +42,18 @@ public class BookSpawner : MonoBehaviour
             _bookLocations.Add(new List<float>());
         }
         //For debugging purposes, two books are unlocked artificially
+        /*
         BookManager.Instance.SetBookUnlocked("Tenacity", 1);
         BookManager.Instance.SetBookUnlocked("Challenge", 2);
         BookManager.Instance.SetBookUnlocked("Alertness", 2);
         BookManager.Instance.SetBookUnlocked("Surtr4", 2);
         BookManager.Instance.SetBookUnlocked("Thor3", 3);
+        */
+        BookManager.Instance.ResetBookEquipped();
+
         SpawnRealBooks();
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 8; ++i)
         {
             SpawnBook(BookType.DummyLeft);
             SpawnBook(BookType.DummyRight);
@@ -69,17 +73,17 @@ public class BookSpawner : MonoBehaviour
             {
                 var book = SpawnBook(BookType.RealTwo);
                 var csvData = ScanCSVForRow(bookName, 2);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, Convert.ToSingle(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 2, Convert.ToInt32(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
 
                 book = SpawnBookClosely(BookType.RealOne, book.transform.position);
                 csvData = ScanCSVForRow(bookName, 1);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToInt32(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
             }
             else if (BookManager.Instance.CheckBookUnlocked(bookName) >= 1)
             {
                 var book = SpawnBook(BookType.RealOne);
                 var csvData = ScanCSVForRow(bookName, 1);
-                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToSingle(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
+                book.GetComponent<BookBehaviour>().SetProperties(bookName, 1, Convert.ToInt32(csvData[4]), csvData[2], ParseSentence(csvData[7], Convert.ToInt32(csvData[0]) - 1));
             }
         }
     }

@@ -12,12 +12,14 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector] public bool CanDash = true;
     private float rollingCoolTime = 3f;
     [HideInInspector] public bool CanMove = true;
+    private Animator animator;
 
     private GameStateManager gameStateManager;
 
     private void Start()
     {
         gameStateManager = GameManager.Instance.GameStateManager;
+        animator = GetComponentInChildren<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -36,6 +38,25 @@ public class PlayerMove : MonoBehaviour
                 {
                     nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
                 }
+                if(vValue == 0)
+                {
+                    if(hValue == 1)
+                    {
+                        animator.SetInteger("WalkInt", 1);
+                    }
+                    else if(hValue == -1)
+                    {
+                        animator.SetInteger("WalkInt", 3);
+                    }
+                }
+                else if(vValue == 1)
+                {
+                    animator.SetInteger("WalkInt", 2);
+                }
+                else
+                {
+                    animator.SetInteger("WalkInt", 0);
+                }
                 IsDash = true;
                 CanDash = false;
                 StartCoroutine(Dash());
@@ -49,10 +70,29 @@ public class PlayerMove : MonoBehaviour
             {
                 nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
             }
+            if(vValue == 0)
+            {
+                if(hValue == 1)
+                {
+                    animator.SetInteger("WalkInt", 1);
+                }
+                else if(hValue == -1)
+                {
+                    animator.SetInteger("WalkInt", 3);
+                }
+            }
+            else if(vValue == 1)
+            {
+                animator.SetInteger("WalkInt", 2);
+            }
+            else
+            {
+                animator.SetInteger("WalkInt", 0);
+            }
             var posX = transform.position.x + playerSpeed * hValue * Time.deltaTime;
             var posY = transform.position.y + playerSpeed * vValue * Time.deltaTime;
 
-            transform.position = new Vector3(posX, posY, -1f);
+            transform.position = new Vector3(posX, posY, 0f);
         }
     }
 

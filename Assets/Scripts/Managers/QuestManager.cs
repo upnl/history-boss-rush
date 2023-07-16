@@ -32,23 +32,47 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private Boss boss;
     private float questDurationTime = 15f;
     [SerializeField] private List<GameObject> questPanels;
-    [HideInInspector] public bool StopTimer = false; // it should be changed in PlayerBehaviour when Player write the history book
+    [HideInInspector] public bool StopTimer = false; 
     [HideInInspector] public bool UnlockBook = false;
     [HideInInspector] public bool HasQuest = false;
+    [SerializeField] private CSVReader bookDB;
     private string bossName;
-    
+    [SerializeField] private TMP_Text bossNameText;
+    private Dictionary<string, string> englishBossNameToKorean = new Dictionary<string, string>
+    {
+        {"Thor", "천둥의 신 토르"},
+        {"Surtr", "불의 거인 수르트"}
+    };
+
     private void Start()
     {
-        if(boss is Thor)
+        if (boss is Thor)
         {
-            bossName = "Thor";
+            bossName = "Thor"; 
         }
-        /*
-        else if(boss is Surtr)
+        else if (boss is Surtr)
         {
             bossName = "Surtr";
         }
-        */
+        bossNameText.text = englishBossNameToKorean[bossName];
+    }
+
+    public int intParseConditionDB(string title)
+    {
+        int historyLevel = BookManager.Instance.CheckBookEquipped(title);
+        int result = int.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition1")]);
+        return result;
+    }
+
+    public float floatParseConditionDB(string title)
+    {
+        int historyLevel = BookManager.Instance.CheckBookEquipped(title);
+        float result = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(title) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("condition1")]);
+        return result;
     }
 
     private void Update()
@@ -138,7 +162,7 @@ public class QuestManager : MonoBehaviour
         questPanel.Level = level;
 
         HasQuest = true;
-        questText.text = "It's able to write the history book.\nPress[F] to write";
+        questText.text = "역사서를 작성 가능합니다.\n[F]키를 눌러서 작성하세요.";
         StartCoroutine(QuestPanelStart(questPanel, durationSlider));
     }
 

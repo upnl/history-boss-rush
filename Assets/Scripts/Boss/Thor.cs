@@ -16,10 +16,17 @@ public class Thor : Boss
     private void Start()
     {
         bookDB = BookManager.Instance.bookDB;
+        playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        playerCollider = player.GetComponentInChildren<Collider2D>();
+        pattern += UseAPattern;
+        cooltime = Random.Range(1.5f, 3f);
+        currentGauge = 0f;
+        isBusy = false;
     }
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("1 " + isBusy);
@@ -40,6 +47,39 @@ public class Thor : Boss
             Debug.Log("4 " + isBusy);
             StartCoroutine(Pattern4());
         }
+        */
+
+        if (!isBusy)
+        {
+            currentGauge += Time.deltaTime;
+            if (currentGauge >= cooltime)
+            {
+                currentGauge = 0f;
+                cooltime = Random.Range(1.5f, 3f);
+                pattern();
+            }
+        }
+    }
+
+    public void UseAPattern()
+    {
+        Debug.LogWarning("UseAPattern");
+        int i = Random.Range(0, 4);
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(Pattern1());
+                break;
+            case 1:
+                StartCoroutine(Pattern2());
+                break;
+            case 2:
+                StartCoroutine(Pattern3());
+                break;
+            case 3:
+                StartCoroutine(Pattern4());
+                break;
+        }
     }
 
     // 천둥의 귀환
@@ -58,7 +98,7 @@ public class Thor : Boss
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
         // 플레이어의 현재 위치 확인
-        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
+        Vector3 playerPos = player.GetComponent<Transform>().localPosition;
 
         // TODO 묠니르를 들어올리는 모션
 
@@ -90,19 +130,27 @@ public class Thor : Boss
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
         // 묠니르가 벽에 닿을 때까지 대기
         Vector3 velocity = (playerPos - transform.localPosition).normalized;
-        while (!mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall1.GetComponent<BoxCollider2D>()) &&
-            !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall2.GetComponent<BoxCollider2D>()) &&
-            !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall3.GetComponent<BoxCollider2D>()) &&
-            !mjolnir.GetComponent<PolygonCollider2D>().IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<BoxCollider2D>()))
+        while (!mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall1.GetComponent<Collider2D>()) &&
+            !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall2.GetComponent<Collider2D>()) &&
+            !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall3.GetComponent<Collider2D>()) &&
+            !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<Collider2D>()))
         {
             yield return null;
             mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
+            if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
+            {
+                playerBehaviour.GetDamaged();
+            }
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
         Vector3 tempMjolnirPos = mjolnir.transform.localPosition;
 
         // 묠니르가 벽에 닿으면 외벽 근처에 있는 플레이어 사망
+        AttackOnAllHitArea();
+
+        yield return null;
+
         RemoveAllHitArea();
         // TODO 전기 이펙트 및 플레이어 공격
 
@@ -122,10 +170,14 @@ public class Thor : Boss
 
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
         velocity = (transform.localPosition - tempMjolnirPos).normalized;
-        while (!mjolnir.GetComponent<PolygonCollider2D>().IsTouching(this.GetComponent<BoxCollider2D>()))
+        while (!mjolnir.GetComponent<Collider2D>().IsTouching(this.GetComponent<Collider2D>()))
         {
             yield return null;
             mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
+            if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
+            {
+                playerBehaviour.GetDamaged();
+            }
         }
         // 묠니르가 토르에 닿으면 패턴 종료
         // TODO 안 돌아오면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
@@ -133,6 +185,7 @@ public class Thor : Boss
         mjolnir.transform.localPosition = transform.localPosition;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(0);
 
         isBusy = false;
     }
@@ -203,6 +256,10 @@ public class Thor : Boss
 
         yield return new WaitForSeconds(0.3f);
 
+        AttackOnAllHitArea();
+
+        yield return null;
+
         RemoveAllHitArea();
         // TODO 공격 판정
 
@@ -224,6 +281,7 @@ public class Thor : Boss
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(1);
 
         isBusy = false;
     }
@@ -244,7 +302,7 @@ public class Thor : Boss
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
         // 플레이어의 현재 위치 확인
-        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
+        Vector3 playerPos = player.GetComponent<Transform>().localPosition;
 
         // TODO 망치 올리기
 
@@ -258,13 +316,18 @@ public class Thor : Boss
 
         yield return new WaitForSeconds(0.2f);
 
+        // TODO 전기 이펙트 및 플레이어 공격
+        AttackOnAllHitArea();
+
+        yield return null;
+
         // 생성한 HitFan60AreaWarning 모두 제거하기
         RemoveAllHitArea();
-        // TODO 전기 이펙트 및 플레이어 공격
 
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(2);
 
         StartCoroutine(PassivePattern());
     }
@@ -294,13 +357,18 @@ public class Thor : Boss
         // effect1 시간 기다리기
         yield return new WaitForSeconds(effect1);
 
+        // TODO 전기 이펙트 및 플레이어 공격
+        AttackOnAllHitArea();
+
+        yield return null;
+
         // 생성한 HitCircleAreaWarning 모두 제거하기
         RemoveAllHitArea();
-        // TODO 전기 이펙트 및 플레이어 공격
 
         yield return null;
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
+        GameManager.Instance.QuestManager.UpPatternSeeCount(3);
 
         StartCoroutine(PassivePattern());
     }
@@ -308,11 +376,20 @@ public class Thor : Boss
     // 전자 갑옷
     public IEnumerator PassivePattern()
     {
-        InstantiateHitCircle(transform.localPosition, 3f);
+        GameObject hit = InstantiateHitCircle(transform.localPosition, 3f, true);
+        //Debug.Log("PassivePattern " + hit.name);
+
+        float time = Time.time + 3f;
 
         // TODO 이 3초 동안 계속 데미지 가함
         // TODO 플레이어의 공격 반사
-        yield return new WaitForSeconds(3f);
+        while (Time.time < time)
+        {
+            yield return null;
+            if (hit.GetComponent<Collider2D>().IsTouching(playerCollider)) {
+                playerBehaviour.GetDamaged();
+            }
+        }
         RemoveAllHitArea();
         yield return null;
         isBusy = false;

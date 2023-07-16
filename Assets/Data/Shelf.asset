@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Shelf
   m_EditorClassIdentifier: 
   xMin: -7
-  xMax: 4.15
-  yRow1: 2.73
-  yRow2: 0.8
-  yRow3: -1.14
-  yRow4: -3.09
-  overlapRange: 1.5
+  xMax: 3.75
+  yRow1: 3.03
+  yRow2: 1.1
+  yRow3: -0.84
+  yRow4: -2.79
+  overlapRange: 1.8
+  dummyOverlapRange: 0.7
