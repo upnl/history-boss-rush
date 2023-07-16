@@ -30,8 +30,9 @@ public class Boss : MonoBehaviour
 
     public void GetDamaged(int attackBookLevel)
     {
-        nowHP -= normalDamage + attackBookLevel;
+        nowHP -= normalDamage + attackBookLevel; //TODO
         hpSlider.value = nowHP/maxHP;
+        GameManager.Instance.QuestManager.CheckAttackPercent();
         if (nowHP <= 0f)
         {
             GameManager.Instance.GameStateManager.Win();
