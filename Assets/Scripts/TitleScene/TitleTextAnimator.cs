@@ -21,8 +21,6 @@ public class TitleTextAnimator : MonoBehaviour
         yield return StartCoroutine(TextColor(titleText1));
         yield return new WaitForSeconds(0.3f);
         yield return StartCoroutine(TextColor(titleText2));
-        yield return new WaitForSeconds(0.3f);
-        yield return StartCoroutine(TextColor(titleText3));
         pressText.gameObject.SetActive(true);
         titleSceneMover.gameObject.SetActive(true);
         StartCoroutine(TextBlinking(pressText, pressText.GetComponentInChildren<TMP_Text>()));
@@ -34,10 +32,10 @@ public class TitleTextAnimator : MonoBehaviour
         while(elapsedTime < 0.7f)
         {
             elapsedTime += Time.deltaTime;
-            text.color = new Color(text.color.r, text.color.b, text.color.g, elapsedTime/0.6f);
+            text.color = new Color(text.color.r, text.color.g, text.color.b, elapsedTime/0.6f);
             yield return null;
         }
-        text.color = new Color(text.color.r, text.color.b, text.color.g, 1f);
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
     }
 
     private IEnumerator TextBlinking(RawImage Raw, TMP_Text text)
@@ -46,8 +44,8 @@ public class TitleTextAnimator : MonoBehaviour
         while(true)
         {
             elapsedTime += Time.deltaTime;
-            text.color = new Color(text.color.r, text.color.b, text.color.g, 2f*(Mathf.Sin(elapsedTime)+1f)/2f);
-            Raw.color = new Color(Raw.color.r, Raw.color.b, Raw.color.g, 2f*(Mathf.Sin(elapsedTime)+1f)/2f);
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 2f*(Mathf.Sin(elapsedTime)+1f)/2f);
+            Raw.color = new Color(Raw.color.r, Raw.color.g, Raw.color.b, 2f*(Mathf.Sin(elapsedTime)+1f)/2f);
             yield return null;
         }
     }
