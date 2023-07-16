@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Boss_AJS2.unity.meta
 guid: 5ba27abacca7fec40b94f74be4b30a52
+========
+guid: 0429a0482a666f64098b6d1125578984
+>>>>>>>> 5b193c3e (add flame, move for surtr):Assets/Scenes/Boss_Surtr.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

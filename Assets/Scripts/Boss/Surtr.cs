@@ -12,13 +12,14 @@ public class Surtr : Boss
     public GameObject player;
 
     Vector3 playerPos;
-    Vector3 velocity;
-    
+    Vector3 velocity; 
+
     public float swordSpeed = 10f;
     private float distance = 0f;
     private float stopTime = 0f;
     private float stopCoolTime = 0f;
     private bool isFollow = true;
+
     CSVReader bookDB;
     private void Start()
     {
@@ -29,7 +30,9 @@ public class Surtr : Boss
     private void Update()
     {
         //검 이동 코드. 따라오다가 가끔씩 stopTime만큼 멈춘다. (stopCoolTime초마다 30%확률로 정지 시도)
+
         if (!isFollow) return;
+
         playerPos = player.transform.position;
 
         distance = Vector3.Distance(playerPos, sword.transform.position);
@@ -89,7 +92,6 @@ public class Surtr : Boss
     {
         if (isBusy) yield break;
 
-
         string skill = "Surtr1";
         int isCw = Random.Range(0, 2);
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
@@ -105,10 +107,6 @@ public class Surtr : Boss
                 rot -= 360f;
             }
         }
-
-        var tween = sword.transform.DORotate(new Vector3(0,0,rot), 1f);
-        yield return tween.WaitForCompletion();
-        sword.transform.DORotate(new Vector3(0, 0, (isCw * (-2) + 1) * 120), 1f);
         
 
 
