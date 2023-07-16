@@ -2748,7 +2748,7 @@ MonoBehaviour:
   hitFan120Prefab: {fileID: 8185774758853152804, guid: 5e27c890947f92240b411863eaa761e8, type: 3}
   hitAreaParent: {fileID: 653994885}
   mjolnir: {fileID: 2097768914}
-  stonePrefab: {fileID: 0}
+  stonePrefab: {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
   mjolnirSpeed: 30
 --- !u!61 &1069674590
 BoxCollider2D:
@@ -3242,7 +3242,7 @@ GameObject:
   - component: {fileID: 1196932857}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
