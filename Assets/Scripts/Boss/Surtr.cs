@@ -8,18 +8,17 @@ using DG.Tweening;
 public class Surtr : Boss
 {
     public GameObject sword;
-
+    public GameObject flame;
     public GameObject player;
 
     Vector3 playerPos;
     Vector3 velocity;
-
-
+    
     public float swordSpeed = 10f;
     private float distance = 0f;
     private float stopTime = 0f;
     private float stopCoolTime = 0f;
-
+    private bool isFollow = true;
     CSVReader bookDB;
     private void Start()
     {
@@ -30,6 +29,7 @@ public class Surtr : Boss
     private void Update()
     {
         //검 이동 코드. 따라오다가 가끔씩 stopTime만큼 멈춘다. (stopCoolTime초마다 30%확률로 정지 시도)
+        if (!isFollow) return;
         playerPos = player.transform.position;
 
         distance = Vector3.Distance(playerPos, sword.transform.position);
@@ -89,7 +89,7 @@ public class Surtr : Boss
     {
         if (isBusy) yield break;
 
-        
+
         string skill = "Surtr1";
         int isCw = Random.Range(0, 2);
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
@@ -105,10 +105,10 @@ public class Surtr : Boss
                 rot -= 360f;
             }
         }
-        Sequence finalSequence;
-        finalSequence = DOTween.Sequence().SetAutoKill(false)
-        .Append(sword.transform.DORotate(new Vector3(0,0,rot), 1f))
-        .Append(sword.transform.DORotate(new Vector3(0, 0, (isCw * (-2) + 1) * 120), 0.4f));
+
+        var tween = sword.transform.DORotate(new Vector3(0,0,rot), 1f);
+        yield return tween.WaitForCompletion();
+        sword.transform.DORotate(new Vector3(0, 0, (isCw * (-2) + 1) * 120), 1f);
         
 
 
@@ -120,10 +120,31 @@ public class Surtr : Boss
     // 마그마 기둥
     public IEnumerator Pattern2()
     {
+        
+        Debug.Log("Y");
         if (isBusy) yield break;
 
+        isBusy = true;
+        isFollow = false;
+        sword.transform.DOMove(new Vector3(0, 6, 0), 1f);
+        sword.transform.DORotate(new Vector3(0, 0, 0), 1f);
 
-        yield return null;
+        yield return new WaitForSeconds(0.6f);
+
+
+        GameObject[] flameList = new GameObject[6];
+        for(int i = 0; i < 6; i++)
+        {
+            flameList[i]=Instantiate(flame, new Vector3(Random.Range(-9.5f, 9.5f), Random.Range(-9.5f, 9.5f), 0), Quaternion.identity);
+        }
+        yield return new WaitForSeconds(2f);
+
+        RemoveAllHitArea();
+        for (int i = 0; i < 6; i++)
+        {
+            Destroy(flameList[i]);
+        }
+        isFollow = true;
     }
 
     // 불꽃 회전
