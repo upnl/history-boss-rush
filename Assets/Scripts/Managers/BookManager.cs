@@ -8,11 +8,23 @@ public class BookManager : MonoBehaviour
 
     public string[] bookList;
     private BookData _bookData = new BookData();
-    private float _blood;
-    public float blood => _blood;
+    private int _blood;
+    public int blood => _blood;
+
+    private int _baseBlood = 15;
+
     public CSVReader bookDB;
+    public CSVReader dialogueDB;
+    public int iteration;
+
+    private bool _thorDefeated = false;
+    private bool _surtrDefeated = false;
+
+    public bool thorDefeated => _thorDefeated;
+    public bool surtrDefeated => _surtrDefeated;
 
     [SerializeField] private TextAsset _bookDB;
+    [SerializeField] private TextAsset _dialogueDB;
 
     public string bookDescription;
 
@@ -28,10 +40,13 @@ public class BookManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4", "Challenge", "Tenacity", "Alertness"};
-        _blood = 100f;
+        _blood = _baseBlood;
 
         bookDB = new CSVReader(_bookDB, true, '\t');
-        bookDescription = "탐색할 역사책을 선택하자";
+        dialogueDB = new CSVReader(_dialogueDB, true, ',');
+        iteration = 1;
+
+        bookDescription = "연구할 역사책을 선택하자";
     }
 
     public int CheckBookUnlocked(string bookName)
@@ -76,7 +91,7 @@ public class BookManager : MonoBehaviour
         }
     }
 
-    public void SetBookEquipped(string bookName, int level, float price)
+    public void SetBookEquipped(string bookName, int level, int price)
     {
         if (price > _blood)
         {
@@ -94,6 +109,45 @@ public class BookManager : MonoBehaviour
         {
             _bookData.bookEquipped[bookName] = level;
             _blood -= price;
+        }
+    }
+
+    public void ResetBookUnlocked()
+    {
+        foreach(string bookName in bookList)
+        {
+            _bookData.bookUnlocked[bookName] = 0;
+        }
+    }
+
+    public void ResetBookEquipped()
+    {
+        foreach(string bookName in bookList)
+        {
+            _bookData.bookEquipped[bookName] = 0;
+        }
+    }
+
+    public void ResetBlood()
+    {
+        _blood = _baseBlood;
+    }
+
+    public void AddBlood(int amount)
+    {
+        _blood += amount;
+    }
+
+    public void BossDefeated(string bossName)
+    {
+        ResetBookUnlocked();
+        if (bossName == "Thor")
+        {
+            _thorDefeated = true;
+        }
+        if (bossName == "Surtr")
+        {
+            _surtrDefeated = true;
         }
     }
 }
