@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
             BookManager.Instance.iteration += 1;
             if (!BookManager.Instance.thorDefeated)
             {
-                SceneManager.LoadScene("Boss_AJS2");
+                SceneManager.LoadScene("Boss_Thor");
             }
             else if (!BookManager.Instance.surtrDefeated)
             {

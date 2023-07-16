@@ -1878,6 +1878,8 @@ MonoBehaviour:
   player: {fileID: 2067595991}
   mjolnir: {fileID: 372160546}
   stonePrefab: {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
+  thor1Sprite: {fileID: 1265616939, guid: 880fa571a0366cd4c977fb921f2e110a, type: 3}
+  thor2Sprite: {fileID: -349866061, guid: 880fa571a0366cd4c977fb921f2e110a, type: 3}
   mjolnirSpeed: 30
 --- !u!1 &358374606
 GameObject:

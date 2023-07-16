@@ -101,8 +101,13 @@ public class PlayerMove : MonoBehaviour
             hValue = nowPlayerDirecton.x;
             vValue = nowPlayerDirecton.y;
             int speedLvl = BookManager.Instance.CheckBookEquipped("Tenacity");
-            var posX = transform.position.x + (playerSpeed + speedLvl*2) * hValue * Time.deltaTime;
-            var posY = transform.position.y + (playerSpeed + speedLvl*2) * vValue * Time.deltaTime;
+
+            float effect1 = float.Parse(BookManager.Instance.bookDB.GetData().Find(
+                e => e[BookManager.Instance.bookDB.GetHeaderIndex("title")].Equals("Tenacity") &&
+                int.Parse(e[BookManager.Instance.bookDB.GetHeaderIndex("level")]) == speedLvl)[BookManager.Instance.bookDB.GetHeaderIndex("effect1")]);
+
+            var posX = transform.position.x + (playerSpeed * effect1 / 100f) * hValue * Time.deltaTime;
+            var posY = transform.position.y + (playerSpeed * effect1 / 100f) * vValue * Time.deltaTime;
 
             transform.position = new Vector3(posX, posY, 0f);
         }
