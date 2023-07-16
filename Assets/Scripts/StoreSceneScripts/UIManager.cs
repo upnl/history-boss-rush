@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     public void OnClickFightButton()
     {
         Debug.Log("Move To Fight Scene");
+        BookManager.Instance.ResetBlood();
         // Code for changing to Boss Scene
     }
 

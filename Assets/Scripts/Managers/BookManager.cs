@@ -10,6 +10,9 @@ public class BookManager : MonoBehaviour
     private BookData _bookData = new BookData();
     private float _blood;
     public float blood => _blood;
+
+    private float _baseBlood = 15f;
+
     public CSVReader bookDB;
     public CSVReader dialogueDB;
     public int iteration { get; private set; }
@@ -31,7 +34,7 @@ public class BookManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4", "Challenge", "Tenacity", "Alertness"};
-        _blood = 100f;
+        _blood = _baseBlood;
 
         bookDB = new CSVReader(_bookDB, true, '\t');
         dialogueDB = new CSVReader(_dialogueDB, true, ',');
@@ -101,5 +104,10 @@ public class BookManager : MonoBehaviour
             _bookData.bookEquipped[bookName] = level;
             _blood -= price;
         }
+    }
+
+    public void ResetBlood()
+    {
+        _blood = _baseBlood;
     }
 }
