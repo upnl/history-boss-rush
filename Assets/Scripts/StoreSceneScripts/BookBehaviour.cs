@@ -19,15 +19,11 @@ public class BookBehaviour : MonoBehaviour
     private string _koreanName;
     private string _description;
 
-    private void Start()
+    public void SetProperties(string content, int level, int price, string koreanName, string description)
     {
         _uiManager = UIManager.Instance.gameObject;
         _canvasParent = _uiManager.GetComponent<UIManager>().canvasParent;
-        _bookDescription = _uiManager.GetComponent<UIManager>()._bookDescription.gameObject;
-    }
 
-    public void SetProperties(string content, int level, int price, string koreanName, string description)
-    {
         _content = content;
         _level = level;
         _price = price;
@@ -40,6 +36,8 @@ public class BookBehaviour : MonoBehaviour
         var priceLabel = Instantiate<GameObject>(_priceLabelPrefab, priceLabelPosition, Quaternion.identity);
         var textField = priceLabel.GetComponent<Text>();
         textField.text = Convert.ToString(_price);
+
+        Debug.Log(_canvasParent);
         priceLabel.transform.SetParent(_canvasParent.transform, false);
         textField.transform.position = new Vector3(0, 0, 0);
 
@@ -61,6 +59,8 @@ public class BookBehaviour : MonoBehaviour
 
     public void OnMouseDown()
     {
+        _uiManager = UIManager.Instance.gameObject;
+
         if (!_uiManager.GetComponent<UIManager>().dialogueActive)
         {
             if (BookManager.Instance.blood >= _price && BookManager.Instance.CheckBookEquipped(_content) < _level)
@@ -82,6 +82,9 @@ public class BookBehaviour : MonoBehaviour
 
     public void OnMouseEnter()
     {
+        _uiManager = UIManager.Instance.gameObject;
+        _bookDescription = _uiManager.GetComponent<UIManager>()._bookDescription.gameObject;
+
         BookManager.Instance.bookDescription = _description;
         var bookPosition = transform.position;
         _bookDescription.GetComponent<Text>().transform.position = new Vector3(bookPosition.x * 107 + 960, bookPosition.y * 107 + 540, 0f);
