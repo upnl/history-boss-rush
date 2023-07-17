@@ -52,6 +52,7 @@ public class GameStateManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         Time.timeScale = previousTimeScale;
+        if (Time.timeScale == 0) Time.timeScale = 1f;
         playerMove.CanDash = previousPlayerCanDash;
     }
 
