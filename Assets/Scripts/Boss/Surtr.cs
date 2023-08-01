@@ -180,7 +180,7 @@ public class Surtr : Boss
         }
         yield return new WaitForSeconds(2f);
 
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
         for (int i = 0; i < 6; i++)
         {
             Destroy(flameList[i]);

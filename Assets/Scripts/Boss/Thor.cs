@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Thor : Boss
 {
-    public GameObject mjolnir;
-    public GameObject stonePrefab;
-    public Sprite thor1Sprite;
-    public Sprite thor2Sprite;
+    [SerializeField] private GameObject mjolnir;
+    [SerializeField] private GameObject stonePrefab;
 
-    public float mjolnirSpeed = 3.5f;
+    [SerializeField] private List<Sprite> thorSpriteList;
+    [SerializeField] private SpriteRenderer ThorSpriteRenderer;
+
+    [SerializeField] private float mjolnirSpeed = 3.5f;
 
     CSVReader bookDB;
 
@@ -22,9 +23,14 @@ public class Thor : Boss
         pattern += UseAPattern;
         cooltime = Random.Range(1.5f, 3f);
         currentGauge = 0f;
+
         mjolnir.transform.localPosition = transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.identity;
-        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+
+        // ThorSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        ThorSpriteRenderer.sprite = thorSpriteList[0];
+
         isBusy = false;
     }
 
@@ -105,7 +111,7 @@ public class Thor : Boss
         Vector3 playerPos = player.GetComponent<Transform>().localPosition;
 
         // TODO 묠니르를 들어올리는 모션
-        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[1];
         mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
         mjolnir.transform.localRotation = Quaternion.identity;
 
@@ -114,7 +120,7 @@ public class Thor : Boss
         yield return new WaitForSeconds(0.5f - effect1);
 
         // HitBoxAreaWarning을 (망치 앞 -> playerPos)과 네 외벽 근처에 생성
-        InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 1f);
+        _Warner.InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 1f);
 
         Vector3 v = playerPos - mjolnir.transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
@@ -123,14 +129,14 @@ public class Thor : Boss
         yield return new WaitForSeconds(effect1);
 
         // 생성한 HitBoxAreaWarning 모두 제거하기
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
 
         yield return null;
 
-        InstantiateHitBoxInCenter(new Vector3(-9.5f, 0f, 0f), 0f);
-        InstantiateHitBoxInCenter(new Vector3(9.5f, 0f, 0f), 0f);
-        InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
-        InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(-9.5f, 0f, 0f), 0f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(9.5f, 0f, 0f), 0f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
 
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
         // 묠니르가 벽에 닿을 때까지 대기
@@ -158,22 +164,22 @@ public class Thor : Boss
 
         yield return null;
 
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
         // TODO 전기 이펙트
 
-        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[0];
 
         yield return null;
 
         // 시간 조금 기다리면서 다시 HitBoxAreaWarning을 (망치 앞 -> 토르)에 생성
         // 돌아오는 망치의 경로 미리 표시하기
-        InstantiateHitBox(tempMjolnirPos, transform.position, 1f, Vector3.Distance(tempMjolnirPos, transform.localPosition));
+        _Warner.InstantiateHitBox(tempMjolnirPos, transform.position, 1f, Vector3.Distance(tempMjolnirPos, transform.localPosition));
 
         yield return new WaitForSeconds(0.3f);
         // effect1 시간 기다리기
         // 생성한 HitBoxAreaWarning 모두 제거하기
 
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
 
         yield return null;
 
@@ -192,7 +198,7 @@ public class Thor : Boss
         // 묠니르가 토르에 닿으면 패턴 종료
         // TODO 안 돌아오면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
-        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[0];
         mjolnir.transform.localPosition = transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.identity;
 
@@ -217,7 +223,7 @@ public class Thor : Boss
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
-        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[1];
         mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
         mjolnir.transform.localRotation = Quaternion.identity;
 
@@ -250,16 +256,16 @@ public class Thor : Boss
         yield return new WaitForSeconds(0.9f - effect1);
 
 
-        InstantiateHitBoxInCenter(stone1Pos, 0f);
-        InstantiateHitBoxInCenter(stone1Pos, 90f);
-        InstantiateHitBoxInCenter(stone2Pos, 0f);
-        InstantiateHitBoxInCenter(stone2Pos, 90f);
-        InstantiateHitBoxInCenter(stone3Pos, 0f);
-        InstantiateHitBoxInCenter(stone3Pos, 90f);
-        InstantiateHitBoxInCenter(new Vector3(-9.5f, 0f, 0f), 0f);
-        InstantiateHitBoxInCenter(new Vector3(9.5f, 0f, 0f), 0f);
-        InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
-        InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
+        _Warner.InstantiateHitBoxInCenter(stone1Pos, 0f);
+        _Warner.InstantiateHitBoxInCenter(stone1Pos, 90f);
+        _Warner.InstantiateHitBoxInCenter(stone2Pos, 0f);
+        _Warner.InstantiateHitBoxInCenter(stone2Pos, 90f);
+        _Warner.InstantiateHitBoxInCenter(stone3Pos, 0f);
+        _Warner.InstantiateHitBoxInCenter(stone3Pos, 90f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(-9.5f, 0f, 0f), 0f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(9.5f, 0f, 0f), 0f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
+        _Warner.InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
 
         GameObject stone1, stone2, stone3;
         stone1 = Instantiate(stonePrefab, stone1Pos, Quaternion.identity);
@@ -277,7 +283,7 @@ public class Thor : Boss
 
         yield return null;
 
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
         // TODO 공격 판정
 
         for (int i = 25; i >= 1; i--)
@@ -297,7 +303,7 @@ public class Thor : Boss
 
         yield return null;
 
-        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[0];
         mjolnir.transform.localPosition = transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.identity;
 
@@ -326,19 +332,19 @@ public class Thor : Boss
         Vector3 playerPos = player.GetComponent<Transform>().localPosition;
 
         // TODO 망치 올리기
-        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[1];
         mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
         mjolnir.transform.localRotation = Quaternion.identity;
 
         yield return new WaitForSeconds(1f - effect1);
 
-        InstantiateHitFan60(transform.localPosition, playerPos, 28.4f);
+        _Warner.InstantiateHitFan60(transform.localPosition, playerPos, 28.4f);
 
         yield return new WaitForSeconds(effect1 - 0.2f);
 
         // TODO 망치 내리기
 
-        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[0];
         mjolnir.transform.localPosition = transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.identity;
 
@@ -351,7 +357,7 @@ public class Thor : Boss
         yield return null;
 
         // 생성한 HitFan60AreaWarning 모두 제거하기
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
 
         yield return null;
 
@@ -378,13 +384,13 @@ public class Thor : Boss
 
 
         // TODO 묠니르를 들어올리는 모션
-        GetComponent<SpriteRenderer>().sprite = thor2Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[1];
         mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
         mjolnir.transform.localRotation = Quaternion.identity;
 
         yield return new WaitForSeconds(1.4f - effect1);
 
-        InstantiateHitCircle(transform.localPosition, 7f);
+        _Warner.InstantiateHitCircle(transform.localPosition, 7f);
 
         // effect1 시간 기다리기
         yield return new WaitForSeconds(effect1);
@@ -396,11 +402,11 @@ public class Thor : Boss
         yield return null;
 
         // 생성한 HitCircleAreaWarning 모두 제거하기
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
 
         yield return null;
 
-        GetComponent<SpriteRenderer>().sprite = thor1Sprite;
+        ThorSpriteRenderer.sprite = thorSpriteList[0];
         mjolnir.transform.localPosition = transform.localPosition;
         mjolnir.transform.localRotation = Quaternion.identity;
 
@@ -413,7 +419,7 @@ public class Thor : Boss
     // 전자 갑옷
     public IEnumerator PassivePattern()
     {
-        GameObject hit = InstantiateHitCircle(transform.localPosition, 3f, true);
+        GameObject hit = _Warner.InstantiateHitCircle(transform.localPosition, 3f, true);
         //Debug.Log("PassivePattern " + hit.name);
 
         float time = Time.time + 3f;
@@ -427,7 +433,7 @@ public class Thor : Boss
                 playerBehaviour.GetDamaged();
             }
         }
-        RemoveAllHitArea();
+        _Warner.RemoveAllHitArea();
         yield return null;
         isBusy = false;
     }
