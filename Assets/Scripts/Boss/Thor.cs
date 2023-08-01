@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Thor : Boss
 {
-    [SerializeField] private GameObject mjolnir;
+    [SerializeField] private Transform mjolnir;
     [SerializeField] private GameObject stonePrefab;
 
     [SerializeField] private List<Sprite> thorSpriteList;
@@ -24,11 +24,9 @@ public class Thor : Boss
         cooltime = Random.Range(1.5f, 3f);
         currentGauge = 0f;
 
-        mjolnir.transform.localPosition = transform.localPosition;
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position);
 
         // ThorSpriteRenderer = GetComponent<SpriteRenderer>();
-
         ThorSpriteRenderer.sprite = thorSpriteList[0];
 
         isBusy = false;
@@ -108,22 +106,21 @@ public class Thor : Boss
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
         // 플레이어의 현재 위치 확인
-        Vector3 playerPos = player.GetComponent<Transform>().localPosition;
+        Vector3 playerPos = player.transform.position;
 
         // TODO 묠니르를 들어올리는 모션
         ThorSpriteRenderer.sprite = thorSpriteList[1];
-        mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position + new Vector3(0f, 2f, 0f));
 
         // DB에서 Thor1의 effect1(미리 보여주는 시간)을 가져오기
         // 얼만큼 기다려야 하는가: 0.5초 - effect1
         yield return new WaitForSeconds(0.5f - effect1);
 
         // HitBoxAreaWarning을 (망치 앞 -> playerPos)과 네 외벽 근처에 생성
-        _Warner.InstantiateHitBox(mjolnir.transform.localPosition, playerPos, 1f);
+        _Warner.InstantiateHitBox(mjolnir.transform.position, playerPos, 1f);
 
-        Vector3 v = playerPos - mjolnir.transform.localPosition;
-        mjolnir.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
+        Vector3 v = playerPos - mjolnir.transform.position;
+        LookAtDirection(mjolnir, new Vector2(v.x, v.y));
 
         // effect1 시간 기다리기
         yield return new WaitForSeconds(effect1);
@@ -140,14 +137,14 @@ public class Thor : Boss
 
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
         // 묠니르가 벽에 닿을 때까지 대기
-        Vector3 velocity = (playerPos - transform.localPosition - new Vector3(0f, 2f, 0f)).normalized;
+        Vector3 velocity = (playerPos - transform.position - new Vector3(0f, 2f, 0f)).normalized;
         while (!mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall1.GetComponent<Collider2D>()) &&
             !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall2.GetComponent<Collider2D>()) &&
             !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall3.GetComponent<Collider2D>()) &&
             !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<Collider2D>()))
         {
             yield return null;
-            mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
+            mjolnir.transform.position = mjolnir.transform.position + mjolnirSpeed * Time.deltaTime * velocity;
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
                 AudioManager.Instance.PlaySfx(3);
@@ -156,7 +153,7 @@ public class Thor : Boss
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
-        Vector3 tempMjolnirPos = mjolnir.transform.localPosition;
+        Vector3 tempMjolnirPos = mjolnir.position;
         AudioManager.Instance.PlaySfx(3);
 
         // 묠니르가 벽에 닿으면 외벽 근처에 있는 플레이어 사망
@@ -173,7 +170,7 @@ public class Thor : Boss
 
         // 시간 조금 기다리면서 다시 HitBoxAreaWarning을 (망치 앞 -> 토르)에 생성
         // 돌아오는 망치의 경로 미리 표시하기
-        _Warner.InstantiateHitBox(tempMjolnirPos, transform.position, 1f, Vector3.Distance(tempMjolnirPos, transform.localPosition));
+        _Warner.InstantiateHitBox(tempMjolnirPos, transform.position, 1f, Vector3.Distance(tempMjolnirPos, transform.position));
 
         yield return new WaitForSeconds(0.3f);
         // effect1 시간 기다리기
@@ -184,11 +181,11 @@ public class Thor : Boss
         yield return null;
 
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
-        velocity = (transform.localPosition - tempMjolnirPos).normalized;
+        velocity = (transform.position - tempMjolnirPos).normalized;
         while (!mjolnir.GetComponent<Collider2D>().IsTouching(this.GetComponent<Collider2D>()))
         {
             yield return null;
-            mjolnir.transform.localPosition = mjolnir.transform.localPosition + mjolnirSpeed * Time.deltaTime * velocity;
+            mjolnir.position = mjolnir.transform.position + mjolnirSpeed * Time.deltaTime * velocity;
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
                 AudioManager.Instance.PlaySfx(3);
@@ -199,8 +196,7 @@ public class Thor : Boss
         // TODO 안 돌아오면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
 
         ThorSpriteRenderer.sprite = thorSpriteList[0];
-        mjolnir.transform.localPosition = transform.localPosition;
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position);
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(0);
@@ -224,8 +220,7 @@ public class Thor : Boss
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
         ThorSpriteRenderer.sprite = thorSpriteList[1];
-        mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position + new Vector3(0f, 2f, 0f));
 
         Vector3 stone1Pos = new Vector3(), stone2Pos = new Vector3(), stone3Pos = new Vector3();
         int r = UnityEngine.Random.Range(0, 4);
@@ -268,9 +263,9 @@ public class Thor : Boss
         _Warner.InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
 
         GameObject stone1, stone2, stone3;
-        stone1 = Instantiate(stonePrefab, stone1Pos, Quaternion.identity);
-        stone2 = Instantiate(stonePrefab, stone2Pos, Quaternion.identity);
-        stone3 = Instantiate(stonePrefab, stone3Pos, Quaternion.identity);
+        stone1 = Instantiate(stonePrefab, stone1Pos, Quaternion.identity, transform);
+        stone2 = Instantiate(stonePrefab, stone2Pos, Quaternion.identity, transform);
+        stone3 = Instantiate(stonePrefab, stone3Pos, Quaternion.identity, transform);
 
         yield return new WaitForSeconds(effect1 - 0.3f);
 
@@ -304,8 +299,7 @@ public class Thor : Boss
         yield return null;
 
         ThorSpriteRenderer.sprite = thorSpriteList[0];
-        mjolnir.transform.localPosition = transform.localPosition;
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position);
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(1);
@@ -329,27 +323,25 @@ public class Thor : Boss
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
         // 플레이어의 현재 위치 확인
-        Vector3 playerPos = player.GetComponent<Transform>().localPosition;
+        Vector3 playerPos = player.GetComponent<Transform>().position;
 
         // TODO 망치 올리기
         ThorSpriteRenderer.sprite = thorSpriteList[1];
-        mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position + new Vector3(0f, 2f, 0f));
 
         yield return new WaitForSeconds(1f - effect1);
 
-        _Warner.InstantiateHitFan60(transform.localPosition, playerPos, 28.4f);
+        _Warner.InstantiateHitFan60(transform.position, playerPos, 28.4f);
 
         yield return new WaitForSeconds(effect1 - 0.2f);
 
         // TODO 망치 내리기
 
         ThorSpriteRenderer.sprite = thorSpriteList[0];
-        mjolnir.transform.localPosition = transform.localPosition;
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position);
 
         yield return new WaitForSeconds(0.2f);
-        
+
         AudioManager.Instance.PlaySfx(3);
         // TODO 전기 이펙트 및 플레이어 공격
         AttackOnAllHitArea();
@@ -382,15 +374,13 @@ public class Thor : Boss
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
-
         // TODO 묠니르를 들어올리는 모션
         ThorSpriteRenderer.sprite = thorSpriteList[1];
-        mjolnir.transform.localPosition = transform.localPosition + new Vector3(0f, 2f, 0f);
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position + new Vector3(0f, 2f, 0f));
 
         yield return new WaitForSeconds(1.4f - effect1);
 
-        _Warner.InstantiateHitCircle(transform.localPosition, 7f);
+        _Warner.InstantiateHitCircle(transform.position, 7f);
 
         // effect1 시간 기다리기
         yield return new WaitForSeconds(effect1);
@@ -407,8 +397,7 @@ public class Thor : Boss
         yield return null;
 
         ThorSpriteRenderer.sprite = thorSpriteList[0];
-        mjolnir.transform.localPosition = transform.localPosition;
-        mjolnir.transform.localRotation = Quaternion.identity;
+        MoveToPosition(mjolnir, transform.position);
 
         // TODO 주인공이 사망하지 않았다면 퀘스트 누적
         GameManager.Instance.QuestManager.UpPatternSeeCount(3);
@@ -419,7 +408,7 @@ public class Thor : Boss
     // 전자 갑옷
     public IEnumerator PassivePattern()
     {
-        GameObject hit = _Warner.InstantiateHitCircle(transform.localPosition, 3f, true);
+        GameObject hit = _Warner.InstantiateHitCircle(transform.position, 3f, true);
         //Debug.Log("PassivePattern " + hit.name);
 
         float time = Time.time + 3f;
@@ -437,4 +426,22 @@ public class Thor : Boss
         yield return null;
         isBusy = false;
     }
+
+    #region Utils
+
+    public void MoveToPosition(Transform moveObject, Vector2 targetPosition)
+    {
+        moveObject.position = targetPosition;
+        moveObject.rotation = Quaternion.identity;
+    }
+
+    public void LookAtDirection(Transform moveObject, Vector2 lookDirection)
+    {
+        moveObject.rotation = Quaternion.Euler(0f, 0f, CalculateDegreeWithVector(lookDirection));
+    }
+
+    private float CalculateDegreeWithVector(Vector2 lookDirection)
+        => 270f + Mathf.Atan2(lookDirection.y, lookDirection.x) / Mathf.PI * 180f;
+
+    #endregion
 }
