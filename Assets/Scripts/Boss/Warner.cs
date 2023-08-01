@@ -16,9 +16,9 @@ public class Warner : MonoBehaviour
     {
         GameObject hit = Instantiate(hitBoxPrefab, transform);
         hit.transform.localScale = new Vector3(width, length, 1f);
-        hit.transform.localPosition = origin;
+        hit.transform.position = origin;
         Vector3 v = destination - origin;
-        hit.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
+        hit.transform.rotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
         return hit;
     }
 
@@ -26,8 +26,8 @@ public class Warner : MonoBehaviour
     {
         GameObject hit = Instantiate(hitBoxCenterPrefab, transform);
         hit.transform.localScale = new Vector3(width, hit.transform.localScale.y, 1f);
-        hit.transform.localPosition = center;
-        hit.transform.localRotation = Quaternion.Euler(0f, 0f, degree);
+        hit.transform.position = center;
+        hit.transform.rotation = Quaternion.Euler(0f, 0f, degree);
         // degree가 0이면 세로로 길게 배치
         return hit;
     }
@@ -36,7 +36,7 @@ public class Warner : MonoBehaviour
     {
         GameObject hit = Instantiate(hitCirclePrefab, transform);
         hit.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
-        hit.transform.localPosition = center;
+        hit.transform.position = center;
         if (ongoingAttack)
         {
             hit.GetComponent<SpriteRenderer>().color = new Color(0.333333f, 0f, 1f, 0.6627451f);
@@ -48,9 +48,9 @@ public class Warner : MonoBehaviour
     {
         GameObject hit = Instantiate(hitFan60Prefab, transform);
         hit.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
-        hit.transform.localPosition = center;
+        hit.transform.position = center;
         Vector3 v = destination - center;
-        hit.transform.localRotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
+        hit.transform.rotation = Quaternion.Euler(0f, 0f, 270f + Mathf.Atan2(v.y, v.x) / Mathf.PI * 180f);
         return hit;
     }
 
