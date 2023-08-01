@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1054966481744460344
+--- !u!1 &5391789521188965391
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1054966481744460346}
-  - component: {fileID: 1054966481744460347}
+  - component: {fileID: 5391789521188965389}
+  - component: {fileID: 5391789521188965388}
   m_Layer: 0
   m_Name: UIManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1054966481744460346
+--- !u!4 &5391789521188965389
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054966481744460344}
+  m_GameObject: {fileID: 5391789521188965391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7103794, y: -0.40397304, z: 0.06789353}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1054966481744460347
+--- !u!114 &5391789521188965388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054966481744460344}
+  m_GameObject: {fileID: 5391789521188965391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9da1fb043edb4a4b8878ac6b1d519ab, type: 3}
+  m_Script: {fileID: 11500000, guid: aa426c8e75ade499180a50f63bed6ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bookDescription: 
   _bloodAmount: {fileID: 0}
   _bookDescription: {fileID: 0}
-  bookDescription: "\uD0D0\uC0C9\uD560 \uC5ED\uC0AC\uCC45\uC744 \uAD6C\uB9E4\uD558\uC790"
+  _fightButton: {fileID: 0}
+  _nextButton: {fileID: 0}
+  _speaker: {fileID: 0}
+  _dialogue: {fileID: 0}
+  _textBackground: {fileID: 0}
+  canvasParent: {fileID: 0}
+  dialogueActive: 1
