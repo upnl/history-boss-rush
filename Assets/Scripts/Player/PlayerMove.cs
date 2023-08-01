@@ -1,112 +1,80 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IPlayerController
 {
+    #region Internal
     private float playerSpeed = 5f;
     private float dashConstant = 80f;
     private float dashTime = 0.5f;
-    private Vector3 nowPlayerDirecton = new Vector3(0f, 1f, 0f);
-    [HideInInspector] public bool IsDash = false;
-    [HideInInspector] public bool CanDash = true;
     private float rollingCoolTime = 3f;
-    [HideInInspector] public bool CanMove = true;
-    private Animator animator;
 
-    private GameStateManager gameStateManager;
+    private Vector2 currentPlayerDirecton = new Vector3(0f, 1f);
+    private Vector2 cachedPlayerDirection = new Vector2(0f, 1f);
+
+    private Vector2 _PlayerInput;
+    private GameStateManager _GameStateManager;
+    #endregion
+
+    // [HideInInspector] public bool IsDash = false;
+    [HideInInspector] public bool CanDash = true;
+    [HideInInspector] public bool CanMove = true;
+
+    // private Animator animator;
+
+    #region External
+    public event Action<bool, Vector2> DashingChanged;
+
+    public Vector2 PlayerInput => _PlayerInput;
+    public Vector2 PlayerDirection => cachedPlayerDirection;
+    public bool IsDashing { get; private set; }
+    #endregion
+
 
     private void Start()
     {
-        gameStateManager = GameManager.Instance.GameStateManager;
-        animator = GetComponentInChildren<Animator>();
+        _GameStateManager = GameManager.Instance.GameStateManager;
+        // animator = GetComponentInChildren<Animator>();
     }
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
+        _PlayerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if (_PlayerInput.x != 0 || _PlayerInput.y != 0)
+        {
+            currentPlayerDirecton = new Vector3(_PlayerInput.x, _PlayerInput.y).normalized;
+            cachedPlayerDirection = currentPlayerDirecton;
+        }
+        else
+            currentPlayerDirecton = new Vector3(0f, 0f, 0f);
+
         if (Input.GetKeyDown(KeyCode.Space) && CanDash && CanMove)
         {
-            if (gameStateManager.dashTemp)
+            if (_GameStateManager.dashTemp)
             {
-                gameStateManager.dashTemp = false;
+                _GameStateManager.dashTemp = false;
             }
             else
             {
-                float hValue = Input.GetAxisRaw("Horizontal");
-                float vValue = Input.GetAxisRaw("Vertical");
-                if (hValue != 0 || vValue != 0)
-                {
-                    nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
-                }
-                else
-                {
-                    nowPlayerDirecton = new Vector3(0f, 0f, 0f);
-                }
-                if (vValue == 0)
-                {
-                    if(hValue == 1)
-                    {
-                        animator.SetInteger("WalkInt", 1);
-                    }
-                    else if(hValue == -1)
-                    {
-                        animator.SetInteger("WalkInt", 3);
-                    }
-                }
-                else if(vValue == 1)
-                {
-                    animator.SetInteger("WalkInt", 2);
-                }
-                else
-                {
-                    animator.SetInteger("WalkInt", 0);
-                }
-                IsDash = true;
+                IsDashing = true;
                 CanDash = false;
+                DashingChanged?.Invoke(true, cachedPlayerDirection);
                 StartCoroutine(Dash());
             }
         }
-        else if (!IsDash && CanMove)
+        else if (!IsDashing && CanMove)
         {
-            float hValue = Input.GetAxisRaw("Horizontal");
-            float vValue = Input.GetAxisRaw("Vertical");
-            if (hValue != 0 || vValue != 0)
-            {
-                nowPlayerDirecton = new Vector3(hValue, vValue, 0f).normalized;
-            }
-            else
-            {
-                nowPlayerDirecton = new Vector3(0f, 0f, 0f);
-            }
-            if (vValue == 0)
-            {
-                if(hValue == 1)
-                {
-                    animator.SetInteger("WalkInt", 1);
-                }
-                else if(hValue == -1)
-                {
-                    animator.SetInteger("WalkInt", 3);
-                }
-            }
-            else if(vValue == 1)
-            {
-                animator.SetInteger("WalkInt", 2);
-            }
-            else
-            {
-                animator.SetInteger("WalkInt", 0);
-            }
-            hValue = nowPlayerDirecton.x;
-            vValue = nowPlayerDirecton.y;
             int speedLvl = BookManager.Instance.CheckBookEquipped("Tenacity");
 
             float effect1 = float.Parse(BookManager.Instance.bookDB.GetData().Find(
                 e => e[BookManager.Instance.bookDB.GetHeaderIndex("title")].Equals("Tenacity") &&
                 int.Parse(e[BookManager.Instance.bookDB.GetHeaderIndex("level")]) == speedLvl)[BookManager.Instance.bookDB.GetHeaderIndex("effect1")]);
 
-            var posX = transform.position.x + (playerSpeed * effect1 / 100f) * hValue * Time.deltaTime;
-            var posY = transform.position.y + (playerSpeed * effect1 / 100f) * vValue * Time.deltaTime;
+            var posX = transform.position.x + (playerSpeed * effect1 / 100f) * _PlayerInput.x * Time.deltaTime;
+            var posY = transform.position.y + (playerSpeed * effect1 / 100f) * _PlayerInput.y * Time.deltaTime;
 
             transform.position = new Vector3(posX, posY, 0f);
         }
@@ -114,15 +82,27 @@ public class PlayerMove : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        Vector3 dashDirection = new Vector3(currentPlayerDirecton.x, currentPlayerDirecton.y, 0f);
         float elapsedTime = 0f;
         while (elapsedTime < dashTime)
         {
-            transform.position += nowPlayerDirecton * dashConstant * Time.deltaTime * (dashTime - elapsedTime) * (dashTime - elapsedTime);
+            transform.position += dashDirection * dashConstant * Time.deltaTime * (dashTime - elapsedTime) * (dashTime - elapsedTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        IsDash = false;
+
+        IsDashing = false;
         yield return new WaitForSeconds(rollingCoolTime - dashTime);
         CanDash = true;
     }
+}
+
+public interface IPlayerController
+{
+    public event Action<bool, Vector2> DashingChanged;
+
+    public Vector2 PlayerInput { get; }
+    public Vector2 PlayerDirection { get; }
+    
+    public bool IsDashing { get; }
 }
