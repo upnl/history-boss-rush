@@ -6,11 +6,18 @@ using static UnityEngine.UI.Image;
 
 public class Boss : MonoBehaviour
 {
+    #region Internal
     private float maxHP = 100f;
-    public float MaxHP => maxHP;
     private float nowHP = 100f;
-    public float NowHP => nowHP;
     private float normalDamage = 3f;
+    #endregion
+
+    #region External
+    public float MaxHP => maxHP;
+    public float NowHP => nowHP;
+    #endregion
+
+
     [SerializeField] Slider hpSlider;
 
     public GameObject hitBoxPrefab;
