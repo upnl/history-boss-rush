@@ -54,10 +54,11 @@ public class Boss : MonoBehaviour
     {
         foreach (Transform t in _Warner.transform.GetComponentInChildren<Transform>())
         {
-            if (t.GetComponent<Collider2D>().IsTouching(playerCollider))
-            {
-                playerBehaviour.GetDamaged();
-            }
+            t.GetComponent<Collider2D>().enabled = true;
+            //if (t.GetComponent<Collider2D>().IsTouching(playerCollider))
+            //{
+            //    playerBehaviour.GetDamaged();
+            //}
         }
     }
 

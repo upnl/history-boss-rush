@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7024243613390577359}
   - component: {fileID: 7024243613390577352}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7024243614381018994}
   - component: {fileID: 7024243614381018993}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Warner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 7024243614482532520}
   - component: {fileID: 7024243614482532526}
   - component: {fileID: 7024243614482532525}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mjolnir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 7024243614524999249}
   - component: {fileID: 7024243614524999255}
   - component: {fileID: 7024243614524999248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossThor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

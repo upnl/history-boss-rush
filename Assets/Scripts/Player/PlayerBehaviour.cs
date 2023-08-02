@@ -86,4 +86,13 @@ public class PlayerBehaviour : MonoBehaviour
         writingSlider.gameObject.SetActive(false);
         alreadyWriting = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Hi");
+        if (col.gameObject.layer == LayerMask.NameToLayer("DeathHitBox"))
+        {
+            GetDamaged();
+        }
+    }
 }
