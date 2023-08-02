@@ -113,13 +113,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private int _currentState;
 
-    //private static readonly int IdleSide = Animator.StringToHash("IdleSide");
-    //private static readonly int IdleNorth = Animator.StringToHash("IdleNorth");
-    //private static readonly int IdleSouth = Animator.StringToHash("IdleSouth");
+    private static readonly int IdleSide = Animator.StringToHash("IdleSide");
+    private static readonly int IdleNorth = Animator.StringToHash("IdleNorth");
+    private static readonly int IdleSouth = Animator.StringToHash("IdleSouth");
 
-    private static readonly int IdleSide = Animator.StringToHash("RunSide");
-    private static readonly int IdleNorth = Animator.StringToHash("RunNorth");
-    private static readonly int IdleSouth = Animator.StringToHash("RunSouth");
+    //private static readonly int IdleSide = Animator.StringToHash("IdleSide");
+    //private static readonly int IdleNorth = Animator.StringToHash("RunNorth");
+    //private static readonly int IdleSouth = Animator.StringToHash("RunSouth");
 
     private static readonly int RunSide = Animator.StringToHash("RunSide");
     private static readonly int RunNorth = Animator.StringToHash("RunNorth");
