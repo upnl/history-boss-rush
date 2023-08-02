@@ -7,22 +7,22 @@ ScriptedImporter:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
       name: walk_back
-    second: {fileID: 7400000, guid: 5ee1574d73bbe804fb4fb48213ef8476, type: 2}
+    second: {fileID: 7400000, guid: ed067b8c2881fee41ba36fe9d090efc0, type: 2}
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
       name: walk_forward
-    second: {fileID: 7400000, guid: a53e18906fd95e74da0821ff2a41a390, type: 2}
+    second: {fileID: 7400000, guid: db38ffb887404c647ba561ad421112c5, type: 2}
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
       name: walk_left
-    second: {fileID: 7400000, guid: 0c05c40032cdb9e43a987c491ec63c25, type: 2}
+    second: {fileID: 7400000, guid: f92404d567021f64ab81e2ac53f3b680, type: 2}
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
       name: walk_right
-    second: {fileID: 7400000, guid: 669cbfba89e61d04b9b1e0d81d5e190e, type: 2}
+    second: {fileID: 7400000, guid: 748bdd66b2f8bdc43b1a4d611e4c55c5, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -113,7 +113,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638251183368191627
+  platformSettingsDirtyTick: 638265011499658773
   textureAssetName: 
   singleSpriteImportData:
   - name: 

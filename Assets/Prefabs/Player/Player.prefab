@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4654279023346271146}
+  - component: {fileID: 4654279023346271145}
   - component: {fileID: 4654279023346271159}
   - component: {fileID: 4654279023346271144}
-  - component: {fileID: 4654279023346271145}
+  - component: {fileID: 2088481897}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -34,6 +35,27 @@ Transform:
   m_Father: {fileID: 4654279023538273244}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4654279023346271145
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4654279023346271147}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 885910c286e0c9f42828ab5a30df3e36, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &4654279023346271159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -112,27 +134,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 1}
   m_EdgeRadius: 0
---- !u!95 &4654279023346271145
-Animator:
-  serializedVersion: 5
+--- !u!114 &2088481897
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4654279023346271147}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 885910c286e0c9f42828ab5a30df3e36, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0801c18f37072e641aa90dcf4c49ccd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4654279023538273232
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b663df5f56026479c5bdff524deed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDash: 0
   CanDash: 1
   CanMove: 1
 --- !u!114 &4654279023538273246
