@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &629457235202696455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 629457235202696453}
+  - component: {fileID: 629457235202696452}
+  m_Layer: 0
+  m_Name: BookSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &629457235202696453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629457235202696455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &629457235202696452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629457235202696455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7fc1038ebb24d6b915d8a8e878446d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shelfData: {fileID: 11400000, guid: 303690e168ec343aeb8c86ad0819486f, type: 2}
+  _realBookOne: {fileID: 732275594252861202, guid: 863e949597ba8487884cc1d8ff719f25, type: 3}
+  _realBookTwo: {fileID: 3312691156961128279, guid: d93ec4aa7d8ff4a649461f63b4bc8afb, type: 3}
+  _dummyBook: {fileID: 8393043568390057518, guid: 04803d57178cd487c8c0108e47c488b1, type: 3}
+  _dummyBookLeftTilt: {fileID: 4392214373178232226, guid: cff5564562d924278abac0f685d3990d, type: 3}
+  _dummyBookRightTilt: {fileID: 1876754409217682203, guid: fdd3b1c53f6ac4695802296fbe826cc2, type: 3}
+  _dummyBookGroupOne: {fileID: 7355559089161319933, guid: 16cf37b05e1c8441c99a21a65655daca, type: 3}
+  _dummyBookGroupTwo: {fileID: 5905043570763456021, guid: 9924c8fb4f28c4c2b88c70540fc9fffd, type: 3}
