@@ -148,7 +148,7 @@ public class Thor : Boss
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
                 AudioManager.Instance.PlaySfx(3);
-                playerBehaviour.GetDamaged();
+                // playerBehaviour.GetDamaged();
             }
         }
         // TODO 벽에 안 닿으면 영원히 패턴이 종료되지 않는 버그에 빠질 것!
@@ -189,7 +189,7 @@ public class Thor : Boss
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
                 AudioManager.Instance.PlaySfx(3);
-                playerBehaviour.GetDamaged();
+                // playerBehaviour.GetDamaged();
             }
         }
         // 묠니르가 토르에 닿으면 패턴 종료
