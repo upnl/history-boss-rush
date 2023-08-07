@@ -18,7 +18,7 @@ public class Thor : Boss
     private void Start()
     {
         bookDB = BookManager.Instance.bookDB;
-        playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        playerController = player.GetComponent<PlayerController>();
         playerCollider = player.GetComponentInChildren<Collider2D>();
         pattern += UseAPattern;
         cooltime = Random.Range(1.5f, 3f);
@@ -419,7 +419,7 @@ public class Thor : Boss
         {
             yield return null;
             if (hit.GetComponent<Collider2D>().IsTouching(playerCollider)) {
-                playerBehaviour.GetDamaged();
+                playerController.GetDamaged();
             }
         }
         _Warner.RemoveAllHitArea();

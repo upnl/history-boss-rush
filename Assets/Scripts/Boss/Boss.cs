@@ -22,7 +22,7 @@ public class Boss : MonoBehaviour
     [SerializeField] Slider hpSlider;
     
     public GameObject player;
-    protected PlayerBehaviour playerBehaviour;
+    protected PlayerController playerController;
     protected Collider2D playerCollider;
 
     protected bool isBusy = true;

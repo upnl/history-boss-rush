@@ -3591,7 +3591,7 @@ MonoBehaviour:
   losePanel: {fileID: 329185739}
   winPanel: {fileID: 213533924}
   pausePanel: {fileID: 1826681021}
-  playerMove: {fileID: 2067595994}
+  playerController: {fileID: 0}
   previousPlayerCanDash: 0
   dashTemp: 0
 --- !u!1 &890818855
@@ -7032,17 +7032,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4654279023538273232, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
   m_PrefabInstance: {fileID: 4654279023087712519}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2067595994 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4654279023538273245, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-  m_PrefabInstance: {fileID: 4654279023087712519}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067595991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b663df5f56026479c5bdff524deed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2067595995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4654279023538273244, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
@@ -7258,34 +7247,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4654279023346271144, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_Size.y
-      value: 0.83261806
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654279023346271144, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654279023346271144, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.107860655
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654279023346271144, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654279023346271144, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.78571427
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654279023346271144, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654279023346271159, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: m_Sprite
+    - target: {fileID: 2067595996, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
+      propertyPath: writingSlider
       value: 
-      objectReference: {fileID: 21300000, guid: 14a22a445a2536c4f9738e3e34177af0, type: 3}
+      objectReference: {fileID: 1946073282}
+    - target: {fileID: 2067595998, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1177792946}
     - target: {fileID: 4654279023538273232, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7334,10 +7303,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4654279023538273246, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
-      propertyPath: writingSlider
-      value: 
-      objectReference: {fileID: 1946073282}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 752920e8ec2c8ef4a8651b70ee0bde58, type: 3}
 --- !u!1001 &7024243614316703883

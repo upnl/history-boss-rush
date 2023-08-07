@@ -11,6 +11,8 @@ public class PlayerAnimator : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private AudioSource _audioSource;
 
+    [SerializeField] private WeaponAnimator _weaponAnimator;
+
     private void Awake()
     {
         _player = GetComponentInParent<IPlayerController>();
@@ -27,7 +29,7 @@ public class PlayerAnimator : MonoBehaviour
     #region Dashing
     private bool isDashing = false;
     private float dashingDirectionDegree;
-    private float dashingAnimationTime = 1.0f;
+    private float dashingAnimationTime = 0.75f;
 
     private void OnDashingChanged(bool idDashing, Vector2 dashDirection)
     {
@@ -49,7 +51,19 @@ public class PlayerAnimator : MonoBehaviour
     private void HandleSpriteFlipping()
     {
         // if (IsAttacking) _renderer.flipX = _renderer.flipX = _attackFlipDirection == -1;            
-        if (Mathf.Abs(_player.PlayerInput.x) > 0.1f) _spriteRenderer.flipX = _player.PlayerInput.x < 0;
+        if (Mathf.Abs(_player.PlayerInput.x) > 0.1f)
+        {
+            if (_player.PlayerInput.x < 0)
+            {
+                _weaponAnimator.playerFliped = true;
+                transform.parent.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else
+            {
+                _weaponAnimator.playerFliped = false;
+                transform.parent.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
     }
 
     #region Animations
@@ -125,9 +139,10 @@ public class PlayerAnimator : MonoBehaviour
     private static readonly int RunNorth = Animator.StringToHash("RunNorth");
     private static readonly int RunSouth = Animator.StringToHash("RunSouth");
 
-    private static readonly int DashSide = Animator.StringToHash("RollSide");
-    private static readonly int DashNorth = Animator.StringToHash("RollNorth");
-    private static readonly int DashSouth = Animator.StringToHash("RollSouth");
+    private static readonly int DashSide = Animator.StringToHash("DashSide");
+    private static readonly int DashNorth = Animator.StringToHash("DashNorth");
+    private static readonly int DashSouth = Animator.StringToHash("DashSouth");
+    private static readonly int DashBack = Animator.StringToHash("DashBack");
     #endregion
 
     #region Utils

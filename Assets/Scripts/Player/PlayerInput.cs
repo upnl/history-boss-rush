@@ -18,6 +18,8 @@ public class PlayerInput : MonoBehaviour
             ShootDown = Input.GetMouseButtonDown(2),
             Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
 
+            WriteDown = Input.GetKeyDown(KeyCode.F),
+
             MousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition),
             ExampleActionHeld = Input.GetKey(KeyCode.E),
         };
@@ -31,5 +33,6 @@ public struct FrameInput
     public bool DashDown;
     public bool AttackDown;
     public bool ShootDown;
+    public bool WriteDown;
     public bool ExampleActionHeld;
 }

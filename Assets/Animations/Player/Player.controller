@@ -136,7 +136,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DodgeBack
+  m_Name: DashBack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -188,7 +188,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DodgeSouth
+  m_Name: DashSouth
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -214,7 +214,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DodgeNorth
+  m_Name: DashNorth
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -292,7 +292,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DodgeSide
+  m_Name: DashSide
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

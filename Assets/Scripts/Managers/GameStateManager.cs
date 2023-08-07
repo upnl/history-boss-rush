@@ -9,7 +9,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private PlayerController playerController;
     private string shopSceneName = "StoreScene";
     private bool lose = false;
     private bool win = false;
@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour
         AudioManager.Instance.PlaySfx(1);
         losePanel.SetActive(true);
         lose = true;
-        playerMove.CanDash = false;
+        playerController.TakeAwayControl();
         Time.timeScale = 0f;
     }
     public void Win()
@@ -33,7 +33,7 @@ public class GameStateManager : MonoBehaviour
         AudioManager.Instance.PlaySfx(2);
         winPanel.SetActive(true);
         win = true;
-        playerMove.CanDash = false;
+        playerController.TakeAwayControl();
         Time.timeScale = 0f;
     }
 
@@ -41,8 +41,8 @@ public class GameStateManager : MonoBehaviour
     {
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
-        previousPlayerCanDash = playerMove.CanDash;
-        playerMove.CanDash = false;
+        previousPlayerCanDash = playerController.CanDash;
+        playerController.TakeAwayControl();
         dashTemp = true;
         pausePanel.SetActive(true);
         
@@ -53,7 +53,7 @@ public class GameStateManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = previousTimeScale;
         if (Time.timeScale == 0) Time.timeScale = 1f;
-        playerMove.CanDash = previousPlayerCanDash;
+        playerController.ReturnControl(previousPlayerCanDash);
     }
 
     public void Quit()

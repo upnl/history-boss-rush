@@ -23,7 +23,7 @@ public class Surtr : Boss
     private void Start()
     {
         bookDB = BookManager.Instance.bookDB;
-        playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        playerController = player.GetComponent<PlayerController>();
         playerCollider = player.GetComponentInChildren<Collider2D>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
         pattern += UseAPattern;

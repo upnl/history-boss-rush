@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1794622899638778333}
   - component: {fileID: 1794622899638778332}
   - component: {fileID: 6748082352811277955}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: HitFan60AreaWarning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
