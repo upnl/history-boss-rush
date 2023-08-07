@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Slash
+  - Thor1
+  - Thor2
+  - Thor3
+  - Thor4
+  - Surtur1
+  - Surtur2
+  - Surtur3
+  - Surtur4
   layers:
   - Default
   - TransparentFX
