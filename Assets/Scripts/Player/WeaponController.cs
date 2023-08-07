@@ -91,13 +91,13 @@ public class WeaponController : MonoBehaviour
     #region Animator Event
     public void StartAttack()
     {
-        _hitbox.enabled = true;
+        // _hitbox.enabled = true;
         _isAttacking = true;
     }
 
     public void StopAttack()
     {
-        _hitbox.enabled = false;
+        // _hitbox.enabled = false;
         _isAttacking = false;
     }
     #endregion
