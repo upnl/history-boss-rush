@@ -97,12 +97,3 @@ public class PlayerMove : MonoBehaviour, IPlayerController
     }
 }
 
-public interface IPlayerController
-{
-    public event Action<bool, Vector2> DashingChanged;
-
-    public Vector2 PlayerInput { get; }
-    public Vector2 PlayerDirection { get; }
-    
-    public bool IsDashing { get; }
-}
