@@ -9,7 +9,6 @@ public class BookBehaviour : MonoBehaviour
     [SerializeField] private GameObject _contentLabelPrefab;
     [SerializeField] private GameObject _warningPrefab;
     private GameObject _canvasParent;
-    private GameObject _uiManager;
     private GameObject _bookDescription;
 
     private string _content;
@@ -21,9 +20,7 @@ public class BookBehaviour : MonoBehaviour
 
     public void SetProperties(string content, int level, int price, string koreanName, string description)
     {
-        _uiManager = UIManager.Instance.gameObject;
-        _canvasParent = _uiManager.GetComponent<UIManager>().canvasParent;
-
+        /*
         _content = content;
         _level = level;
         _price = price;
@@ -55,38 +52,7 @@ public class BookBehaviour : MonoBehaviour
             rectTransform = contentLabel.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector3(priceLabelPosition.x * 107, priceLabelPosition.y * 107 - 170, 0f);
         }
+        */
     }
 
-    public void OnMouseDown()
-    {
-        _uiManager = UIManager.Instance.gameObject;
-
-        if (!_uiManager.GetComponent<UIManager>().dialogueActive)
-        {
-            if (BookManager.Instance.blood >= _price && BookManager.Instance.CheckBookEquipped(_content) < _level)
-            {
-                var currentPosition = transform.position;
-                currentPosition.z = -15f;
-                transform.position = currentPosition;
-                AudioManager.Instance.PlaySfx(0);
-            }
-            if (BookManager.Instance.blood < _price)
-            {
-                var warningPosition = transform.position;
-                warningPosition.z = -5f;
-                var warning = Instantiate<GameObject>(_warningPrefab, warningPosition, Quaternion.identity);
-            }
-            BookManager.Instance.SetBookEquipped(_content, _level, _price);
-        }
-    }
-
-    public void OnMouseEnter()
-    {
-        _uiManager = UIManager.Instance.gameObject;
-        _bookDescription = _uiManager.GetComponent<UIManager>()._bookDescription.gameObject;
-
-        BookManager.Instance.bookDescription = _description;
-        var bookPosition = transform.position;
-        _bookDescription.GetComponent<Text>().transform.position = new Vector3(bookPosition.x * 107 + 960, bookPosition.y * 107 + 540, 0f);
-    }
 }

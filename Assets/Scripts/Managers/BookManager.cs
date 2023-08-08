@@ -9,7 +9,7 @@ public class BookManager : MonoBehaviour
     public string[] bookList;
     private BookData _bookData = new BookData();
 
-    static public int Blood = 0;
+    public int Blood = 0;
     public int maxBlood = 200;
 
     public CSVReader bookDB;

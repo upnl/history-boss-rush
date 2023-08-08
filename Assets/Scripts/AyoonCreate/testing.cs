@@ -20,6 +20,11 @@ public class testing : MonoBehaviour
         BookManager.Instance.SetBookUnlocked("Surtr2", 2);
         BookManager.Instance.SetBookUnlocked("Surtr3", 2);
         BookManager.Instance.SetBookUnlocked("Surtr4", 2);
+
+        if (BookManager.Instance.Blood == 0)
+        {
+            Debug.Log("pk");
+        }
     }
 
     // Update is called once per frame
