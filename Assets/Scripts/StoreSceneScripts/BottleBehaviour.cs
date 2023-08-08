@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BottleBehaviour : MonoBehaviour
 {
+    /*
     private float _startBlood;
 
     [SerializeField] private Sprite _fullBottle;
@@ -25,4 +26,5 @@ public class BottleBehaviour : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = _halfBottle;
         }
     }
+    */
 }

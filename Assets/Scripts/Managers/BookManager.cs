@@ -8,10 +8,9 @@ public class BookManager : MonoBehaviour
 
     public string[] bookList;
     private BookData _bookData = new BookData();
-    private int _blood;
-    public int blood => _blood;
 
-    private int _baseBlood = 15;
+    static public int Blood = 0;
+    public int maxBlood = 200;
 
     public CSVReader bookDB;
     public CSVReader dialogueDB;
@@ -40,7 +39,6 @@ public class BookManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4"};
-        _blood = _baseBlood;
 
         bookDB = new CSVReader(_bookDB, true, '\t');
         dialogueDB = new CSVReader(_dialogueDB, true, ',');
@@ -90,10 +88,10 @@ public class BookManager : MonoBehaviour
             _bookData.bookUnlocked[bookName] = level;
         }
     }
-
+    
     public void SetBookEquipped(string bookName, int level, int price)
     {
-        if (price > _blood)
+        if (price > Blood)
         {
             return;
         }
@@ -102,15 +100,16 @@ public class BookManager : MonoBehaviour
             if (_bookData.bookEquipped[bookName] < level)
             {
                 _bookData.bookEquipped[bookName] = level;
-                _blood -= price;
+                Blood -= price;
             }
         }
         catch (KeyNotFoundException)
         {
             _bookData.bookEquipped[bookName] = level;
-            _blood -= price;
+            Blood -= price;
         }
     }
+    
 
     public void ResetBookUnlocked()
     {
@@ -127,16 +126,19 @@ public class BookManager : MonoBehaviour
             _bookData.bookEquipped[bookName] = 0;
         }
     }
-
-    public void ResetBlood()
-    {
-        _blood = _baseBlood;
-    }
-
+    
     public void AddBlood(int amount)
     {
-        _blood += amount;
+        if (Blood < maxBlood)
+        {
+            Blood += amount;
+        }
+        else
+        {
+            Blood = maxBlood;
+        }
     }
+    
 
     public void BossDefeated(string bossName)
     {
