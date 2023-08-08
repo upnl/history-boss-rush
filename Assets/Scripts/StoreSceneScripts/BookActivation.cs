@@ -35,6 +35,8 @@ public class BookActivation : MonoBehaviour
                 transform.GetChild(i).gameObject.transform.GetChild(j).gameObject.SetActive(false);
             }
         }
+
+        ActivateBook();
     }
 
     private void ActivateBook()
