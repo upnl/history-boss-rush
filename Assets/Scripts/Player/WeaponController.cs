@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private GameObject _bulletPrefab;
 
-    private LayerMask _hitboxLayer;
+    [SerializeField] private LayerMask _hitboxLayer;
 
     #region Inner
     private bool _isAttacking;
@@ -36,6 +36,7 @@ public class WeaponController : MonoBehaviour
     {
         if (_isAttacking)
         {
+            Debug.Log("IsAttacking");
             //Debug.Log(_hitbox.bounds.center);
             //Debug.Log(_hitbox.transform.eulerAngles.z);
             Collider2D[] weaponCols = Physics2D.OverlapBoxAll(_hitbox.bounds.center, 2 * _hitbox.bounds.extents, _hitbox.transform.eulerAngles.z, _hitboxLayer);
@@ -43,16 +44,16 @@ public class WeaponController : MonoBehaviour
             // Debug.Log(weaponCols.Length);
             foreach (Collider2D collider in weaponCols)
             {
+                Debug.Log("HI22");
                 if (collider.transform.root == transform.root)
                     continue;
 
                 var objectController = collider.transform.root.GetComponent<Boss>();
                 if (objectController != null)
                 {
-                    
+                    Debug.Log("HI");
+                    objectController.GetDamaged();
                 }
-
-
             }
         }
 
