@@ -24,6 +24,7 @@ public class testing : MonoBehaviour
         if (BookManager.Instance.Blood == 0)
         {
             Debug.Log("pk");
+            Debug.Log(BookManager.Instance.CheckBookEquipped("Thor1"));
         }
     }
 

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HoverAppear : MonoBehaviour
 {
+    public static GameObject HoverNow = null;
+
     // Start is called before the first frame update
     void Start()
     {
