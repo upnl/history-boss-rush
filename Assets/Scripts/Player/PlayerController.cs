@@ -78,23 +78,25 @@ public class PlayerController : MonoBehaviour, IPlayerController
         MousePosition = (Vector2)FrameInput.MousePosition;
         FrameInput = _input.FrameInput;
 
-        if (FrameInput.WriteDown) _writingToConsume = true;
-        if (FrameInput.DashDown) _dashToConsume = true;
-        if (FrameInput.AttackDown) _attackToConsume = true;
-        if (FrameInput.ShootDown) _shootToConsume = true;
+        if (FrameInput.WriteDown && !_isWriting) _writingToConsume = true;
+        if (FrameInput.DashDown && !IsDashing) _dashToConsume = true;
+        if (FrameInput.AttackDown && !_isAttacking) _attackToConsume = true;
+        if (FrameInput.ShootDown && !_isShooting) _shootToConsume = true;
     }
     #endregion
 
     #region Moving
 
+    private float playerSpeed = 3f;
     private bool _canMove = true;
+    private float dashMovementModifier = 1.5f;
 
     private Vector2 currentPlayerDirecton = new Vector3(0f, 0f, 0f);
     private Vector2 cachedPlayerDirection = new Vector2(0f, 0f);
 
     private void HandleMoving()
     {
-        if (_isAttacking || _isWriting) return;
+        if (_isWriting) return;
 
         if (FrameInput.Move.x != 0 || FrameInput.Move.y != 0)
         {
@@ -118,6 +120,13 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
             transform.position = new Vector3(posX, posY, 0f);
         }
+        else if(IsDashing && _canMove)
+        {
+            var posX = transform.position.x + (playerSpeed / dashMovementModifier) * currentPlayerDirecton.x * Time.deltaTime;
+            var posY = transform.position.y + (playerSpeed / dashMovementModifier) * currentPlayerDirecton.y * Time.deltaTime;
+
+            transform.position = new Vector3(posX, posY, 0f);
+        }
     }
 
     #endregion
@@ -127,10 +136,9 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private bool _dashToConsume = false;
     private bool _canDash = true;
 
-    private float playerSpeed = 5f;
-    private float dashConstant = 20f;
-    private float dashTime = 0.75f;
-    private float dashCoolTime = 2f;
+    private float dashConstant = 5f;
+    private float dashTime = 0.5f;
+    private float dashCoolTime = 0.75f;
 
     private void HandleDashing()
     {
@@ -165,7 +173,9 @@ public class PlayerController : MonoBehaviour, IPlayerController
         float elapsedTime = 0f;
         while (elapsedTime < dashTime)
         {
-            transform.position += dashDirection * dashConstant * Time.deltaTime * (dashTime - elapsedTime) * (dashTime - elapsedTime);
+            // transform.position += dashDirection * dashConstant * Time.deltaTime * (dashTime - elapsedTime) * (dashTime - elapsedTime);
+            float dashMovement = Mathf.Lerp(dashConstant, dashConstant * 0.75f, elapsedTime / dashTime);
+            transform.position += dashDirection * dashMovement * Time.deltaTime;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -185,7 +195,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private bool _isShooting = false;
 
     private bool _canAttack = true;
-    private float _attackDelay = 0.66f;
+    private float _attackDelay = 0.5f;
 
     private void HandleAttacking()
     {
@@ -207,13 +217,13 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private IEnumerator AttackDelay()
     {
         _canAttack = false;
-        _canMove = false;
+        // _canMove = false;
         _isAttacking = true;
 
         yield return new WaitForSeconds(_attackDelay);
         
         _canAttack = true;
-        _canMove = true;
+        // _canMove = true;
         _isAttacking = false;
 
         AttackEnd?.Invoke();
@@ -282,9 +292,10 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        // Debug.Log("Hi");
+        
         if (col.gameObject.layer == LayerMask.NameToLayer("DeathHitBox"))
         {
+            Debug.Log("Death");
             // GetDamaged();
         }
     }

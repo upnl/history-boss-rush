@@ -11,6 +11,7 @@ public class Boss : MonoBehaviour
     private float normalDamage = 3f;
 
     [SerializeField] protected Warner _Warner;
+    [SerializeField] protected LayerMask _playerLayer;
     #endregion
 
     #region External
@@ -23,7 +24,7 @@ public class Boss : MonoBehaviour
     
     public GameObject player;
     protected PlayerController playerController;
-    protected Collider2D playerCollider;
+    [SerializeField] protected Collider2D playerCollider;
 
     protected bool isBusy = true;
     protected float cooltime = 2f;

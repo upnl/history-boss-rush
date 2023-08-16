@@ -43,7 +43,7 @@ public class WeaponAnimator : MonoBehaviour
     private bool _attacked;
     private float _attackAngle;
     private float _fixedAngle;
-    private float _attackAnimTime = 0.66f;
+    private float _attackAnimTime = 0.5f;
     // private int _attackFlipDirection;
 
     private void OnAttacked(Vector2 attackDirection)

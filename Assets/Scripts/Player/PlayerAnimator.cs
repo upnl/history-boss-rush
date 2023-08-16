@@ -29,7 +29,7 @@ public class PlayerAnimator : MonoBehaviour
     #region Dashing
     private bool isDashing = false;
     private float dashingDirectionDegree;
-    private float dashingAnimationTime = 0.75f;
+    private float dashingAnimationTime = 0.5f;
 
     private void OnDashingChanged(bool idDashing, Vector2 dashDirection)
     {

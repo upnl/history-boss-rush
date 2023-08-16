@@ -19,7 +19,7 @@ public class Thor : Boss
     {
         bookDB = BookManager.Instance.bookDB;
         playerController = player.GetComponent<PlayerController>();
-        playerCollider = player.GetComponentInChildren<Collider2D>();
+        // playerCollider = player.GetComponentInChildren<Collider2D>();
         pattern += UseAPattern;
         cooltime = Random.Range(1.5f, 3f);
         currentGauge = 0f;
@@ -138,14 +138,15 @@ public class Thor : Boss
         // 묠니르(망치) 날리기 -> 피격 범위에 닿으면 플레이어 사망
         // 묠니르가 벽에 닿을 때까지 대기
         Vector3 velocity = (playerPos - transform.position - new Vector3(0f, 2f, 0f)).normalized;
-        while (!mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall1.GetComponent<Collider2D>()) &&
-            !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall2.GetComponent<Collider2D>()) &&
-            !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall3.GetComponent<Collider2D>()) &&
-            !mjolnir.GetComponent<Collider2D>().IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<Collider2D>()))
+        Collider2D mjolnirCollider = mjolnir.GetComponent<Collider2D>();
+        while (!mjolnirCollider.IsTouching(GameManager.Instance.FieldManager.wall1.GetComponent<Collider2D>()) &&
+            !mjolnirCollider.IsTouching(GameManager.Instance.FieldManager.wall2.GetComponent<Collider2D>()) &&
+            !mjolnirCollider.IsTouching(GameManager.Instance.FieldManager.wall3.GetComponent<Collider2D>()) &&
+            !mjolnirCollider.IsTouching(GameManager.Instance.FieldManager.wall4.GetComponent<Collider2D>()))
         {
             yield return null;
             mjolnir.transform.position = mjolnir.transform.position + mjolnirSpeed * Time.deltaTime * velocity;
-            if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
+            if (mjolnirCollider.IsTouching(playerCollider))
             {
                 AudioManager.Instance.PlaySfx(3);
                 // playerBehaviour.GetDamaged();
