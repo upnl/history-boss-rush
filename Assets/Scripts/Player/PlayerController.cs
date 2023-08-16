@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     public event Action AttackEnd;
     public event Action<Vector2, bool> Shotted;
 
+    public Vector2 MousePosition { get; set; }
     public Vector2 PlayerInput => currentPlayerDirecton;
     public Vector2 PlayerDirection => cachedPlayerDirection;
     public bool IsDashing { get; private set; }
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     protected virtual void GatherInput()
     {
+        MousePosition = (Vector2)FrameInput.MousePosition;
         FrameInput = _input.FrameInput;
 
         if (FrameInput.WriteDown) _writingToConsume = true;
@@ -280,10 +282,10 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Hi");
+        // Debug.Log("Hi");
         if (col.gameObject.layer == LayerMask.NameToLayer("DeathHitBox"))
         {
-            GetDamaged();
+            // GetDamaged();
         }
     }
 
@@ -302,6 +304,7 @@ public interface IPlayerController
     public event Action AttackEnd;
     public event Action<Vector2, bool> Shotted;
 
+    public Vector2 MousePosition { get; set; }
     public Vector2 PlayerInput { get; }
     public Vector2 PlayerDirection { get; }
 

@@ -55,13 +55,15 @@ public class PlayerAnimator : MonoBehaviour
         {
             if (_player.PlayerInput.x < 0)
             {
+                _spriteRenderer.flipX = true; 
                 _weaponAnimator.playerFliped = true;
-                transform.parent.localScale = new Vector3(-1f, 1f, 1f);
+                // transform.parent.localScale = new Vector3(-1f, 1f, 1f);
             }
             else
             {
+                _spriteRenderer.flipX = false;
                 _weaponAnimator.playerFliped = false;
-                transform.parent.localScale = new Vector3(1f, 1f, 1f);
+                // transform.parent.localScale = new Vector3(1f, 1f, 1f);
             }
         }
     }

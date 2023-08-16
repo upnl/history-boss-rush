@@ -50,50 +50,50 @@ public class WeaponAnimator : MonoBehaviour
     {
         _attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
-        HandleFlipping();
-        Quaternion q = Quaternion.AngleAxis(_fixedAngle, Vector3.forward);
-        _weaponHolder.rotation = q;
+        // HandleFlipping();
+        // Quaternion q = Quaternion.AngleAxis(_fixedAngle, Vector3.forward);
+        // _weaponHolder.rotation = q;
         
         _attacked = true;
     }
 
     private void OnAttackEnd()
     {
-        HandleFlipping(true);
-        Quaternion q = Quaternion.AngleAxis(playerFliped ? 180f : 0f, Vector3.forward);
-        _weaponHolder.rotation = q;
+        // HandleFlipping(true);
+        // Quaternion q = Quaternion.AngleAxis(playerFliped ? 180f : 0f, Vector3.forward);
+        // _weaponHolder.rotation = q;
     }
 
-    public void HandleFlipping(bool angleOverride = false)
-    {
-        if (angleOverride)
-            _attackAngle = (playerFliped ? 180f : 0f);
-        _fixedAngle = _attackAngle;
+    //public void HandleFlipping(bool angleOverride = false)
+    //{
+    //    if (angleOverride)
+    //        _attackAngle = (playerFliped ? 180f : 0f);
+    //    _fixedAngle = _attackAngle;
 
-        if (_attackAngle > 90f)
-        {
-            if (playerFliped)
-                _weaponHolder.localScale = new Vector3(1f, 1f, 1f);
-            else
-                _weaponHolder.localScale = new Vector3(-1f, 1f, 1f);
+    //    if (_attackAngle > 90f)
+    //    {
+    //        if (playerFliped)
+    //            _weaponHolder.localScale = new Vector3(1f, 1f, 1f);
+    //        else
+    //            _weaponHolder.localScale = new Vector3(-1f, 1f, 1f);
 
-            _fixedAngle = _attackAngle - 180f;
-        }
-        else if (_attackAngle < -90f)
-        {
-            if (playerFliped)
-                _weaponHolder.localScale = new Vector3(1f, 1f, 1f);
-            else
-                _weaponHolder.localScale = new Vector3(-1f, 1f, 1f);
-            _fixedAngle = _attackAngle + 180f;
-        }
-        else
-            if (playerFliped)
-                _weaponHolder.localScale = new Vector3(-1f, 1f, 1f);
-            else
-                _weaponHolder.localScale = new Vector3(1f, 1f, 1f);
+    //        _fixedAngle = _attackAngle - 180f;
+    //    }
+    //    else if (_attackAngle < -90f)
+    //    {
+    //        if (playerFliped)
+    //            _weaponHolder.localScale = new Vector3(1f, 1f, 1f);
+    //        else
+    //            _weaponHolder.localScale = new Vector3(-1f, 1f, 1f);
+    //        _fixedAngle = _attackAngle + 180f;
+    //    }
+    //    else
+    //        if (playerFliped)
+    //            _weaponHolder.localScale = new Vector3(-1f, 1f, 1f);
+    //        else
+    //            _weaponHolder.localScale = new Vector3(1f, 1f, 1f);
 
-    }
+    //}
 
     public static float CalculateAngle(Vector3 from, Vector3 to) => Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
 
@@ -120,10 +120,10 @@ public class WeaponAnimator : MonoBehaviour
     {
         _attackAngle = Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg;
 
-        HandleFlipping();
+        // HandleFlipping();
 
-        Quaternion q = Quaternion.AngleAxis(_fixedAngle, Vector3.forward);
-        _weaponHolder.rotation = q;
+        // Quaternion q = Quaternion.AngleAxis(_fixedAngle, Vector3.forward);
+        // _weaponHolder.rotation = q;
 
         _shotted = true;
     }

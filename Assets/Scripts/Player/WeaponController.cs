@@ -18,7 +18,7 @@ public class WeaponController : MonoBehaviour
     #endregion
 
     #region External
-
+    
     #endregion
 
     private void Awake()
@@ -34,39 +34,48 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        if (_isAttacking)
-        {
-            Debug.Log("IsAttacking");
-            //Debug.Log(_hitbox.bounds.center);
-            //Debug.Log(_hitbox.transform.eulerAngles.z);
-            Collider2D[] weaponCols = Physics2D.OverlapBoxAll(_hitbox.bounds.center, 2 * _hitbox.bounds.extents, _hitbox.transform.eulerAngles.z, _hitboxLayer);
+        Vector2 direction = (_player.MousePosition - (Vector2)transform.position).normalized;
+        transform.right = direction;
 
-            // Debug.Log(weaponCols.Length);
-            foreach (Collider2D collider in weaponCols)
-            {
-                Debug.Log("HI22");
-                if (collider.transform.root == transform.root)
-                    continue;
+        Vector2 scale = transform.localScale;
+        scale.y = direction.x < 0 ? -1 : 1;
 
-                var objectController = collider.transform.root.GetComponent<Boss>();
-                if (objectController != null)
-                {
-                    Debug.Log("HI");
-                    objectController.GetDamaged();
-                }
-            }
-        }
+        transform.localScale = scale;
 
-        else if (_isShooting)
-        {
-            //GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);
-            //var bulletController = bullet.GetComponent<BulletController>();
+        
 
-            //bulletController.SetUp(_player.ObjectStats, _shootingDirection);
-            //_isShooting = false;
-        }
+        //else if (_isShooting)
+        //{
+        //    //GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);
+        //    //var bulletController = bullet.GetComponent<BulletController>();
+
+        //    //bulletController.SetUp(_player.ObjectStats, _shootingDirection);
+        //    //_isShooting = false;
+        //}
     }
 
+
+    private void DebugDrawBox(Vector2 point, Vector2 size, float angle, Color color, float duration)
+    {
+
+        var orientation = Quaternion.Euler(0, 0, angle);
+
+        // Basis vectors, half the size in each direction from the center.
+        Vector2 right = orientation * Vector2.right * size.x / 2f;
+        Vector2 up = orientation * Vector2.up * size.y / 2f;
+
+        // Four box corners.
+        var topLeft = point + up - right;
+        var topRight = point + up + right;
+        var bottomRight = point - up + right;
+        var bottomLeft = point - up - right;
+
+        // Now we've reduced the problem to drawing lines.
+        Debug.DrawLine(topLeft, topRight, color, duration);
+        Debug.DrawLine(topRight, bottomRight, color, duration);
+        Debug.DrawLine(bottomRight, bottomLeft, color, duration);
+        Debug.DrawLine(bottomLeft, topLeft, color, duration);
+    }
     #region Player Event
 
     private float _attackAngle;
@@ -94,6 +103,19 @@ public class WeaponController : MonoBehaviour
     {
         // _hitbox.enabled = true;
         _isAttacking = true;
+
+        DebugDrawBox(_hitbox.bounds.center, _hitbox.bounds.size, _hitbox.transform.eulerAngles.z, Color.white, 0.5f);
+        Collider2D weaponCol = Physics2D.OverlapBox(_hitbox.bounds.center, _hitbox.bounds.size, _hitbox.transform.eulerAngles.z, _hitboxLayer);
+
+        if(weaponCol != null)
+        {
+            var objectController = weaponCol.transform.GetComponent<Boss>();
+            if (objectController != null)
+            {
+                Debug.Log("BossHit");
+                objectController.GetDamaged();
+            }
+        }
     }
 
     public void StopAttack()
