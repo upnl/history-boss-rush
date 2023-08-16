@@ -422,7 +422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 190}
+  m_AnchoredPosition: {x: 450, y: 60}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115200093
@@ -1360,24 +1360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbd6a7918ae0a34fa6b700aae233776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price15Books:
-  - {fileID: 1478530526}
-  - {fileID: 2025004570}
-  - {fileID: 1089487547}
-  - {fileID: 1113927638}
-  - {fileID: 99773667}
-  - {fileID: 709608763}
-  - {fileID: 1458484097}
-  - {fileID: 1279855169}
-  price25Books:
-  - {fileID: 436726207}
-  - {fileID: 323196987}
-  - {fileID: 1424414221}
-  - {fileID: 2037732012}
-  - {fileID: 639869213}
-  - {fileID: 785697186}
-  - {fileID: 1993299306}
-  - {fileID: 1582613212}
 --- !u!1 &436726207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,7 +3032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: 190}
+  m_AnchoredPosition: {x: 450, y: 115}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903281644
@@ -4507,11 +4489,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1382184328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da23ca71f1ebf44ab2c24f1376164b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 574a52cabca5d4a4c93ae7ebadc351bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  prefab: {fileID: 0}
 --- !u!1 &1398205631
 GameObject:
   m_ObjectHideFlags: 0
@@ -7150,7 +7130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 190}
+  m_AnchoredPosition: {x: 420, y: 190}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088039642
