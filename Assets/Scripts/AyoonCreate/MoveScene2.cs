@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MoveScene : MonoBehaviour
+public class MoveScene2 : MonoBehaviour
 {
     public string sceneName = "";
 
@@ -22,7 +21,7 @@ public class MoveScene : MonoBehaviour
 
     private void OnMouseOver()
     {
-        gameObject.GetComponent<Image>().color = new Color(255 / 255f, 137 / 255f, 137 / 255f, 255 / 255f);
+        gameObject.GetComponent<SpriteRenderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -32,6 +31,6 @@ public class MoveScene : MonoBehaviour
 
     private void OnMouseExit()
     {
-        gameObject.GetComponent<Image>().color = Color.white;
+        gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
     }
 }
