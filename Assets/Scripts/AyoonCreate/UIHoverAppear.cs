@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HoverAppear : MonoBehaviour
+public class UIHoverAppear : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +21,11 @@ public class HoverAppear : MonoBehaviour
     {
         Debug.Log("hover");
 
-        gameObject.GetComponent<Renderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
+        gameObject.GetComponent<Image>().color = new Color(255 / 255f, 137 / 255f, 137 / 255f, 255 / 255f);
     }
 
     private void OnMouseExit()
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
+        gameObject.GetComponent<Image>().color = Color.white;
     }
 }
