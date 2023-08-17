@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     #region Moving
 
-    private float playerSpeed = 3f;
+    private float playerSpeed = 4f;
     private bool _canMove = true;
     private float dashMovementModifier = 1.5f;
 
@@ -140,6 +140,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private float dashTime = 0.5f;
     private float dashCoolTime = 0.75f;
 
+    [SerializeField] private GameObject dashDummy;
+    private float dashStartUpTime = 0.05f;
+    private float dashInvulnTime = 0.3f;
+
+
     private void HandleDashing()
     {
         if (!_dashToConsume) return;
@@ -164,13 +169,18 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void ResetDash()
     {
+        IsDashSuccess = false;
         _canDash = true;
     }
 
+    private float elapsedTime = 0f;
     private IEnumerator Dash()
     {
+        GameObject dashDummyObject = Instantiate(dashDummy, transform.position, Quaternion.identity);
+        JustDashDummy dashDummyComponent = dashDummyObject.GetComponent<JustDashDummy>();
+        dashDummyComponent.StartUp(dashStartUpTime, dashInvulnTime, this);
         Vector3 dashDirection = new Vector3(cachedPlayerDirection.x, cachedPlayerDirection.y, 0f);
-        float elapsedTime = 0f;
+        elapsedTime = 0f;
         while (elapsedTime < dashTime)
         {
             // transform.position += dashDirection * dashConstant * Time.deltaTime * (dashTime - elapsedTime) * (dashTime - elapsedTime);
@@ -183,6 +193,18 @@ public class PlayerController : MonoBehaviour, IPlayerController
         IsDashing = false;
         yield return new WaitForSeconds(dashCoolTime - dashTime);
         ResetDash();
+    }
+
+    private bool IsDashSuccess = false;
+    public void OnDashSuccess()
+    {
+        // To Prevent one dash succeding twice
+        if(!IsDashSuccess)
+        {
+            IsDashSuccess = true;
+            Debug.Log("DashSuccess");
+            // book related things
+        }
     }
 
     #endregion
@@ -292,11 +314,17 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
         if (col.gameObject.layer == LayerMask.NameToLayer("DeathHitBox"))
         {
-            Debug.Log("Death");
-            // GetDamaged();
+            if(IsDashing && elapsedTime > dashStartUpTime && elapsedTime < dashStartUpTime + dashInvulnTime)
+            {
+                OnDashSuccess();
+            }
+            else
+            {
+                Debug.Log("Death");
+                // GetDamaged();
+            }
         }
     }
 
@@ -315,6 +343,7 @@ public interface IPlayerController
     public event Action AttackEnd;
     public event Action<Vector2, bool> Shotted;
 
+    public void OnDashSuccess();
     public Vector2 MousePosition { get; set; }
     public Vector2 PlayerInput { get; }
     public Vector2 PlayerDirection { get; }
