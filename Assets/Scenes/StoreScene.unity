@@ -4438,8 +4438,8 @@ GameObject:
   - component: {fileID: 1382184330}
   - component: {fileID: 1382184329}
   - component: {fileID: 1382184332}
-  - component: {fileID: 1382184331}
   - component: {fileID: 1382184333}
+  - component: {fileID: 1382184334}
   m_Layer: 0
   m_Name: Keeper
   m_TagString: Untagged
@@ -4514,18 +4514,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1382184331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382184328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 197739956af49d34d8712c8aee57cb65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &1382184332
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4763,6 +4751,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574a52cabca5d4a4c93ae7ebadc351bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1382184334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382184328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9012f6a9f9e2c43aa60ec8e9352aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 708734394}
 --- !u!1 &1398205631
 GameObject:
   m_ObjectHideFlags: 0
