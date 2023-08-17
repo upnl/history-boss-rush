@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     public event Action<bool, Vector2> DashingChanged;
     public event Action<Vector2> Attacked;
     public event Action AttackEnd;
+    public event Action<bool> ShootStanceChanged;
     public event Action<Vector2, bool> Shotted;
 
     public Vector2 MousePosition { get; set; }
@@ -69,10 +70,13 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         HandleDashing();
         HandleAttacking();
+        HandleShooting();
         HandleWriting();
         HandleMoving();
     }
 
+    private float ShootDownElapsedTime = 0f;
+    private float ShootTriggerTime = 0.75f;
     protected virtual void GatherInput()
     {
         MousePosition = (Vector2)FrameInput.MousePosition;
@@ -81,7 +85,37 @@ public class PlayerController : MonoBehaviour, IPlayerController
         if (FrameInput.WriteDown && !_isWriting) _writingToConsume = true;
         if (FrameInput.DashDown && !IsDashing) _dashToConsume = true;
         if (FrameInput.AttackDown && !_isAttacking) _attackToConsume = true;
-        if (FrameInput.ShootDown && !_isShooting) _shootToConsume = true;
+        if (FrameInput.ShootDown && !_isShooting)
+        {
+            ShootStanceChanged?.Invoke(true);
+            _isShootingStance = true;
+            _canMove = false;
+            ShootDownElapsedTime = 0f;
+        }
+        if (FrameInput.ShootHeld && !_isShooting)
+        {
+            if(!_isShootingStance)
+            {
+                _isShootingStance = true;
+                ShootStanceChanged?.Invoke(true);
+            }
+            _canMove = false;
+            ShootDownElapsedTime += Time.deltaTime;
+        }
+        if (FrameInput.ShootUp && !_isShooting)
+        {
+            if (ShootDownElapsedTime > ShootTriggerTime)
+            {
+                _shootToConsume = true;
+                ShootDownElapsedTime = 0f;
+            }
+            else
+            {
+                _isShootingStance = false;
+                ShootStanceChanged?.Invoke(false);
+                _canMove = true;
+            }
+        }
     }
     #endregion
 
@@ -213,8 +247,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private bool _attackToConsume = false;
     private bool _isAttacking = false;
-    private bool _shootToConsume = false;
-    private bool _isShooting = false;
 
     private bool _canAttack = true;
     private float _attackDelay = 0.5f;
@@ -260,6 +292,54 @@ public class PlayerController : MonoBehaviour, IPlayerController
     //    // StartCoroutine(AttackDelay());
     //    // Destroy(slash, 0.4f);
     //}
+
+    #endregion
+
+    #region Shooting
+    private bool _shootToConsume = false;
+    private bool _isShooting = false;
+    private bool _isShootingStance = false;
+
+    private bool _canShoot = true;
+    private float _shootDelay = 0.15f;
+
+    private void HandleShooting()
+    {
+        if (!_isShootingStance) return;
+        if (_isShooting || _isWriting || !_isAlive) return;
+
+        if (_canShoot)
+        {
+            if(_shootToConsume)
+            {
+                Debug.Log("Shooting");
+                var attackDirection = new Vector2(FrameInput.MousePosition.x - transform.position.x, FrameInput.MousePosition.y - transform.position.y).normalized;
+
+                Shotted?.Invoke(attackDirection, true);
+                StartCoroutine(ShootDelay());
+            }
+
+            _shootToConsume = false;
+        }
+
+        
+    }
+
+    private IEnumerator ShootDelay()
+    {
+        _canShoot = false;
+        _isShooting = true;
+
+        yield return new WaitForSeconds(_shootDelay);
+
+        _canShoot = true;
+
+        _canMove = true;
+        _isShootingStance = false;
+        ShootStanceChanged?.Invoke(false);
+
+        _isShooting = false;
+    }
 
     #endregion
 
@@ -341,6 +421,7 @@ public interface IPlayerController
     public event Action<bool, Vector2> DashingChanged;
     public event Action<Vector2> Attacked;
     public event Action AttackEnd;
+    public event Action<bool> ShootStanceChanged;
     public event Action<Vector2, bool> Shotted;
 
     public void OnDashSuccess();
