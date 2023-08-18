@@ -50,9 +50,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Environment
+    uniqueID: 1161079455
+    locked: 0
   - name: HitArea
     uniqueID: 1983078469
     locked: 0
+  - name: Boss
+    uniqueID: 3379393917
+    locked: 0
   - name: Player
     uniqueID: 16610887
+    locked: 0
+  - name: VFX
+    uniqueID: 3566836571
     locked: 0

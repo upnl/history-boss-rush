@@ -6,6 +6,7 @@ using UnityEngine.Playables;
 public class WeaponController : MonoBehaviour
 {
     private IPlayerController _player;
+    [SerializeField] private GameObject _weaponSlashEffect;
     [SerializeField] private BoxCollider2D _hitbox;
     [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private GameObject _bulletPrefab;
@@ -63,6 +64,10 @@ public class WeaponController : MonoBehaviour
     private void OnAttacked(Vector2 attackDirection)
     {
         _attackAngle = CalculateAngle(attackDirection, transform.root.forward);
+
+        var _spawnAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+        Quaternion effectRotation = Quaternion.AngleAxis(_spawnAngle, Vector3.forward);
+        GameObject weaponEffect = Instantiate(_weaponSlashEffect, transform.position, effectRotation);
     }
 
     private void OnShooted(Vector2 shootingDirection, bool ammoLeft)
