@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BombExplosion
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.0625
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.3125
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: 
+    classID: 61
+    script: {fileID: 0}
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: a807d661e90ec104680310a23f551c5a, type: 3}
+    - time: 0.0625
+      value: {fileID: 21300000, guid: a4686bcdfe70ed7499bbd4c48d161851, type: 3}
+    - time: 0.125
+      value: {fileID: 21300000, guid: 4f171d567be955142ad78b5a0e8152ea, type: 3}
+    - time: 0.1875
+      value: {fileID: 21300000, guid: e433cad43d889c54fbe2070fa9f7ac71, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 510dd83a460f241408213fd77dceaf8e, type: 3}
+    - time: 0.3125
+      value: {fileID: 21300000, guid: ef888cc900f2daa409cf05676ced42b0, type: 3}
+    - time: 0.375
+      value: {fileID: 21300000, guid: bd6acad6e39ea5e4da80d2bed1b599e0, type: 3}
+    - time: 0.4375
+      value: {fileID: 21300000, guid: b318a5c1ba5d3e64bb50c37c1a2d35ea, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 58ba2b4f26c49e74299f0ab13937fe2d, type: 3}
+    - time: 0.5625
+      value: {fileID: 21300000, guid: a612dc731bbdcb246aba3c859a9071be, type: 3}
+    - time: 0.625
+      value: {fileID: 21300000, guid: 20215af07358c0e46b56742198e127ad, type: 3}
+    - time: 0.6875
+      value: {fileID: 21300000, guid: 6ec83a94de578a74e9429631cc018306, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: 4c44fab82bf153e4fb0c68115ad33fe7, type: 3}
+    - time: 0.8125
+      value: {fileID: 21300000, guid: f4c4940a41d4e1a42b0c9b2077877d29, type: 3}
+    - time: 0.875
+      value: {fileID: 21300000, guid: f0c39aa180474d74db648eead7c44052, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 16
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 61
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: a807d661e90ec104680310a23f551c5a, type: 3}
+    - {fileID: 21300000, guid: a4686bcdfe70ed7499bbd4c48d161851, type: 3}
+    - {fileID: 21300000, guid: 4f171d567be955142ad78b5a0e8152ea, type: 3}
+    - {fileID: 21300000, guid: e433cad43d889c54fbe2070fa9f7ac71, type: 3}
+    - {fileID: 21300000, guid: 510dd83a460f241408213fd77dceaf8e, type: 3}
+    - {fileID: 21300000, guid: ef888cc900f2daa409cf05676ced42b0, type: 3}
+    - {fileID: 21300000, guid: bd6acad6e39ea5e4da80d2bed1b599e0, type: 3}
+    - {fileID: 21300000, guid: b318a5c1ba5d3e64bb50c37c1a2d35ea, type: 3}
+    - {fileID: 21300000, guid: 58ba2b4f26c49e74299f0ab13937fe2d, type: 3}
+    - {fileID: 21300000, guid: a612dc731bbdcb246aba3c859a9071be, type: 3}
+    - {fileID: 21300000, guid: 20215af07358c0e46b56742198e127ad, type: 3}
+    - {fileID: 21300000, guid: 6ec83a94de578a74e9429631cc018306, type: 3}
+    - {fileID: 21300000, guid: 4c44fab82bf153e4fb0c68115ad33fe7, type: 3}
+    - {fileID: 21300000, guid: f4c4940a41d4e1a42b0c9b2077877d29, type: 3}
+    - {fileID: 21300000, guid: f0c39aa180474d74db648eead7c44052, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 0.9375
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 1
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.0625
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.3125
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: 
+    classID: 61
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events:
+  - time: 0.9375
+    functionName: DestroyObject
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

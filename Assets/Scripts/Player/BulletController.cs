@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D _col;
     [SerializeField] private LayerMask CollisionLayer;
-    private float _bulletSpeed = 10f;
+    private float _bulletSpeed = 20f;
     private float _totalTime;
 
     private void Update()

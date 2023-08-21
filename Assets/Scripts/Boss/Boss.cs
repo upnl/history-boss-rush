@@ -32,9 +32,9 @@ public class Boss : MonoBehaviour
 
     protected delegate void Pattern();
     protected Pattern pattern;
-    public void GetDamaged()
-    {
 
+    public virtual void GetDamaged()
+    {
         int historyLevel = BookManager.Instance.CheckBookEquipped("Challenge");
 
         float effect1 = float.Parse(BookManager.Instance.bookDB.GetData().Find(
@@ -48,18 +48,6 @@ public class Boss : MonoBehaviour
         if (nowHP <= 0f)
         {
             GameManager.Instance.GameStateManager.Win();
-        }
-    }
-
-    protected void AttackOnAllHitArea()
-    {
-        foreach (Transform t in _Warner.transform.GetComponentInChildren<Transform>())
-        {
-            t.GetComponent<Collider2D>().enabled = true;
-            //if (t.GetComponent<Collider2D>().IsTouching(playerCollider))
-            //{
-            //    playerBehaviour.GetDamaged();
-            //}
         }
     }
 

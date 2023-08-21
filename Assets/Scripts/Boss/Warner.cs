@@ -61,4 +61,12 @@ public class Warner : MonoBehaviour
             Destroy(t.gameObject);
         }
     }
+
+    public void AttackOnAllHitArea()
+    {
+        foreach (Transform t in GetComponentInChildren<Transform>())
+        {
+            t.GetComponent<Collider2D>().enabled = true;
+        }
+    }
 }

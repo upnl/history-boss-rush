@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1300921496137733102}
-  - component: {fileID: 6538690024426913039}
   m_Layer: 8
   m_Name: SwordSlashEffect
   m_TagString: Untagged
@@ -33,19 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6538690024426913039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300921496137733091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2481eb78c9aaaf4fb05c7282603d2b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTime: 0.45
 --- !u!1 &5420178094389650118
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +43,7 @@ GameObject:
   - component: {fileID: 175827321438558145}
   - component: {fileID: 1144052637917564168}
   - component: {fileID: 8004182994708323818}
+  - component: {fileID: 5237552922563021616}
   m_Layer: 8
   m_Name: EffectVisual
   m_TagString: Untagged
@@ -152,3 +139,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5237552922563021616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420178094389650118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2481eb78c9aaaf4fb05c7282603d2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 1300921496137733091}
+  destroyAfterTime: 0
+  destroyTime: 0

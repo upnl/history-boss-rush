@@ -6,27 +6,29 @@ using UnityEngine;
 public class Thor : Boss
 {
     [SerializeField] private Transform mjolnir;
-    [SerializeField] private GameObject stonePrefab;
 
     [SerializeField] private List<Sprite> thorSpriteList;
     [SerializeField] private SpriteRenderer ThorSpriteRenderer;
 
     [SerializeField] private float mjolnirSpeed = 3.5f;
 
+    [SerializeField] private List<GameObject> effectPrefabs;
+
     CSVReader bookDB;
 
     private void Start()
     {
+        if (effectPrefabs == null)
+            Debug.LogError("EffectPrefabs is Null");
+
         bookDB = BookManager.Instance.bookDB;
         playerController = player.GetComponent<PlayerController>();
-        // playerCollider = player.GetComponentInChildren<Collider2D>();
         pattern += UseAPattern;
         cooltime = Random.Range(1.5f, 3f);
         currentGauge = 0f;
 
         MoveToPosition(mjolnir, transform.position);
 
-        // ThorSpriteRenderer = GetComponent<SpriteRenderer>();
         ThorSpriteRenderer.sprite = thorSpriteList[0];
 
         isBusy = false;
@@ -72,7 +74,7 @@ public class Thor : Boss
     public void UseAPattern()
     {
         Debug.LogWarning("UseAPattern");
-        int i = Random.Range(0, 4);
+        int i = Random.Range(3, 4);
         switch (i)
         {
             case 0:
@@ -158,7 +160,12 @@ public class Thor : Boss
         AudioManager.Instance.PlaySfx(3);
 
         // 묠니르가 벽에 닿으면 외벽 근처에 있는 플레이어 사망
-        AttackOnAllHitArea();
+        Instantiate(effectPrefabs[0], new Vector3(9.5f, -9.5f, 0f), Quaternion.Euler(0f, 0f, 90f));
+        Instantiate(effectPrefabs[0], new Vector3(9.5f, -9.5f, 0f), Quaternion.Euler(0f, 0f, 180f));
+        Instantiate(effectPrefabs[0], new Vector3(-9.5f, +9.5f, 0f), Quaternion.Euler(0f, 0f, 0f));
+        Instantiate(effectPrefabs[0], new Vector3(-9.5f, +9.5f, 0f), Quaternion.Euler(0f, 0f, 270f));
+
+        //_Warner.AttackOnAllHitArea();
 
         yield return null;
 
@@ -263,19 +270,33 @@ public class Thor : Boss
         _Warner.InstantiateHitBoxInCenter(new Vector3(0f, 9.5f, 0f), 90f);
         _Warner.InstantiateHitBoxInCenter(new Vector3(0f, -9.5f, 0f), 90f);
 
-        GameObject stone1, stone2, stone3;
-        stone1 = Instantiate(stonePrefab, stone1Pos, Quaternion.identity, transform);
-        stone2 = Instantiate(stonePrefab, stone2Pos, Quaternion.identity, transform);
-        stone3 = Instantiate(stonePrefab, stone3Pos, Quaternion.identity, transform);
+        GameObject stone1 = Instantiate(effectPrefabs[2], stone1Pos, Quaternion.identity, transform);
+        GameObject stone2 = Instantiate(effectPrefabs[2], stone2Pos, Quaternion.identity, transform);
+        GameObject stone3 = Instantiate(effectPrefabs[2], stone3Pos, Quaternion.identity, transform);
 
-        yield return new WaitForSeconds(effect1 - 0.3f);
+        yield return new WaitForSeconds(effect1 - 0.5f);
 
         // TODO 전기 충전되는 이펙트
+        Instantiate(effectPrefabs[3], stone1Pos, Quaternion.identity, transform);
+        Instantiate(effectPrefabs[3], stone2Pos, Quaternion.identity, transform);
+        Instantiate(effectPrefabs[3], stone3Pos, Quaternion.identity, transform);
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         AudioManager.Instance.PlaySfx(3);
 
-        AttackOnAllHitArea();
+        // AttackOnAllHitArea();
+        Instantiate(effectPrefabs[0], stone1Pos, Quaternion.Euler(0f, 0f, 0f));
+        Instantiate(effectPrefabs[0], stone1Pos, Quaternion.Euler(0f, 0f, 90f));
+        Instantiate(effectPrefabs[0], stone1Pos, Quaternion.Euler(0f, 0f, 180f));
+        Instantiate(effectPrefabs[0], stone1Pos, Quaternion.Euler(0f, 0f, 270f));
+        Instantiate(effectPrefabs[0], stone2Pos, Quaternion.Euler(0f, 0f, 0f));
+        Instantiate(effectPrefabs[0], stone2Pos, Quaternion.Euler(0f, 0f, 90f));
+        Instantiate(effectPrefabs[0], stone2Pos, Quaternion.Euler(0f, 0f, 180f));
+        Instantiate(effectPrefabs[0], stone2Pos, Quaternion.Euler(0f, 0f, 270f));
+        Instantiate(effectPrefabs[0], stone3Pos, Quaternion.Euler(0f, 0f, 0f));
+        Instantiate(effectPrefabs[0], stone3Pos, Quaternion.Euler(0f, 0f, 90f));
+        Instantiate(effectPrefabs[0], stone3Pos, Quaternion.Euler(0f, 0f, 180f));
+        Instantiate(effectPrefabs[0], stone3Pos, Quaternion.Euler(0f, 0f, 270f));
 
         yield return null;
 
@@ -337,15 +358,15 @@ public class Thor : Boss
         yield return new WaitForSeconds(effect1 - 0.2f);
 
         // TODO 망치 내리기
-
         ThorSpriteRenderer.sprite = thorSpriteList[0];
         MoveToPosition(mjolnir, transform.position);
 
         yield return new WaitForSeconds(0.2f);
 
-        AudioManager.Instance.PlaySfx(3);
         // TODO 전기 이펙트 및 플레이어 공격
-        AttackOnAllHitArea();
+        AudioManager.Instance.PlaySfx(3);
+        Vector2 direction = playerPos - transform.position;
+        Instantiate(effectPrefabs[4], transform.position, Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) / Mathf.PI * 180f));
 
         yield return null;
 
@@ -381,14 +402,14 @@ public class Thor : Boss
 
         yield return new WaitForSeconds(1.4f - effect1);
 
-        _Warner.InstantiateHitCircle(transform.position, 7f);
+        _Warner.InstantiateHitCircle(transform.position, 5.5f);
 
         // effect1 시간 기다리기
         yield return new WaitForSeconds(effect1);
 
         // TODO 전기 이펙트 및 플레이어 공격
         AudioManager.Instance.PlaySfx(3);
-        AttackOnAllHitArea();
+        Instantiate(effectPrefabs[5], transform);
 
         yield return null;
 
@@ -407,25 +428,33 @@ public class Thor : Boss
     }
 
     // 전자 갑옷
+    private bool isPassiveOn = false;
     public IEnumerator PassivePattern()
     {
-        GameObject hit = _Warner.InstantiateHitCircle(transform.position, 3f, true);
+        isPassiveOn = true;
+        // GameObject hit = _Warner.InstantiateHitCircle(transform.position, 3f, true);
         //Debug.Log("PassivePattern " + hit.name);
 
         float time = Time.time + 3f;
-
         // TODO 이 3초 동안 계속 데미지 가함
-        // TODO 플레이어의 공격 반사
-        while (Time.time < time)
-        {
-            yield return null;
-            if (hit.GetComponent<Collider2D>().IsTouching(playerCollider)) {
-                playerController.GetDamaged();
-            }
-        }
-        _Warner.RemoveAllHitArea();
-        yield return null;
+
+        GameObject electricShield = Instantiate(effectPrefabs[1], transform);
+        
+        yield return new WaitForSeconds(3f);
+        // _Warner.RemoveAllHitArea();
+
+        Destroy(electricShield);
+        isPassiveOn = false;
         isBusy = false;
+    }
+
+    public override void GetDamaged()
+    {
+        // 플레이어의 공격 반사
+        if (isPassiveOn)
+            playerController.GetDamaged();
+
+        base.GetDamaged();
     }
 
     #region Utils

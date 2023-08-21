@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponAnimator : MonoBehaviour
@@ -11,6 +12,7 @@ public class WeaponAnimator : MonoBehaviour
     private AudioSource _source;
 
     [SerializeField] private Transform _weaponHolder;
+    [SerializeField] private GameObject _bulletSpawnPosition;
     [HideInInspector] public bool playerFliped; 
 
     private void Awake()
@@ -27,7 +29,9 @@ public class WeaponAnimator : MonoBehaviour
         _player.DashingChanged += OnDashing;
         _player.Attacked += OnAttacked;
         _player.AttackEnd += OnAttackEnd;
-        // _player.Shotted += OnShooting;
+
+        _player.ShootStanceChanged += OnShootStanceChanged;
+        _player.Shotted += OnShooting;
     }
 
     private float _time = 0f;
@@ -110,11 +114,18 @@ public class WeaponAnimator : MonoBehaviour
     #endregion
 
     #region Shooting
+    private bool _isShootStance;
     private bool _shotted;
     private float _shootingAngle;
     private float _shootFixedAngle;
-    private float _shootingAnimTime = 0.23f;
+    private float _shootingAnimTime = 0.25f;
     // private int _attackFlipDirection;
+
+    private void OnShootStanceChanged(bool isStance)
+    {
+        _bulletSpawnPosition.SetActive(isStance);
+        _isShootStance = isStance;
+    }
 
     private void OnShooting(Vector2 shootingDirection, bool AmmoLeft)
     {
@@ -146,6 +157,16 @@ public class WeaponAnimator : MonoBehaviour
         {
             if (_time < _lockedTill) return _currentState;
 
+            if(_shotted)
+            {
+                return LockState(Shoot, _shootingAnimTime);
+            }
+
+            if(_isShootStance)
+            {
+                return PistolIdle;
+            }
+
             if (_attacked)
             {
                 return LockState(Attack, _attackAnimTime);
@@ -169,6 +190,7 @@ public class WeaponAnimator : MonoBehaviour
         {
             _dashed = false;
             _attacked = false;
+            _shotted = false;
         }
     }
 
@@ -182,6 +204,8 @@ public class WeaponAnimator : MonoBehaviour
     private static readonly int Idle = Animator.StringToHash("WeaponIdle");
     private static readonly int Attack = Animator.StringToHash("WeaponAttack");
     private static readonly int Dash = Animator.StringToHash("WeaponDash");
+    private static readonly int Shoot = Animator.StringToHash("PistolShoot");
+    private static readonly int PistolIdle = Animator.StringToHash("PistolIdle");
     #endregion
 
     #region WeaponController
