@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         {
             ShootStanceChanged?.Invoke(true);
             _isShootingStance = true;
+            _canDash = false;
             _canMove = false;
             ShootDownElapsedTime = 0f;
         }
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
                 _isShootingStance = true;
                 ShootStanceChanged?.Invoke(true);
             }
+            _canDash = false;
             _canMove = false;
             ShootDownElapsedTime += Time.deltaTime;
         }
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
             {
                 _isShootingStance = false;
                 ShootStanceChanged?.Invoke(false);
+                _canDash = true;
                 _canMove = true;
             }
         }
@@ -169,6 +172,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private bool _dashToConsume = false;
     private bool _canDash = true;
+    private bool _dashCoolTime = true;
 
     private float dashConstant = 5f;
     private float dashTime = 0.5f;
@@ -183,7 +187,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         if (!_dashToConsume) return;
 
-        if (_dashToConsume && _canDash && _canMove)
+        if (_dashToConsume && _canDash && _canMove && _dashCoolTime)
         {
             if (_GameStateManager.dashTemp)
             {
@@ -192,7 +196,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
             else
             {
                 IsDashing = true;
-                _canDash = false;
+                _dashCoolTime = false;
                 DashingChanged?.Invoke(true, cachedPlayerDirection);
                 StartCoroutine(Dash());
             }
@@ -204,7 +208,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private void ResetDash()
     {
         IsDashSuccess = false;
-        _canDash = true;
+        _dashCoolTime = true;
     }
 
     private float elapsedTime = 0f;
@@ -254,7 +258,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private void HandleAttacking()
     {
         if (!_attackToConsume) return;
-        if (_isAttacking || _isWriting || !_isAlive) return;
+        if (_isAttacking || _isWriting || !_isAlive || IsDashing || _isShootingStance || _isShooting) return;
 
         if (_canAttack)
         {
@@ -271,11 +275,13 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private IEnumerator AttackDelay()
     {
         _canAttack = false;
+        _canDash = false;
         // _canMove = false;
         _isAttacking = true;
 
         yield return new WaitForSeconds(_attackDelay);
-        
+
+        _canDash = true;
         _canAttack = true;
         // _canMove = true;
         _isAttacking = false;
@@ -306,7 +312,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private void HandleShooting()
     {
         if (!_isShootingStance) return;
-        if (_isShooting || _isWriting || !_isAlive) return;
+        if (_isShooting || _isWriting || !_isAlive || _isAttacking || IsDashing) return;
 
         if (_canShoot)
         {
@@ -335,6 +341,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         _canShoot = true;
 
         _canMove = true;
+        _canDash = true;
         _isShootingStance = false;
         ShootStanceChanged?.Invoke(false);
 
@@ -370,6 +377,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         _isWriting = true;
         _canMove = false;
+        _canDash = false;
 
         GameManager.Instance.QuestManager.StopTimer = true;
         
@@ -383,6 +391,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         if (_isAlive)
         {
+            _canDash = true;
             _canMove = true;
             GameManager.Instance.QuestManager.UnlockBook = true;
         }
@@ -412,6 +421,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         _isAlive = false;
         _canMove = false;
+        _canDash = false;
         GameManager.Instance.GameStateManager.Lose();
     }
 }

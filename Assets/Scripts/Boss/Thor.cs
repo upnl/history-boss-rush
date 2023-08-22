@@ -452,7 +452,10 @@ public class Thor : Boss
     {
         // 플레이어의 공격 반사
         if (isPassiveOn)
+        {
             playerController.GetDamaged();
+        }
+            
 
         base.GetDamaged();
     }

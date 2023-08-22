@@ -6,6 +6,7 @@ using UnityEngine.Playables;
 public class WeaponController : MonoBehaviour
 {
     private IPlayerController _player;
+    [SerializeField] private BulletCountUI _bulletCountUI;
     [SerializeField] private GameObject _weaponSlashEffect;
     [SerializeField] private BoxCollider2D _hitbox;
     [SerializeField] private Transform _bulletSpawnPosition;
@@ -16,6 +17,9 @@ public class WeaponController : MonoBehaviour
     #region Inner
     private bool _isAttacking;
     private bool _isShooting;
+
+    private int _maxBulletCount = 4;
+    public int BulletCount { get; private set; }
     #endregion
 
     #region External
@@ -24,6 +28,9 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
+        BulletCount = 0;
+        _bulletCountUI.OnBulletChanged(0);
+
         _player = GetComponentInParent<IPlayerController>();
 
         _player.Attacked += OnAttacked;
@@ -48,9 +55,6 @@ public class WeaponController : MonoBehaviour
             var _bulletAngle = Mathf.Atan2(_shootingDirection.y, _shootingDirection.x) * Mathf.Rad2Deg;
             Quaternion bulletRotation = Quaternion.AngleAxis(_bulletAngle, Vector3.forward);
             GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, bulletRotation);
-            // var bulletController = bullet.GetComponent<BulletController>();
-
-            // bulletController.SetUp(_player.ObjectStats, _shootingDirection);
             _isShooting = false;
         }
     }
@@ -72,7 +76,13 @@ public class WeaponController : MonoBehaviour
 
     private void OnShooted(Vector2 shootingDirection, bool ammoLeft)
     {
-        _isShooting = ammoLeft;
+        if (BulletCount > 0)
+        {
+            _isShooting = true;
+            BulletCount--;
+
+            _bulletCountUI.OnBulletChanged(BulletCount);
+        }
         _shootingDirection = shootingDirection;
         _shootingAngle = CalculateAngle(shootingDirection, transform.root.forward);
     }
@@ -96,6 +106,8 @@ public class WeaponController : MonoBehaviour
             if (objectController != null)
             {
                 Debug.Log("BossHit");
+                BulletCount = BulletCount < _maxBulletCount ? BulletCount + 1 : _maxBulletCount;
+                _bulletCountUI.OnBulletChanged(BulletCount);
                 objectController.GetDamaged();
             }
         }

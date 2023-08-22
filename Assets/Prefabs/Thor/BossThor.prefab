@@ -331,7 +331,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerCollider: {fileID: 0}
   mjolnir: {fileID: 7024243614482532527}
-  stonePrefab: {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
   thorSpriteList:
   - {fileID: 1265616939, guid: 880fa571a0366cd4c977fb921f2e110a, type: 3}
   - {fileID: -349866061, guid: 880fa571a0366cd4c977fb921f2e110a, type: 3}
@@ -339,6 +338,11 @@ MonoBehaviour:
   mjolnirSpeed: 30
   effectPrefabs:
   - {fileID: 7039615157809318085, guid: 0bd0c99b1eed7e04888b59af84aff681, type: 3}
+  - {fileID: 5781474133514647387, guid: fb9ba9d057f349e4ebef131b45f5f6ba, type: 3}
+  - {fileID: 5836515370467644410, guid: 7de4a12156948944d9b22fe9b4d0e158, type: 3}
+  - {fileID: 5520432248368550745, guid: f71e2ff173ec0a040b00901d7a2d38eb, type: 3}
+  - {fileID: 4085973851811028480, guid: 2193bd606d549f24ea78f9020df3dc51, type: 3}
+  - {fileID: 553589899963799311, guid: 64b41a1a11fe442418722ab0b2469d0c, type: 3}
 --- !u!61 &7024243614524999248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -385,4 +389,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
