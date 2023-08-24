@@ -146,14 +146,84 @@ public class BookManager : MonoBehaviour
 
     public void BossDefeated(string bossName)
     {
-        ResetBookUnlocked();
         if (bossName == "Thor")
         {
             _thorDefeated = true;
         }
+
         if (bossName == "Surtr")
         {
             _surtrDefeated = true;
+        }
+
+        if (bossName == "Hell")
+        {
+            _hellDefeated = true;
+        }
+
+        if (bossName == "Loki")
+        {
+            _lokiDefeated = true;
+        }
+    }
+
+    public int CheckBossDefeated(string bossName)
+    {
+        if (bossName == "Thor")
+        {
+            if (thorDefeated)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return 0;
+            }
+        }
+
+        else if (bossName == "Surtr")
+        {
+            if (surtrDefeated)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return 0;
+            }
+        }
+
+        else if (bossName == "Hell")
+        {
+            if (hellDefeated)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return 0;
+            }
+        }
+
+        else if (bossName == "Loki")
+        {
+            if (lokiDefeated)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return 0;
+            }
+        }
+
+        else
+        {
+            return 0;
         }
     }
 }

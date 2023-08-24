@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 468736444}
   - component: {fileID: 468736446}
   - component: {fileID: 468736447}
+  - component: {fileID: 468736448}
   m_Layer: 0
   m_Name: Hell
   m_TagString: Untagged
@@ -615,6 +616,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: 
   name: {fileID: 2133019875}
+--- !u!114 &468736448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468736443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c23494e486744f86bb16b3dd2be91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Hell
+  changedSprite: {fileID: 21300000, guid: 554490bba1250524bb5b7c0e058d6076, type: 3}
 --- !u!1 &550955889
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +989,7 @@ GameObject:
   - component: {fileID: 1020928323}
   - component: {fileID: 1020928325}
   - component: {fileID: 1020928326}
+  - component: {fileID: 1020928327}
   m_Layer: 0
   m_Name: Thor
   m_TagString: Untagged
@@ -1091,6 +1107,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Boss_Thor
   name: {fileID: 1631905952}
+--- !u!114 &1020928327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020928322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c23494e486744f86bb16b3dd2be91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Thor
+  changedSprite: {fileID: 21300000, guid: 6ffaa8df74ffa86459861ab003eb3f44, type: 3}
 --- !u!1 &1051147433
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2210,7 @@ GameObject:
   - component: {fileID: 1776437758}
   - component: {fileID: 1776437760}
   - component: {fileID: 1776437761}
+  - component: {fileID: 1776437762}
   m_Layer: 0
   m_Name: Loki
   m_TagString: Untagged
@@ -2297,6 +2328,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: 
   name: {fileID: 2054957186}
+--- !u!114 &1776437762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776437757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c23494e486744f86bb16b3dd2be91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Loki
+  changedSprite: {fileID: 21300000, guid: de99adde2d3002b4eaf5720f962c182c, type: 3}
 --- !u!1 &1832058803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +2909,7 @@ GameObject:
   - component: {fileID: 2096719121}
   - component: {fileID: 2096719123}
   - component: {fileID: 2096719124}
+  - component: {fileID: 2096719125}
   m_Layer: 0
   m_Name: Surtr
   m_TagString: Untagged
@@ -2981,6 +3027,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: 
   name: {fileID: 1768393228}
+--- !u!114 &2096719125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096719120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c23494e486744f86bb16b3dd2be91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Surtr
+  changedSprite: {fileID: 21300000, guid: 51611fc8d0f66c94dafe72d6cc9fb3f5, type: 3}
 --- !u!1 &2121452476
 GameObject:
   m_ObjectHideFlags: 0
