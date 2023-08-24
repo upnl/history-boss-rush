@@ -20,18 +20,18 @@ public class MoveScene : MonoBehaviour
         
     }
 
-    private void OnMouseOver()
+    public void Enter()
     {
         gameObject.GetComponent<Image>().color = new Color(255 / 255f, 137 / 255f, 137 / 255f, 255 / 255f);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(sceneName);
-        }
     }
 
-    private void OnMouseExit()
+    public void Exit()
     {
         gameObject.GetComponent<Image>().color = Color.white;
+    }
+
+    public void Click()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

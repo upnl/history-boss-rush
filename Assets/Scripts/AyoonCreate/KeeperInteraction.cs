@@ -33,13 +33,16 @@ public class KeeperInteraction : MonoBehaviour
 
     }
 
-    private void OnMouseOver()
+    private void Hover()
     {
         Debug.Log("hover");
 
-        gameObject.GetComponent<Renderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
+        gameObject.GetComponent<Image>().color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
+    }
 
-        if (Input.GetMouseButtonDown(0) && !TypingManager.Instance.isTyping)
+    public void Clickit()
+    {
+        if (!TypingManager.Instance.isTyping)
         {
             textBox.gameObject.SetActive(true);
 
@@ -47,9 +50,9 @@ public class KeeperInteraction : MonoBehaviour
         }
     }
 
-    private void OnMouseExit()
+    public void Exit()
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
+        gameObject.GetComponent<Image>().color = Color.white;
     }
 
     private void Interaction(int num)
