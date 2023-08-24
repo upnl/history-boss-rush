@@ -18,9 +18,13 @@ public class BookManager : MonoBehaviour
 
     private bool _thorDefeated = false;
     private bool _surtrDefeated = false;
+    private bool _hellDefeated = false;
+    private bool _lokiDefeated = false;
 
     public bool thorDefeated => _thorDefeated;
     public bool surtrDefeated => _surtrDefeated;
+    public bool hellDefeated => _hellDefeated;
+    public bool lokiDefeated => _lokiDefeated;
 
     [SerializeField] private TextAsset _bookDB;
     [SerializeField] private TextAsset _dialogueDB;
