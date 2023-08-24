@@ -74,7 +74,7 @@ public class Thor : Boss
     public void UseAPattern()
     {
         Debug.LogWarning("UseAPattern");
-        int i = Random.Range(3, 4);
+        int i = Random.Range(0, 4);
         switch (i)
         {
             case 0:

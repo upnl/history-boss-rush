@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 using DG.Tweening;
 
 public class Surtr : Boss
 {
-    public GameObject sword;
+    [SerializeField] private Transform surtrSword;
+    [SerializeField] private List<Sprite> surtrSpriteList;
+    [SerializeField] private float swordSpeed = 10f;
+    [SerializeField] private List<GameObject> effectPrefabs;
+
     public GameObject flame;
 
     Vector3 playerPos;
     Vector3 velocity;
     
-    public float swordSpeed = 10f;
     private float distance = 0f;
     private float stopTime = 0f;
     private float stopCoolTime = 0f;
@@ -35,31 +37,31 @@ public class Surtr : Boss
     private void Update()
     {
         //검 이동 코드. 따라오다가 가끔씩 stopTime만큼 멈춘다. (stopCoolTime초마다 30%확률로 정지 시도)
-        if (!isFollow) return;
-        playerPos = player.transform.position;
+        //if (!isFollow) return;
+        //playerPos = player.transform.position;
 
-        distance = Vector3.Distance(playerPos, sword.transform.position);
+        //distance = Vector3.Distance(playerPos, sword.transform.position);
 
-        if(!(stopCoolTime<0f && Random.value<0.3f))
-        {
-            velocity = (playerPos - sword.transform.position).normalized * Mathf.Min(swordSpeed, distance*2/2);
-        }
-        else if (stopTime <= 0f)
-        {
-            velocity = Vector3.zero;
-            stopTime = 1f;
-            //StartCoroutine(Wait());
-        }
-        if (stopTime > 0f)
-        {
-            stopTime -= Time.deltaTime;
-        }
-        else
-        {
-            sword.transform.position = sword.transform.position + velocity * Time.deltaTime;
-        }
-        if(stopCoolTime<0f) stopCoolTime = 1f;
-        stopCoolTime-=Time.deltaTime;
+        //if(!(stopCoolTime<0f && Random.value<0.3f))
+        //{
+        //    velocity = (playerPos - sword.transform.position).normalized * Mathf.Min(swordSpeed, distance*2/2);
+        //}
+        //else if (stopTime <= 0f)
+        //{
+        //    velocity = Vector3.zero;
+        //    stopTime = 1f;
+        //    //StartCoroutine(Wait());
+        //}
+        //if (stopTime > 0f)
+        //{
+        //    stopTime -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    sword.transform.position = sword.transform.position + velocity * Time.deltaTime;
+        //}
+        //if(stopCoolTime<0f) stopCoolTime = 1f;
+        //stopCoolTime-=Time.deltaTime;
 
 
         //디버그
@@ -104,7 +106,7 @@ public class Surtr : Boss
     public void UseAPattern()
     {
         Debug.LogWarning("UseAPattern");
-        int i = Random.Range(0, 5);
+        int i = Random.Range(0, 1);
         switch (i)
         {
             case 0:
@@ -132,31 +134,22 @@ public class Surtr : Boss
 
 
         string skill = "Surtr1";
-        int isCw = Random.Range(0, 2);
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
-        float rot = Mathf.Atan2(playerPos.y - sword.transform.position.y, playerPos.x - sword.transform.position.x) * 180 / Mathf.PI - sword.transform.rotation.z + 30 + 120 * isCw;
-        if (playerPos.x < sword.transform.position.x){
-            rot += 180f;
-            if (rot > 180f)
-            {
-                rot -= 360f;
-            }
-        }
-
-        var tween = sword.transform.DORotate(new Vector3(0,0,rot), 1f);
+        float originalRotation = Mathf.Atan2(playerPos.y - surtrSword.position.y, playerPos.x - surtrSword.position.x) * 180 / Mathf.PI;
+        var tween = surtrSword.DORotate(new Vector3(0,0, originalRotation - 120f), 1f);
         yield return tween.WaitForCompletion();
-        sword.transform.DORotate(new Vector3(0, 0, (isCw * (-2) + 1) * 120), 1f);
+        surtrSword.DORotate(new Vector3(0, 0, originalRotation - 120f), 0.5f);
         
 
 
 
         Debug.Log("Yay");
 
-        yield return null;
+        yield return tween.WaitForCompletion();
     }
     // 마그마 기둥
     public IEnumerator Pattern2()
@@ -167,8 +160,8 @@ public class Surtr : Boss
 
         isBusy = true;
         isFollow = false;
-        sword.transform.DOMove(new Vector3(0, 6, 0), 1f);
-        sword.transform.DORotate(new Vector3(0, 0, 0), 1f);
+        surtrSword.DOMove(new Vector3(0, 6, 0), 1f);
+        surtrSword.DORotate(new Vector3(0, 0, 0), 1f);
 
         yield return new WaitForSeconds(0.6f);
 
