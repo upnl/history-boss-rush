@@ -48,7 +48,6 @@ public class CameraController : MonoBehaviour
     private void Step(float time)
     {
         var goal = _player.position + _offset + _lookAheadOffset + _bossOffset;
-        goal.z = -10;
         transform.position = Vector3.SmoothDamp(transform.position, goal, ref _vel, time);
     }
 }

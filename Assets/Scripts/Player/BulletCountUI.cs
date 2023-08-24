@@ -19,7 +19,7 @@ public class BulletCountUI : MonoBehaviour
     {
         for (int i = 0; i < bulletImages.Count; i++)
         {
-            Debug.Log("AAAAAAAAA");
+            // Debug.Log("AAAAAAAAA");
             Image bulletImage = bulletImages[i];
             var tempColor = bulletImage.color;
             tempColor.a = i >= bulletCount ? 0.3f : 1f;

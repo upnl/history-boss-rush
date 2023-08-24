@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightBeam
+  m_Name: SpawnFX
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,30 +20,20 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: adbd07e381a8a5d469a051424f713978, type: 3}
-    - time: 0.0625
-      value: {fileID: 21300000, guid: 52a61ab8d27342d45b2fc08ae70d98f8, type: 3}
+      value: {fileID: 21300000, guid: 2699788a84484d74b9e2faf54802ebe4, type: 3}
     - time: 0.125
-      value: {fileID: 21300000, guid: 14dc8cf272495674e9c0fd1a8f68e87d, type: 3}
-    - time: 0.1875
-      value: {fileID: 21300000, guid: 5ed08bbe8158d414b885c1b8e2cc1a90, type: 3}
+      value: {fileID: 21300000, guid: 2a6ba7f03ba0e64489b78d138540a9db, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 34ab31dde7e722e4ba1360e1249a4947, type: 3}
-    - time: 0.3125
-      value: {fileID: 21300000, guid: 7cbb51754bfe7c844b70a841704c8775, type: 3}
+      value: {fileID: 21300000, guid: c221515d65653da4e9162915f55dd04a, type: 3}
     - time: 0.375
-      value: {fileID: 21300000, guid: a1cd8d40fd226d247804f3abc277dd97, type: 3}
-    - time: 0.4375
-      value: {fileID: 21300000, guid: c0ee560ae76d237498f6e77307862af3, type: 3}
+      value: {fileID: 21300000, guid: 59e7ae14d4cdde64aaf155102b41676a, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 74f11aa856e3e904ebf32dd9e0199548, type: 3}
-    - time: 0.5625
-      value: {fileID: 21300000, guid: 05ed55ba9f5fd1f4cb045d94324b1b01, type: 3}
+      value: {fileID: 21300000, guid: 29473065087f9d64ebb0968589b06e28, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 16
+  m_SampleRate: 8
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -58,16 +48,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: adbd07e381a8a5d469a051424f713978, type: 3}
-    - {fileID: 21300000, guid: 52a61ab8d27342d45b2fc08ae70d98f8, type: 3}
-    - {fileID: 21300000, guid: 14dc8cf272495674e9c0fd1a8f68e87d, type: 3}
-    - {fileID: 21300000, guid: 5ed08bbe8158d414b885c1b8e2cc1a90, type: 3}
-    - {fileID: 21300000, guid: 34ab31dde7e722e4ba1360e1249a4947, type: 3}
-    - {fileID: 21300000, guid: 7cbb51754bfe7c844b70a841704c8775, type: 3}
-    - {fileID: 21300000, guid: a1cd8d40fd226d247804f3abc277dd97, type: 3}
-    - {fileID: 21300000, guid: c0ee560ae76d237498f6e77307862af3, type: 3}
-    - {fileID: 21300000, guid: 74f11aa856e3e904ebf32dd9e0199548, type: 3}
-    - {fileID: 21300000, guid: 05ed55ba9f5fd1f4cb045d94324b1b01, type: 3}
+    - {fileID: 21300000, guid: 2699788a84484d74b9e2faf54802ebe4, type: 3}
+    - {fileID: 21300000, guid: 2a6ba7f03ba0e64489b78d138540a9db, type: 3}
+    - {fileID: 21300000, guid: c221515d65653da4e9162915f55dd04a, type: 3}
+    - {fileID: 21300000, guid: 59e7ae14d4cdde64aaf155102b41676a, type: 3}
+    - {fileID: 21300000, guid: 29473065087f9d64ebb0968589b06e28, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -93,14 +78,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.0625
-    functionName: SetColliderOn
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.4375
+  - time: 0.375
     functionName: SetColliderOff
     data: 
     objectReferenceParameter: {fileID: 0}

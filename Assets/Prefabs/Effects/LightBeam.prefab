@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1418310488285201528}
   - component: {fileID: 3255233674568056618}
   - component: {fileID: 6053375440870454936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LightBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5571652140338801800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,13 +97,13 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.26249695, y: 0.034238696}
+  m_Offset: {x: 7.95, y: 0.034238696}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0.5}
     oldSize: {x: 16.642857, y: 1.8214285}
     newSize: {x: 16.642857, y: 1.8214285}
     adaptiveTilingThreshold: 0.5
@@ -125,9 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2481eb78c9aaaf4fb05c7282603d2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 0}
+  objectToDestroy: {fileID: 5571652140338801800}
   destroyAfterTime: 0
   destroyTime: 0
+  collider2Ds: []
 --- !u!95 &6053375440870454936
 Animator:
   serializedVersion: 5

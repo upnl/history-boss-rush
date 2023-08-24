@@ -9,12 +9,8 @@ public class Surtr : Boss
     [SerializeField] private Transform surtrSword;
     [SerializeField] private List<Sprite> surtrSpriteList;
     [SerializeField] private float swordSpeed = 10f;
+    [SerializeField] private float swordRotationSpeed = 5f;
     [SerializeField] private List<GameObject> effectPrefabs;
-
-    public GameObject flame;
-
-    Vector3 playerPos;
-    Vector3 velocity;
     
     private float distance = 0f;
     private float stopTime = 0f;
@@ -26,43 +22,26 @@ public class Surtr : Boss
     {
         bookDB = BookManager.Instance.bookDB;
         playerController = player.GetComponent<PlayerController>();
-        playerCollider = player.GetComponentInChildren<Collider2D>();
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localPosition;
         pattern += UseAPattern;
         cooltime = Random.Range(1.5f, 3f);
         currentGauge = 0f;
         isBusy = false;
     }
 
+    private Vector3 _vel;
+    private float smoothTime = 0.5f;
     private void Update()
     {
-        //검 이동 코드. 따라오다가 가끔씩 stopTime만큼 멈춘다. (stopCoolTime초마다 30%확률로 정지 시도)
-        //if (!isFollow) return;
-        //playerPos = player.transform.position;
+        // Sword Control
+        if (isFollow)
+        {
+            Vector3 lookDirection = (player.transform.position - surtrSword.position).normalized;
+            var swordLookatAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            surtrSword.rotation = Quaternion.Slerp(surtrSword.rotation, Quaternion.Euler(new Vector3(0, 0, swordLookatAngle)), swordRotationSpeed * Time.deltaTime);
 
-        //distance = Vector3.Distance(playerPos, sword.transform.position);
-
-        //if(!(stopCoolTime<0f && Random.value<0.3f))
-        //{
-        //    velocity = (playerPos - sword.transform.position).normalized * Mathf.Min(swordSpeed, distance*2/2);
-        //}
-        //else if (stopTime <= 0f)
-        //{
-        //    velocity = Vector3.zero;
-        //    stopTime = 1f;
-        //    //StartCoroutine(Wait());
-        //}
-        //if (stopTime > 0f)
-        //{
-        //    stopTime -= Time.deltaTime;
-        //}
-        //else
-        //{
-        //    sword.transform.position = sword.transform.position + velocity * Time.deltaTime;
-        //}
-        //if(stopCoolTime<0f) stopCoolTime = 1f;
-        //stopCoolTime-=Time.deltaTime;
-
+            var offset = (player.transform.position - surtrSword.position).normalized;
+            surtrSword.position = Vector3.SmoothDamp(surtrSword.position, player.transform.position - offset * 6f, ref _vel, smoothTime);
+        }
 
         //디버그
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -106,7 +85,7 @@ public class Surtr : Boss
     public void UseAPattern()
     {
         Debug.LogWarning("UseAPattern");
-        int i = Random.Range(0, 1);
+        int i = Random.Range(3, 4);
         switch (i)
         {
             case 0:
@@ -132,36 +111,41 @@ public class Surtr : Boss
     {
         if (isBusy) yield break;
 
-
+        isBusy = true;
+        isFollow = false;
         string skill = "Surtr1";
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
             int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
-        float originalRotation = Mathf.Atan2(playerPos.y - surtrSword.position.y, playerPos.x - surtrSword.position.x) * 180 / Mathf.PI;
-        var tween = surtrSword.DORotate(new Vector3(0,0, originalRotation - 120f), 1f);
-        yield return tween.WaitForCompletion();
-        surtrSword.DORotate(new Vector3(0, 0, originalRotation - 120f), 0.5f);
-        
+        float originalRotation = Mathf.Atan2(player.transform.position.y - surtrSword.position.y, player.transform.position.x - surtrSword.position.x) * 180 / Mathf.PI;
+        var rotateTween = surtrSword.DORotate(new Vector3(0, 0, originalRotation), 0.5f);
 
+        //Sequence swordSequence = DOTween.Sequence();
+        //swordSequence.Append(surtrSword.DORotate(new Vector3(0, 0, originalRotation - 120f), 3f).SetEase(Ease.InSine));
+        //swordSequence.Append(surtrSword.DORotate(new Vector3(0, 0, originalRotation), 1f));
+        //swordSequence.Append(surtrSword.DORotate(new Vector3(0, 0, originalRotation + 120f), 1f));
 
+        // surtrSword.DORotate(new Vector3(0, 0, originalRotation + 120f), 0.5f);
+        yield return rotateTween.WaitForCompletion();
+        Instantiate(effectPrefabs[0], surtrSword.transform.position, surtrSword.rotation);
+        Instantiate(effectPrefabs[2], surtrSword.transform.position, surtrSword.rotation);
 
-        Debug.Log("Yay");
-
-        yield return tween.WaitForCompletion();
+        isFollow = true;
+        yield return new WaitForSeconds(3f);
+        isBusy = false;
     }
     // 마그마 기둥
     public IEnumerator Pattern2()
     {
-        
-        Debug.Log("Y");
         if (isBusy) yield break;
 
         isBusy = true;
         isFollow = false;
+
         surtrSword.DOMove(new Vector3(0, 6, 0), 1f);
-        surtrSword.DORotate(new Vector3(0, 0, 0), 1f);
+        surtrSword.DORotate(new Vector3(0, 0, -90f), 1f);
 
         yield return new WaitForSeconds(0.6f);
 
@@ -169,7 +153,7 @@ public class Surtr : Boss
         GameObject[] flameList = new GameObject[6];
         for(int i = 0; i < 6; i++)
         {
-            flameList[i]=Instantiate(flame, new Vector3(Random.Range(-9.5f, 9.5f), Random.Range(-9.5f, 9.5f), 0), Quaternion.identity);
+            flameList[i] = Instantiate(effectPrefabs[4], new Vector3(Random.Range(-9.5f, 9.5f), Random.Range(-9.5f, 9.5f), 0), Quaternion.identity);
         }
         yield return new WaitForSeconds(2f);
 
@@ -179,14 +163,31 @@ public class Surtr : Boss
             Destroy(flameList[i]);
         }
         isFollow = true;
+        isBusy = false;
     }
 
     // 불꽃 회전
     public IEnumerator Pattern3()
     {
         if (isBusy) yield break;
+        isBusy = true;
+        isFollow = false;
 
+        Vector3 cachedPlayerPosition = player.transform.position;
+        float originalRotation = Mathf.Atan2(cachedPlayerPosition.y - surtrSword.position.y, cachedPlayerPosition.x - surtrSword.position.x) * 180 / Mathf.PI;
+        var rotateTween = surtrSword.DORotate(new Vector3(0, 0, originalRotation), 0.5f);
+        yield return rotateTween.WaitForCompletion();
+        Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
 
+        var magmaPool = Instantiate(effectPrefabs[5], surtrSword.position + (cachedPlayerPosition - surtrSword.position).normalized * 2f, Quaternion.identity);
+        MagmaPool magmaPoolScript = magmaPool.GetComponent<MagmaPool>();
+        magmaPoolScript.SetDirection((cachedPlayerPosition - surtrSword.position).normalized);
+
+        yield return new WaitForSeconds(3f);
+
+        isBusy = false;
+        isFollow = true;
         yield return null;
     }
 
@@ -194,8 +195,22 @@ public class Surtr : Boss
     public IEnumerator Pattern4()
     {
         if (isBusy) yield break;
+        isBusy = true;
+        isFollow = false;
 
+        Vector3 cachedPlayerPosition = player.transform.position;
+        float originalRotation = Mathf.Atan2(cachedPlayerPosition.y - surtrSword.position.y, cachedPlayerPosition.x - surtrSword.position.x) * 180 / Mathf.PI;
+        var rotateTween = surtrSword.DORotate(new Vector3(0, 0, originalRotation), 0.5f);
+        yield return rotateTween.WaitForCompletion();
+        Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.3f);
 
+        Instantiate(effectPrefabs[7], surtrSword.position, surtrSword.rotation);
+
+        yield return new WaitForSeconds(1f);
+
+        isBusy = false;
+        isFollow = true;
         yield return null;
     }
 
