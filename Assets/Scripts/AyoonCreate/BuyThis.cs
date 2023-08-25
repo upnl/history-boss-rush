@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 
 public class BuyThis : MonoBehaviour
@@ -9,6 +10,11 @@ public class BuyThis : MonoBehaviour
     public int bookLevel = 0;
     public int bookPrice = 0;
     public bool equipped = false;
+
+    public string[] bookExplain;
+    public TextMeshProUGUI textObj;
+
+    [SerializeField] public GameObject textBox;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +28,17 @@ public class BuyThis : MonoBehaviour
         
     }
 
-    public void OnMouseOver()
+    public void OnMouseEnter()
     {
         gameObject.GetComponent<Renderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
 
+        TypingManager.Instance.InitiateText(textObj);
+        textBox.gameObject.SetActive(true);
+        TypingManager.Instance.Typing(bookExplain, textObj);
+    }
+
+    public void OnMouseOver()
+    {
         if (Input.GetMouseButtonDown(0) && equipped == false)
         {
             if (bookPrice <= BookManager.Instance.Blood)
