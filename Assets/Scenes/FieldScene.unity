@@ -489,7 +489,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d25b5bb30bec7e48a7d002fadbcead9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -556,7 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0b4f5fd03f0f6408ad762a12fcc55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: StoreScene
+  sceneName: FieldScene
+  warningText: 
+  bossName: 
   name: {fileID: 1471833122}
 --- !u!114 &468736448
 MonoBehaviour:
@@ -1259,6 +1261,7 @@ GameObject:
   - component: {fileID: 1007651781}
   - component: {fileID: 1007651783}
   - component: {fileID: 1007651782}
+  - component: {fileID: 1007651784}
   m_Layer: 5
   m_Name: O
   m_TagString: Untagged
@@ -1284,7 +1287,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -150, y: -230}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007651782
 MonoBehaviour:
@@ -1324,6 +1327,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007651780}
   m_CullTransparentMesh: 1
+--- !u!114 &1007651784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007651780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1147882215}
+          m_TargetAssemblyTypeName: PopUIManager, Assembly-CSharp
+          m_MethodName: Move
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &1020928322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1486,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Boss_Thor
+  warningText: "<color=#0010B3>\uCC9C\uB465\uC758 \uC2E0\uC804</color>\uC5D0\n\uB2E4\uC2DC
+    \uB3C4\uC804\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  bossName: Thor
   name: {fileID: 794295394}
 --- !u!114 &1020928327
 MonoBehaviour:
@@ -1807,6 +1842,7 @@ GameObject:
   - component: {fileID: 1147882212}
   - component: {fileID: 1147882214}
   - component: {fileID: 1147882213}
+  - component: {fileID: 1147882215}
   m_Layer: 5
   m_Name: Pop UI
   m_TagString: Untagged
@@ -1875,6 +1911,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147882211}
   m_CullTransparentMesh: 1
+--- !u!114 &1147882215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147882211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df453759876715943938264a0b535aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textObj: {fileID: 1924160378}
+  nowObj: 
 --- !u!1 &1192761131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,6 +2165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: StoreScene
+  warningText: 
+  bossName: 
   name: {fileID: 603921982}
 --- !u!1 &1252914514
 GameObject:
@@ -2127,6 +2179,7 @@ GameObject:
   - component: {fileID: 1252914515}
   - component: {fileID: 1252914517}
   - component: {fileID: 1252914516}
+  - component: {fileID: 1252914518}
   m_Layer: 5
   m_Name: X
   m_TagString: Untagged
@@ -2152,7 +2205,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 150, y: -230}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252914516
 MonoBehaviour:
@@ -2192,6 +2245,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252914514}
   m_CullTransparentMesh: 1
+--- !u!114 &1252914518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252914514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1147882215}
+          m_TargetAssemblyTypeName: PopUIManager, Assembly-CSharp
+          m_MethodName: HidePopUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &1269021903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,7 +2540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC8FD\uC74C\uC758\uC2E0\uC804"
+  m_text: "(\uC900\uBE44\uC911)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22efcf0a18860134c8acc4e97372d9c2, type: 2}
   m_sharedMaterial: {fileID: -1079227941715665818, guid: 22efcf0a18860134c8acc4e97372d9c2, type: 2}
@@ -3062,7 +3144,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4db82c949b4d38489f8cc117a712f17, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.40784314, g: 0.40784314, b: 0.40784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3129,7 +3211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0b4f5fd03f0f6408ad762a12fcc55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: StoreScene
+  sceneName: FieldScene
+  warningText: 
+  bossName: 
   name: {fileID: 1946155877}
 --- !u!114 &1776437762
 MonoBehaviour:
@@ -3365,7 +3449,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uAC83\uC740 \uD31D\uC5C5 UI \uC785\uB2C8\uB2E4"
+  m_text: "<color=#0010B3>\uCC9C\uB465\uC758 \uC2E0\uC804</color>\uC5D0\\n\uB2E4\uC2DC
+    \uB3C4\uC804\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22efcf0a18860134c8acc4e97372d9c2, type: 2}
   m_sharedMaterial: {fileID: -1079227941715665818, guid: 22efcf0a18860134c8acc4e97372d9c2, type: 2}
@@ -3404,7 +3489,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 15
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -3556,7 +3641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC70\uC9D3\uC758\uC2E0\uC804"
+  m_text: "(\uC900\uBE44\uC911)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22efcf0a18860134c8acc4e97372d9c2, type: 2}
   m_sharedMaterial: {fileID: -1079227941715665818, guid: 22efcf0a18860134c8acc4e97372d9c2, type: 2}
@@ -3820,6 +3905,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: StoreScene
+  warningText: "<color=#D22525>\uD654\uC5FC\uC758 \uC2E0\uC804</color>\uC5D0\n\uB2E4\uC2DC
+    \uB3C4\uC804\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  bossName: Surtr
   name: {fileID: 756281696}
 --- !u!114 &2096719125
 MonoBehaviour:
