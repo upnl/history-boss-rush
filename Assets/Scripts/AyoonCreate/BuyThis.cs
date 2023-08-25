@@ -22,7 +22,7 @@ public class BuyThis : MonoBehaviour
         
     }
 
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
         gameObject.GetComponent<Renderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
 
