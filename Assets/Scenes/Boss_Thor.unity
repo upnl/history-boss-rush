@@ -1707,6 +1707,9 @@ MonoBehaviour:
   God44:
   - {fileID: 0}
   - {fileID: 0}
+  Cha: []
+  Ten: []
+  Ale: []
 --- !u!1 &398100189
 GameObject:
   m_ObjectHideFlags: 0

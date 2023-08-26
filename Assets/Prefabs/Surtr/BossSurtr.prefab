@@ -137,9 +137,11 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  bossName: Surtr
   hpSlider: {fileID: 0}
   player: {fileID: 0}
   playerCollider: {fileID: 0}
+  swordAnimator: {fileID: 1338050338}
   surtrSword: {fileID: 3699085430830450899}
   surtrSpriteList: []
   swordSpeed: 10
@@ -150,7 +152,10 @@ MonoBehaviour:
   - {fileID: 4923171450397014138, guid: a4af9de68e910c340b0f051df04df4e2, type: 3}
   - {fileID: 701343053446461238, guid: eab663747746fe24a9f205a6cda75154, type: 3}
   - {fileID: 7755172366737579728, guid: ae298ff7fe59a5b40959eb00797df0ec, type: 3}
-  flame: {fileID: 0}
+  - {fileID: 7733442126548113621, guid: 24d05ab351dc24a43b29d62e622dc6be, type: 3}
+  - {fileID: 5520432248368550745, guid: 23b82d6a00d12ac48b814c1c6353ef2d, type: 3}
+  - {fileID: 5571652140338801800, guid: 6cfa83aaf72f20249bc5da259fe66eac, type: 3}
+  - {fileID: 6947533498238155958, guid: 0290605008b046f4ca6c4043e61736aa, type: 3}
 --- !u!61 &3699085430803711532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -338,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3699085431147600027}
   - component: {fileID: 3699085431147600026}
+  - component: {fileID: 1338050338}
   m_Layer: 10
   m_Name: Visual
   m_TagString: Untagged
@@ -401,7 +407,7 @@ SpriteRenderer:
   m_SortingLayerID: -915573379
   m_SortingLayer: 3
   m_SortingOrder: 10
-  m_Sprite: {fileID: 502854688067477511, guid: 8df88397df010764ebe97ce0d5ed6289, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8b44453495690b45867d70c07af885a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -412,3 +418,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1338050338
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699085431147600028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5135533ab85c0a9439ddcc8045626e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

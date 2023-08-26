@@ -143,6 +143,8 @@ public class Surtr : Boss
         isFollow = true;
         yield return new WaitForSeconds(3f);
         isBusy = false;
+
+        GameManager.Instance.QuestManager.UpPatternSeeCount(1);
     }
     // ¸¶±×¸¶ ±âµÕ
     public IEnumerator Pattern2()
@@ -152,7 +154,7 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
-        string skill = "Surtr1";
+        string skill = "Surtr2";
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
@@ -185,6 +187,8 @@ public class Surtr : Boss
         }
         isFollow = true;
         isBusy = false;
+
+        GameManager.Instance.QuestManager.UpPatternSeeCount(2);
     }
 
     // ºÒ²É È¸Àü
@@ -194,7 +198,7 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
-        string skill = "Surtr1";
+        string skill = "Surtr3";
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
@@ -221,6 +225,8 @@ public class Surtr : Boss
         isBusy = false;
         isFollow = true;
         yield return null;
+
+        GameManager.Instance.QuestManager.UpPatternSeeCount(3);
     }
 
     // ÀÛ¿­ ±¤¼±
@@ -230,7 +236,7 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
-        string skill = "Surtr1";
+        string skill = "Surtr4";
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
@@ -254,6 +260,8 @@ public class Surtr : Boss
         isBusy = false;
         isFollow = true;
         yield return null;
+
+        GameManager.Instance.QuestManager.UpPatternSeeCount(4);
     }
 
     // È­¿° ÆøÇ³
@@ -263,7 +271,7 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
-        string skill = "Surtr1";
+        string skill = "Surtr4";
         int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
         float effect1 = float.Parse(bookDB.GetData().Find(
             e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
