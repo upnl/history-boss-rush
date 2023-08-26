@@ -72,6 +72,7 @@ public class GameStateManager : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 Time.timeScale = 1f;
+                BookManager.Instance.ResetBookEquipped();
                 SceneManager.LoadScene(shopSceneName);
             }
         }
