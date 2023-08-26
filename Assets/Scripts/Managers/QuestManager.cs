@@ -66,8 +66,8 @@ public class QuestManager : MonoBehaviour
         patternSeeCountLevel1Cut = intParseConditionDB("Thor1", 1);
         patternSeeCountLevel2Cut = intParseConditionDB("Thor1", 2);
 
-        // justAvoidCountLevel1Cut = intParseConditionDB("Alertness", 1, 2);
-        // justAvoidCountLevel2Cut = intParseConditionDB("Alertness", 2, 2);
+        justAvoidCountLevel1Cut = intParseConditionDB("Alertness", 1, 2);
+        justAvoidCountLevel2Cut = intParseConditionDB("Alertness", 2, 2);
 
         switch(BookManager.Instance.CheckBookUnlocked("Tenacity"))
         {
@@ -212,7 +212,7 @@ public class QuestManager : MonoBehaviour
         questPanel.Level = level;
 
         HasQuest = true;
-        questText.text = "역사서를 작성 가능합니다.\n[F]키를 눌러서 작성하세요.";
+        questText.text = "역사서를 작성 가능합니다\n<color=#008E0F>[F]키</color>를 눌러서 작성하세요";
         StartCoroutine(QuestPanelStart(questPanel, durationSlider));
     }
 
