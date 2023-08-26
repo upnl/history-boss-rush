@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class Surtr : Boss
 {
+    [SerializeField] private Animator swordAnimator;
     [SerializeField] private Transform surtrSword;
     [SerializeField] private List<Sprite> surtrSpriteList;
     [SerializeField] private float swordSpeed = 10f;
@@ -85,7 +86,7 @@ public class Surtr : Boss
     public void UseAPattern()
     {
         Debug.LogWarning("UseAPattern");
-        int i = Random.Range(3, 4);
+        int i = Random.Range(0, 5);
         switch (i)
         {
             case 0:
@@ -129,6 +130,13 @@ public class Surtr : Boss
 
         // surtrSword.DORotate(new Vector3(0, 0, originalRotation + 120f), 0.5f);
         yield return rotateTween.WaitForCompletion();
+        swordAnimator.SetTrigger("Swipe");
+
+        yield return new WaitForSeconds(0.5f - effect1);
+        _Warner.InstantiateHitFan60(transform.position, player.transform.position, 10f);
+        yield return new WaitForSeconds(effect1);
+        _Warner.RemoveAllHitArea();
+
         Instantiate(effectPrefabs[0], surtrSword.transform.position, surtrSword.rotation);
         Instantiate(effectPrefabs[2], surtrSword.transform.position, surtrSword.rotation);
 
@@ -144,20 +152,33 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
-        surtrSword.DOMove(new Vector3(0, 6, 0), 1f);
-        surtrSword.DORotate(new Vector3(0, 0, -90f), 1f);
+        string skill = "Surtr1";
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
+        float effect1 = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
+        var moveTween = surtrSword.DOMove(new Vector3(0, 6, 0), 1f);
+        surtrSword.DORotate(new Vector3(0, 0, -90f), 1f);
+        swordAnimator.SetTrigger("SetDown");
+        yield return moveTween.WaitForCompletion();
         yield return new WaitForSeconds(0.6f);
 
 
         GameObject[] flameList = new GameObject[6];
-        for(int i = 0; i < 6; i++)
+        yield return new WaitForSeconds(0.5f - effect1);
+        for (int i = 0; i < 6; i++)
         {
             flameList[i] = Instantiate(effectPrefabs[4], new Vector3(Random.Range(-9.5f, 9.5f), Random.Range(-9.5f, 9.5f), 0), Quaternion.identity);
+            _Warner.InstantiateHitCircle(flameList[i].transform.position + new Vector3(0, -2f, 0), 1f);
         }
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(effect1);
+        swordAnimator.SetTrigger("SetUp");
         _Warner.RemoveAllHitArea();
+        yield return new WaitForSeconds(1f);
+        
+
+        
         for (int i = 0; i < 6; i++)
         {
             Destroy(flameList[i]);
@@ -173,13 +194,24 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
+        string skill = "Surtr1";
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
+        float effect1 = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+
         Vector3 cachedPlayerPosition = player.transform.position;
         float originalRotation = Mathf.Atan2(cachedPlayerPosition.y - surtrSword.position.y, cachedPlayerPosition.x - surtrSword.position.x) * 180 / Mathf.PI;
         var rotateTween = surtrSword.DORotate(new Vector3(0, 0, originalRotation), 0.5f);
         yield return rotateTween.WaitForCompletion();
-        Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
-        yield return new WaitForSeconds(1f);
 
+        Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(1f - effect1);
+        _Warner.InstantiateHitBox(surtrSword.position, cachedPlayerPosition, 3f);
+        yield return new WaitForSeconds(effect1);
+
+        _Warner.RemoveAllHitArea();
         var magmaPool = Instantiate(effectPrefabs[5], surtrSword.position + (cachedPlayerPosition - surtrSword.position).normalized * 2f, Quaternion.identity);
         MagmaPool magmaPoolScript = magmaPool.GetComponent<MagmaPool>();
         magmaPoolScript.SetDirection((cachedPlayerPosition - surtrSword.position).normalized);
@@ -198,13 +230,23 @@ public class Surtr : Boss
         isBusy = true;
         isFollow = false;
 
+        string skill = "Surtr1";
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
+        float effect1 = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
+
         Vector3 cachedPlayerPosition = player.transform.position;
         float originalRotation = Mathf.Atan2(cachedPlayerPosition.y - surtrSword.position.y, cachedPlayerPosition.x - surtrSword.position.x) * 180 / Mathf.PI;
         var rotateTween = surtrSword.DORotate(new Vector3(0, 0, originalRotation), 0.5f);
         yield return rotateTween.WaitForCompletion();
-        Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.3f);
 
+        yield return new WaitForSeconds(0.5f - effect1);
+        _Warner.InstantiateHitBox(surtrSword.position, cachedPlayerPosition, 1f);
+        Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
+        yield return new WaitForSeconds(effect1);
+
+        _Warner.RemoveAllHitArea();
         Instantiate(effectPrefabs[7], surtrSword.position, surtrSword.rotation);
 
         yield return new WaitForSeconds(1f);
@@ -218,8 +260,35 @@ public class Surtr : Boss
     public IEnumerator Pattern5()
     {
         if (isBusy) yield break;
+        isBusy = true;
+        isFollow = false;
 
+        string skill = "Surtr1";
+        int historyLevel = BookManager.Instance.CheckBookEquipped(skill);
+        float effect1 = float.Parse(bookDB.GetData().Find(
+            e => e[bookDB.GetHeaderIndex("title")].Equals(skill) &&
+            int.Parse(e[bookDB.GetHeaderIndex("level")]) == historyLevel)[bookDB.GetHeaderIndex("effect1")]);
 
+        Vector3 cachedPlayerPosition = player.transform.position;
+
+        var moveTween = surtrSword.DOMove(cachedPlayerPosition + new Vector3(0, 2f, 0), 1.5f);
+        var rotateTween = surtrSword.DORotate(new Vector3(0, 0, -90), 0.5f);
+        yield return moveTween.WaitForCompletion();
+        swordAnimator.SetTrigger("SetDown");
+
+        yield return new WaitForSeconds(0.5f - effect1);
+        _Warner.InstantiateHitCircle(surtrSword.position + new Vector3(0, -2f, 0), 8f);
+        Instantiate(effectPrefabs[6], surtrSword.position + new Vector3(0, -2f, 0), Quaternion.identity);
+        yield return new WaitForSeconds(effect1);
+
+        Instantiate(effectPrefabs[8], surtrSword.position + new Vector3(0, -2f, 0), Quaternion.identity);
+        _Warner.RemoveAllHitArea();
+        swordAnimator.SetTrigger("SetUp");
+
+        yield return new WaitForSeconds(3f);
+
+        isBusy = false;
+        isFollow = true;
         yield return null;
     }
 }

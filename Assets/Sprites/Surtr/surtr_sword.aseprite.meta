@@ -119,12 +119,12 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: surtr_sword_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 1}
-    alignment: 2
+    pivot: {x: 0.5, y: -0.07017545}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 125
+      x: 34
       y: 4
       width: 22
       height: 57
@@ -136,18 +136,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 125, y: 4}
+    uvTransform: {x: 34, y: 4}
   - name: surtr_sword_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.035714287}
+    pivot: {x: 0.5, y: -0.122807026}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 125
-      width: 112
-      height: 112
+      x: 64
+      y: 4
+      width: 22
+      height: 57
     spriteID: 9a017020302769e438e29f3565d68760
     spriteBone: []
     spriteOutline: []
@@ -156,18 +156,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 125}
+    uvTransform: {x: 64, y: 4}
   - name: surtr_sword_Frame_2
     originalName: 
-    pivot: {x: 0.5045872, y: -0.055045873}
+    pivot: {x: 0.5, y: -0.15}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 365
-      width: 109
-      height: 109
+      y: 4
+      width: 22
+      height: 60
     spriteID: 5c74e27be927e2148bbb812bc6ff3aef
     spriteBone: []
     spriteOutline: []
@@ -176,18 +176,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 365}
+    uvTransform: {x: 4, y: 4}
   - name: surtr_sword_Frame_3
     originalName: 
-    pivot: {x: 0.50442475, y: -0.03539823}
+    pivot: {x: 0.5, y: -0.07017545}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 94
       y: 4
-      width: 113
-      height: 113
+      width: 22
+      height: 57
     spriteID: 43db50a14c9bdff42af357b8b413a87b
     spriteBone: []
     spriteOutline: []
@@ -196,18 +196,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 94, y: 4}
   - name: surtr_sword_Frame_4
     originalName: 
-    pivot: {x: 0.50892854, y: -0.04464286}
+    pivot: {x: 0.5, y: -0.098039225}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 245
-      width: 112
-      height: 112
+      y: 72
+      width: 22
+      height: 51
     spriteID: 702347c81bf2e9f4089aa58c4f6202d5
     spriteBone: []
     spriteOutline: []
@@ -216,7 +216,67 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 245}
+    uvTransform: {x: 4, y: 72}
+  - name: surtr_sword_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: -0.11111112}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 34
+      y: 69
+      width: 22
+      height: 45
+    spriteID: f181c9211a0a36b4199bcca407bad84a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 34, y: 69}
+  - name: surtr_sword_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 69
+      width: 22
+      height: 40
+    spriteID: 8bba7dcf4be76224596e73a6f0111a47
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 64, y: 69}
+  - name: surtr_sword_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.18181819}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 94
+      y: 69
+      width: 22
+      height: 33
+    spriteID: 6871a5b64c5ac7e40adda4758f1b83e8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 94, y: 69}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -230,42 +290,66 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 49
-        y: 5
+        y: 4
         width: 22
         height: 57
       spriteId: 0365c753ce060b749be2423b379c1af8
     - name: surtr_sword_Frame_1
       frameIndex: 1
       cellRect:
-        x: 4
-        y: 4
-        width: 112
-        height: 112
+        x: 49
+        y: 7
+        width: 22
+        height: 57
       spriteId: 9a017020302769e438e29f3565d68760
     - name: surtr_sword_Frame_2
       frameIndex: 2
       cellRect:
-        x: 5
-        y: 6
-        width: 109
-        height: 109
+        x: 49
+        y: 9
+        width: 22
+        height: 60
       spriteId: 5c74e27be927e2148bbb812bc6ff3aef
     - name: surtr_sword_Frame_3
       frameIndex: 3
       cellRect:
-        x: 3
+        x: 49
         y: 4
-        width: 113
-        height: 113
+        width: 22
+        height: 57
       spriteId: 43db50a14c9bdff42af357b8b413a87b
     - name: surtr_sword_Frame_4
       frameIndex: 4
       cellRect:
-        x: 3
+        x: 49
         y: 5
-        width: 112
-        height: 112
+        width: 22
+        height: 51
       spriteId: 702347c81bf2e9f4089aa58c4f6202d5
+    - name: surtr_sword_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 49
+        y: 5
+        width: 22
+        height: 45
+      spriteId: f181c9211a0a36b4199bcca407bad84a
+    - name: surtr_sword_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 49
+        y: 5
+        width: 22
+        height: 40
+      spriteId: 8bba7dcf4be76224596e73a6f0111a47
+    - name: surtr_sword_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 49
+        y: 6
+        width: 22
+        height: 33
+      spriteId: 6871a5b64c5ac7e40adda4758f1b83e8
     linkedCells: []
     parentIndex: -1
   platformSettings:
