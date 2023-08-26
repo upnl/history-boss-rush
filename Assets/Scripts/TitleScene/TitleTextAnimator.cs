@@ -8,7 +8,6 @@ public class TitleTextAnimator : MonoBehaviour
     [SerializeField] private TMP_Text titleText1;
     [SerializeField] private TMP_Text titleText2;
     [SerializeField] private TMP_Text titleText3;
-    [SerializeField] private RawImage pressText;
     [SerializeField] private TitleSceneMover titleSceneMover;
     private void Start()
     {
@@ -21,9 +20,11 @@ public class TitleTextAnimator : MonoBehaviour
         yield return StartCoroutine(TextColor(titleText1));
         yield return new WaitForSeconds(0.3f);
         yield return StartCoroutine(TextColor(titleText2));
-        pressText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        yield return StartCoroutine(TextColor(titleText3));
+
         titleSceneMover.gameObject.SetActive(true);
-        StartCoroutine(TextBlinking(pressText, pressText.GetComponentInChildren<TMP_Text>()));
+        StartCoroutine(TextBlinking(titleText3));
     }
 
     private IEnumerator TextColor(TMP_Text text)
@@ -38,14 +39,13 @@ public class TitleTextAnimator : MonoBehaviour
         text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
     }
 
-    private IEnumerator TextBlinking(RawImage Raw, TMP_Text text)
+    private IEnumerator TextBlinking(TMP_Text text)
     {
         float elapsedTime = 0f;
         while(true)
         {
             elapsedTime += Time.deltaTime;
             text.color = new Color(text.color.r, text.color.g, text.color.b, 2f*(Mathf.Sin(elapsedTime)+1f)/2f);
-            Raw.color = new Color(Raw.color.r, Raw.color.g, Raw.color.b, 2f*(Mathf.Sin(elapsedTime)+1f)/2f);
             yield return null;
         }
     }
