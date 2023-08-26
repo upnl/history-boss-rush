@@ -71,6 +71,7 @@ public class GameStateManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
+                Time.timeScale = 1f;
                 SceneManager.LoadScene(shopSceneName);
             }
         }
