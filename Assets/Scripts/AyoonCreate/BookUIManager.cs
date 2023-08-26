@@ -24,6 +24,12 @@ public class BookUIManager : MonoBehaviour
     private bool _b14 = false;
     private bool _b15 = false;
     private bool _b16 = false;
+    private bool _b17 = false;
+    private bool _b18 = false;
+    private bool _b19 = false;
+    private bool _b20 = false;
+    private bool _b21 = false;
+    private bool _b22 = false;
 
     public GameObject parent;
 
@@ -46,6 +52,10 @@ public class BookUIManager : MonoBehaviour
     public GameObject[] God42;
     public GameObject[] God43;
     public GameObject[] God44;
+
+    public GameObject[] Cha;
+    public GameObject[] Ten;
+    public GameObject[] Ale;
 
     void Awake()
     {
@@ -259,6 +269,78 @@ public class BookUIManager : MonoBehaviour
                     _bookUI16.transform.SetParent(parent.transform, false);
                     _iteration++;
                     _b16 = true;
+                }
+                break;
+        }
+
+        switch (BookManager.Instance.CheckBookEquipped("Challenge"))
+        {
+            case 0:
+                break;
+            case 1:
+                if (_b17 == false)
+                {
+                    var _bookUI17 = Instantiate(Cha[0], new Vector3(30 - (50 * _iteration), 0f, 0f), Quaternion.identity);
+                    _bookUI17.transform.SetParent(parent.transform, false);
+                    _iteration++;
+                    _b17 = true;
+                }
+                break;
+            case 2:
+                if (_b18 == false)
+                {
+                    var _bookUI18 = Instantiate(Cha[1], new Vector3(30 - (50 * _iteration), 0f, 0f), Quaternion.identity);
+                    _bookUI18.transform.SetParent(parent.transform, false);
+                    _iteration++;
+                    _b18 = true;
+                }
+                break;
+        }
+
+        switch (BookManager.Instance.CheckBookEquipped("Tenacity"))
+        {
+            case 0:
+                break;
+            case 1:
+                if (_b19 == false)
+                {
+                    var _bookUI19 = Instantiate(Ten[0], new Vector3(30 - (50 * _iteration), 0f, 0f), Quaternion.identity);
+                    _bookUI19.transform.SetParent(parent.transform, false);
+                    _iteration++;
+                    _b19 = true;
+                }
+                break;
+            case 2:
+                if (_b20 == false)
+                {
+                    var _bookUI20 = Instantiate(Ten[1], new Vector3(30 - (50 * _iteration), 0f, 0f), Quaternion.identity);
+                    _bookUI20.transform.SetParent(parent.transform, false);
+                    _iteration++;
+                    _b20 = true;
+                }
+                break;
+        }
+
+        switch (BookManager.Instance.CheckBookEquipped("Alertness"))
+        {
+            case 0:
+                break;
+            case 1:
+                if (_b21 == false)
+                {
+                    var _bookUI21 = Instantiate(Ale[0], new Vector3(30 - (50 * _iteration), 0f, 0f), Quaternion.identity);
+                    _bookUI21.transform.SetParent(parent.transform, false);
+                    _iteration++;
+                    _b21 = true;
+                }
+                break;
+            case 2:
+                if (_b22 == false)
+                {
+                    var _bookUI22 = Instantiate(Ale[1], new Vector3(30 - (50 * _iteration), 0f, 0f), Quaternion.identity);
+                    _bookUI22.transform.SetParent(parent.transform, false);
+                    _iteration++;
+                    _b22 = true;
                 }
                 break;
         }

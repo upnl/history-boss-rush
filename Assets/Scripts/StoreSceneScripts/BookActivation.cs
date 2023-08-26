@@ -26,16 +26,12 @@ public class BookActivation : MonoBehaviour
     public GameObject[] God43;
     public GameObject[] God44;
 
+    public GameObject[] Cha;
+    public GameObject[] Ten;
+    public GameObject[] Ale;
+
     void Start()
     {
-        for (int i = 1; i < 5; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                transform.GetChild(i).gameObject.transform.GetChild(j).gameObject.SetActive(false);
-            }
-        }
-
         ActivateBook();
     }
 
@@ -142,6 +138,45 @@ public class BookActivation : MonoBehaviour
             case 2:
                 Surtur4[0].gameObject.SetActive(true);
                 Surtur4[1].gameObject.SetActive(true);
+                break;
+        }
+
+        switch (BookManager.Instance.CheckBookUnlocked("Challenge"))
+        {
+            case 0:
+                break;
+            case 1:
+                Cha[0].gameObject.SetActive(true);
+                break;
+            case 2:
+                Cha[0].gameObject.SetActive(true);
+                Cha[1].gameObject.SetActive(true);
+                break;
+        }
+
+        switch (BookManager.Instance.CheckBookUnlocked("Tenacity"))
+        {
+            case 0:
+                break;
+            case 1:
+                Ten[0].gameObject.SetActive(true);
+                break;
+            case 2:
+                Ten[0].gameObject.SetActive(true);
+                Ten[1].gameObject.SetActive(true);
+                break;
+        }
+
+        switch (BookManager.Instance.CheckBookUnlocked("Alertness"))
+        {
+            case 0:
+                break;
+            case 1:
+                Ale[0].gameObject.SetActive(true);
+                break;
+            case 2:
+                Ale[0].gameObject.SetActive(true);
+                Ale[1].gameObject.SetActive(true);
                 break;
         }
     }
