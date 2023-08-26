@@ -1457,9 +1457,9 @@ MonoBehaviour:
   dialogs1:
   - "\uB09C \uC624\uB798\uC804\uBD80\uD130 \uC774\uACF3\uC744 \uAD00\uB9AC\uD574\uC654\uC9C0."
   dialogs2:
-  - 1
-  - 2
-  - 3
+  - "\uC778\uB958\uB294 \uC2E0\uB4E4\uC5D0\uAC8C \uC5B5\uC555\uBC1B\uC544\uC654\uC5B4."
+  - "\uC790\uB124, \uADF8\uB9AC\uACE0 \uC790\uB124\uC758 \uD6C4\uC190\uB4E4\uB9CC\uC774
+    \uC720\uC77C\uD55C \uD76C\uB9DD\uC774\uB77C\uACE0."
   dialogs3:
   - "\uC774\uACF3\uC758 \uBD81\uB3D9\uCABD\uC5D0\uB294 \uAC70\uB300\uD55C \uB9DD\uCE58\uB97C
     \uB2E4\uB8E8\uB294 \uC2E0\uC758 \uC2E0\uC804\uC774 \uC788\uB2E4\uB124."
@@ -1475,8 +1475,9 @@ MonoBehaviour:
   dialogs7:
   - "\uC774\uACF3\uC758 \uB0A8\uB3D9\uCABD\uC5D0\uB294 \uB728\uAC81\uAC8C \uD0C0\uC624\uB974\uB294
     \uC2E0\uC804\uC774 \uC788\uC9C0."
+  - "\uC900\uBE44\uB97C \uB2E8\uB2E8\uD788 \uD574\uC57C \uD560 \uAC78\uC138."
   dialogs8:
-  - "\uC774\uACF3\uC758 \uB0A8\uC11C\uCABD\uC5D0\uB294"
+  - "...\uC65C \uADF8\uB807\uAC8C \uCCD0\uB2E4\uBCF4\uB294\uAC00?"
   textObj: {fileID: 1190837917}
 --- !u!60 &584357786
 PolygonCollider2D:
@@ -4634,8 +4635,6 @@ GameObject:
   - component: {fileID: 1398205633}
   - component: {fileID: 1398205632}
   - component: {fileID: 1398205634}
-  - component: {fileID: 1398205635}
-  - component: {fileID: 1398205636}
   m_Layer: 0
   m_Name: shopBackground
   m_TagString: Untagged
@@ -4720,30 +4719,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 574a52cabca5d4a4c93ae7ebadc351bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1398205635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398205631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 574a52cabca5d4a4c93ae7ebadc351bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1398205636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398205631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79732e83d8282b45ab2fa054304df4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1399643810

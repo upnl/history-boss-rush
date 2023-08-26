@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     #region Internal
     private float maxHP = 100f;
     private float nowHP = 100f;
-    private float normalDamage = 3f;
+    private float normalDamage = 2f;
 
     [SerializeField] protected Warner _Warner;
     [SerializeField] protected LayerMask _playerLayer;
@@ -42,7 +42,7 @@ public class Boss : MonoBehaviour
             int.Parse(e[BookManager.Instance.bookDB.GetHeaderIndex("level")]) == historyLevel)[BookManager.Instance.bookDB.GetHeaderIndex("effect1")]);
 
         nowHP -= normalDamage * effect1 / 100f;
-        BookManager.Instance.AddBlood(5);
+        BookManager.Instance.AddBlood(3);
         hpSlider.value = nowHP/maxHP;
         GameManager.Instance.QuestManager.CheckAttackPercent();
         if (nowHP <= 0f)
