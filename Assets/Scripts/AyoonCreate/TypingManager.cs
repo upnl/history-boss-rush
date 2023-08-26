@@ -40,6 +40,7 @@ public class TypingManager : MonoBehaviour
         }
 
         Instance = this;
+
         timer = timeForCharacter;
         characterTime = timeForCharacter;
     }
@@ -92,6 +93,19 @@ public class TypingManager : MonoBehaviour
         {
             characterTime = timeForCharacter;
         }
+    }
+
+    public void InitiateText(TextMeshProUGUI textObj)
+    {
+        StopAllCoroutines();
+
+        textObj.text = "";
+        isDialogEnd = true;
+        isTyping = false;
+        dialogsSave = null;
+        tmpSave = null;
+        dialogNumber = 0;
+        textBox.gameObject.SetActive(false);
     }
 
     IEnumerator Typer(char[] chars, TextMeshProUGUI textObj)

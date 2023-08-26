@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MoveScene2 : MonoBehaviour
 {
     public string sceneName = "";
+    [TextArea] public string warningText = "";
+    public string bossName = "";
 
     [SerializeField] public GameObject name;
 
@@ -26,7 +28,13 @@ public class MoveScene2 : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
         name.gameObject.SetActive(true);
 
-        if (Input.GetMouseButtonDown(0))
+        if (BookManager.Instance.CheckBossDefeated(bossName) == 1 && Input.GetMouseButtonDown(0))
+        {
+            PopUIManager.Instance.ShowPopUI(warningText);
+            PopUIManager.Instance.nowObj = sceneName;
+        }
+
+        else if (Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene(sceneName);
         }
@@ -37,4 +45,5 @@ public class MoveScene2 : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
         name.gameObject.SetActive(false);
     }
+
 }

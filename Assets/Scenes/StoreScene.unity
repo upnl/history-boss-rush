@@ -387,6 +387,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &196178170
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +745,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &327623794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1394,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain:
+  - "\uC694 \uCC45\uC740 \uC5B4\uCA4C\uACE0\uC800\uCA4C\uACE0"
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &584357783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2145,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &651937798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,6 +2786,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &749900152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2946,6 +2962,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &789459651
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,6 +3553,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1113927638
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,6 +3689,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1190837915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4134,6 +4159,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1311474827
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,6 +4634,8 @@ GameObject:
   - component: {fileID: 1398205633}
   - component: {fileID: 1398205632}
   - component: {fileID: 1398205634}
+  - component: {fileID: 1398205635}
+  - component: {fileID: 1398205636}
   m_Layer: 0
   m_Name: shopBackground
   m_TagString: Untagged
@@ -4690,6 +4720,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 574a52cabca5d4a4c93ae7ebadc351bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1398205635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398205631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574a52cabca5d4a4c93ae7ebadc351bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1398205636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398205631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79732e83d8282b45ab2fa054304df4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1399643810
@@ -5006,6 +5060,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1458484097
 GameObject:
   m_ObjectHideFlags: 0
@@ -5141,6 +5198,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1466188676
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,6 +5504,10 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1497337609
 GameObject:
   m_ObjectHideFlags: 0
@@ -6094,6 +6158,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &1582973595
 GameObject:
   m_ObjectHideFlags: 0
@@ -7108,6 +7175,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &2004856682
 GameObject:
   m_ObjectHideFlags: 0
@@ -7370,6 +7440,10 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
+  bookExplain:
+  - "\uC774 \uB140\uC11D\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &2037732012
 GameObject:
   m_ObjectHideFlags: 0
@@ -7503,6 +7577,9 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
+  bookExplain: []
+  textObj: {fileID: 1190837917}
+  textBox: {fileID: 708734394}
 --- !u!1 &2088039640
 GameObject:
   m_ObjectHideFlags: 0
