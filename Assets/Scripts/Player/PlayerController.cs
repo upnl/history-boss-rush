@@ -405,15 +405,18 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("DeathHitBox"))
         {
-            if(IsDashing && elapsedTime > dashStartUpTime && elapsedTime < dashStartUpTime + dashInvulnTime)
-            {
-                OnDashSuccess();
-            }
-            else
-            {
-                Debug.Log("Death");
-                // GetDamaged();
-            }
+            Debug.Log("Death");
+            GetDamaged();
+
+            //if(IsDashing && elapsedTime > dashStartUpTime && elapsedTime < dashStartUpTime + dashInvulnTime)
+            //{
+            //    OnDashSuccess();
+            //}
+            //else
+            //{
+            //    Debug.Log("Death");
+            //    GetDamaged();
+            //}
         }
     }
 
