@@ -1931,6 +1931,9 @@ MonoBehaviour:
   God44:
   - {fileID: 0}
   - {fileID: 0}
+  Cha: []
+  Ten: []
+  Ale: []
 --- !u!1 &715063963
 GameObject:
   m_ObjectHideFlags: 0
@@ -4409,32 +4412,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1338050335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3699085431147600028, guid: 1df66341f9336424bbf139d783395605, type: 3}
-  m_PrefabInstance: {fileID: 3699085431130190071}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1338050338
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338050335}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5135533ab85c0a9439ddcc8045626e09, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1338593505
 GameObject:
   m_ObjectHideFlags: 0
@@ -54754,14 +54731,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossSurtr
       objectReference: {fileID: 0}
-    - target: {fileID: 3699085431147600026, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f8b44453495690b45867d70c07af885a, type: 3}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: flame
-      value: 
-      objectReference: {fileID: 2049108434}
     - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
       propertyPath: player
       value: 
@@ -54771,33 +54740,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 971445310}
     - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: swordAnimator
-      value: 
-      objectReference: {fileID: 1338050338}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
       propertyPath: playerCollider
       value: 
       objectReference: {fileID: 772006285}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: effectPrefabs.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: effectPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 7733442126548113621, guid: 24d05ab351dc24a43b29d62e622dc6be, type: 3}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: effectPrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 5520432248368550745, guid: 23b82d6a00d12ac48b814c1c6353ef2d, type: 3}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: effectPrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 5571652140338801800, guid: 6cfa83aaf72f20249bc5da259fe66eac, type: 3}
-    - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
-      propertyPath: effectPrefabs.Array.data[8]
-      value: 
-      objectReference: {fileID: 6947533498238155958, guid: 0290605008b046f4ca6c4043e61736aa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1df66341f9336424bbf139d783395605, type: 3}
 --- !u!114 &3699085431130190072 stripped

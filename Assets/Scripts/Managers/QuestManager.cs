@@ -100,7 +100,7 @@ public class QuestManager : MonoBehaviour
         }
         for(int i=1; i<5; i++)
         {
-            switch(BookManager.Instance.CheckBookUnlocked("Thor"+i.ToString()))
+            switch(BookManager.Instance.CheckBookUnlocked(bossName+i.ToString()))
             {
                 case 0:
                     break;

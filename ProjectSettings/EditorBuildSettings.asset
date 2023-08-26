@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StoreScene.unity
     guid: 6e80cd5febf8b4b0e98fb1fa46da3684
   - enabled: 1
+    path: Assets/Scenes/FieldScene.unity
+    guid: dc4b142677482ce4e8b91c67c82c844e
+  - enabled: 1
     path: Assets/Scenes/Boss_Thor.unity
     guid: 4a179b3fcc9a9d746b10de94df779187
   - enabled: 1
-    path: Assets/Scenes/FieldScene.unity
-    guid: dc4b142677482ce4e8b91c67c82c844e
+    path: Assets/Scenes/Boss_Surtr 2.unity
+    guid: 8d662ab487fe2794c8d610a547b9a1af
   m_configObjects: {}

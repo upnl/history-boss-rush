@@ -17,6 +17,8 @@ public class Boss : MonoBehaviour
     #region External
     public float MaxHP => maxHP;
     public float NowHP => nowHP;
+
+    public string bossName;
     #endregion
 
 
@@ -47,6 +49,7 @@ public class Boss : MonoBehaviour
         GameManager.Instance.QuestManager.CheckAttackPercent();
         if (nowHP <= 0f)
         {
+            BookManager.Instance.BossDefeated(bossName);
             GameManager.Instance.GameStateManager.Win();
         }
     }

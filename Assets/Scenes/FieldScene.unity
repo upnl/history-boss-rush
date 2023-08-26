@@ -2036,6 +2036,9 @@ MonoBehaviour:
   God44:
   - {fileID: 0}
   - {fileID: 0}
+  Cha: []
+  Ten: []
+  Ale: []
 --- !u!1 &1200368261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,7 +3907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0b4f5fd03f0f6408ad762a12fcc55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: StoreScene
+  sceneName: Boss_Surtr 2
   warningText: "<color=#D22525>\uD654\uC5FC\uC758 \uC2E0\uC804</color>\uC5D0\n\uB2E4\uC2DC
     \uB3C4\uC804\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   bossName: Surtr
