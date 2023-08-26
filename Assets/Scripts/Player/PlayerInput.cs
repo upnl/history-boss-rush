@@ -15,9 +15,9 @@ public class PlayerInput : MonoBehaviour
         {
             DashDown = Input.GetKeyDown(KeyCode.Space),
             AttackDown = Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0),
-            ShootDown = Input.GetMouseButtonDown(2),
-            ShootHeld = Input.GetMouseButton(2),
-            ShootUp = Input.GetMouseButtonUp(2),
+            ShootDown = Input.GetMouseButtonDown(1),
+            ShootHeld = Input.GetMouseButton(1),
+            ShootUp = Input.GetMouseButtonUp(1),
             Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
 
             WriteDown = Input.GetKeyDown(KeyCode.F),
