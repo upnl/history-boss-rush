@@ -66,8 +66,8 @@ public class QuestManager : MonoBehaviour
         patternSeeCountLevel1Cut = intParseConditionDB("Thor1", 1);
         patternSeeCountLevel2Cut = intParseConditionDB("Thor1", 2);
 
-        justAvoidCountLevel1Cut = intParseConditionDB("Alertness", 1, 2);
-        justAvoidCountLevel2Cut = intParseConditionDB("Alertness", 2, 2);
+        justAvoidCountLevel1Cut = intParseConditionDB("Alertness", 1);
+        justAvoidCountLevel2Cut = intParseConditionDB("Alertness", 2);
 
         switch(BookManager.Instance.CheckBookUnlocked("Tenacity"))
         {
