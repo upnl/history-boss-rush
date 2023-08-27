@@ -4,17 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TitleSceneMover : MonoBehaviour
 {
+    public GameObject Story;
     public GameObject Tutorial1;
     public GameObject Tutorial2;
+
+    static public bool StoryEnd = false;
 
     void Update()
     {
         if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
         {
-            if (Tutorial1.activeSelf == false)
+            if (Story.activeSelf == false)
             {
-                Tutorial1.SetActive(true);
+                Story.SetActive(true);
             }
+
+            else if (Tutorial1.activeSelf == false)
+            {
+                if (StoryEnd == true)
+                {
+                    Tutorial1.SetActive(true);
+                }
+            }
+
             else
             {
                 if (Tutorial2.activeSelf == false)
