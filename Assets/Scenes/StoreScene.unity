@@ -1341,7 +1341,8 @@ MonoBehaviour:
   bookPrice: 20
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC744 \uC77D\uC73C\uBA74 \uC790\uC8FC \uB300\uC26C\uD560 \uC218
+    \uC788\uB2E4\uB124. (20 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!60 &480931613
@@ -3705,7 +3706,8 @@ MonoBehaviour:
   bookPrice: 35
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC744 \uC77D\uC73C\uBA74 \uB354\uC6B1 \uC790\uC8FC \uB300\uC26C\uD560
+    \uC218 \uC788\uB2E4\uB124. (30 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!60 &1037753848

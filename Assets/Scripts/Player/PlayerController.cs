@@ -214,6 +214,12 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private float elapsedTime = 0f;
     private IEnumerator Dash()
     {
+        int Lvl = BookManager.Instance.CheckBookEquipped("Alertness");
+
+        float effect1 = float.Parse(BookManager.Instance.bookDB.GetData().Find(
+            e => e[BookManager.Instance.bookDB.GetHeaderIndex("title")].Equals("Alertness") &&
+            int.Parse(e[BookManager.Instance.bookDB.GetHeaderIndex("level")]) == Lvl)[BookManager.Instance.bookDB.GetHeaderIndex("effect1")]);
+
         GameObject dashDummyObject = Instantiate(dashDummy, transform.position, Quaternion.identity);
         JustDashDummy dashDummyComponent = dashDummyObject.GetComponent<JustDashDummy>();
         dashDummyComponent.StartUp(dashStartUpTime, dashInvulnTime, this);
@@ -229,7 +235,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         }
 
         IsDashing = false;
-        yield return new WaitForSeconds(dashCoolTime - dashTime);
+        yield return new WaitForSeconds((dashCoolTime * (1 - effect1)) - dashTime);
         ResetDash();
     }
 
@@ -241,6 +247,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
         {
             IsDashSuccess = true;
             Debug.Log("DashSuccess");
+
+            _QuestManager.UpJustAvoidCount();
             // book related things
         }
     }
