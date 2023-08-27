@@ -5,7 +5,7 @@ using TMPro;
 
 public class StoryProgress : MonoBehaviour
 {
-    public string[] story;
+    [TextArea] public string[] story;
 
     public TextMeshProUGUI textObj;
 
