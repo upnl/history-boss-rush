@@ -40,6 +40,11 @@ public class SceneLoader : MonoBehaviour
         canvasGroup = BlackScreen.GetComponent<CanvasGroup>();
     }
 
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
     public void LoadTitleScene()
     {
         StartCoroutine(LoadSceneAsync("Title"));

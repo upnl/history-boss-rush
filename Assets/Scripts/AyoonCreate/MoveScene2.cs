@@ -23,8 +23,14 @@ public class MoveScene2 : MonoBehaviour
         
     }
 
+    private void OnMouseEnter()
+    {
+        AudioManager.Instance.PlaySfx(8);
+    }
+
     private void OnMouseOver()
     {
+        
         gameObject.GetComponent<SpriteRenderer>().material.color = new Color(169 / 255f, 169 / 255f, 169 / 255f, 255 / 255f);
         name.gameObject.SetActive(true);
 
@@ -36,7 +42,7 @@ public class MoveScene2 : MonoBehaviour
 
         else if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene(sceneName);
+            SceneLoader.Instance.LoadScene(sceneName);
         }
     }
 

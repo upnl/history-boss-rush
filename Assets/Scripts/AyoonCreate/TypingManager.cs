@@ -52,6 +52,7 @@ public class TypingManager : MonoBehaviour
         tmpSave = textObj;
         if (dialogNumber < dialogs.Length)
         {
+            AudioManager.Instance.PlaySfx(8);
             char[] chars = dialogs[dialogNumber].ToCharArray(); //받아온 다이얼 로그를 char로 변환.
             StartCoroutine(Typer(chars, textObj)); //레퍼런스로 넘겨보는거 테스트 해보자.
         }

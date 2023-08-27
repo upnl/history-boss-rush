@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
         _canDash = canDashOverride;
         _canMove = true;
         _hasControl = true;
+        _canAttack = true;
+        _canDash = true;
     }
 
     #endregion
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         if (FrameInput.AttackDown && !_isAttacking) _attackToConsume = true;
         if (FrameInput.ShootDown && !_isShooting)
         {
+            AudioManager.Instance.PlaySfx(4);
             ShootStanceChanged?.Invoke(true);
             _isShootingStance = true;
             _canDash = false;
@@ -97,6 +100,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         {
             if(!_isShootingStance)
             {
+                AudioManager.Instance.PlaySfx(4);
                 _isShootingStance = true;
                 ShootStanceChanged?.Invoke(true);
             }
@@ -179,8 +183,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private float dashCoolTime = 0.75f;
 
     [SerializeField] private GameObject dashDummy;
-    private float dashStartUpTime = 0.05f;
-    private float dashInvulnTime = 0.3f;
+    private float dashStartUpTime = 0.1f;
+    private float dashInvulnTime = 0.2f;
 
 
     private void HandleDashing()
@@ -195,6 +199,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
             }
             else
             {
+                AudioManager.Instance.PlaySfx(9);
                 IsDashing = true;
                 _dashCoolTime = false;
                 DashingChanged?.Invoke(true, cachedPlayerDirection);
@@ -245,6 +250,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         // To Prevent one dash succeding twice
         if(!IsDashSuccess)
         {
+            AudioManager.Instance.PlaySfx(10);
             IsDashSuccess = true;
             Debug.Log("DashSuccess");
 
@@ -271,6 +277,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         if (_canAttack)
         {
             Debug.Log("Attacking");
+            AudioManager.Instance.PlaySfx(5);
             var attackDirection = new Vector2(FrameInput.MousePosition.x - transform.position.x, FrameInput.MousePosition.y - transform.position.y).normalized;
 
             Attacked?.Invoke(attackDirection);
@@ -327,6 +334,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
             if(_shootToConsume)
             {
                 Debug.Log("Shooting");
+                AudioManager.Instance.PlaySfx(6);
                 var attackDirection = new Vector2(FrameInput.MousePosition.x - transform.position.x, FrameInput.MousePosition.y - transform.position.y).normalized;
 
                 Shotted?.Invoke(attackDirection, true);
@@ -413,27 +421,30 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("DeathHitBox"))
         {
-            Debug.Log("Death");
-            GetDamaged();
+            //Debug.Log("Death");
+            //GetDamaged();
 
-            //if(IsDashing && elapsedTime > dashStartUpTime && elapsedTime < dashStartUpTime + dashInvulnTime)
-            //{
-            //    OnDashSuccess();
-            //}
-            //else
-            //{
-            //    Debug.Log("Death");
-            //    GetDamaged();
-            //}
+            if (IsDashing && elapsedTime > dashStartUpTime && elapsedTime < dashStartUpTime + dashInvulnTime)
+            {
+                OnDashSuccess();
+            }
+            else
+            {
+                Debug.Log("Death");
+                GetDamaged();
+            }
         }
     }
 
     public void GetDamaged()
     {
-        _isAlive = false;
-        _canMove = false;
-        _canDash = false;
-        GameManager.Instance.GameStateManager.Lose();
+        if(_isAlive)
+        {
+            _isAlive = false;
+            _canMove = false;
+            _canDash = false;
+            GameManager.Instance.GameStateManager.Lose();
+        }
     }
 }
 

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlackScreen: {fileID: 5402806889742901318}
-  canvasGroup: {fileID: 0}
+  canvasGroup: {fileID: 5402806889742901321}
 --- !u!1 &5402806889742901318
 GameObject:
   m_ObjectHideFlags: 0

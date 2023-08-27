@@ -32,6 +32,6 @@ public class MoveScene : MonoBehaviour
 
     public void Click()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneLoader.Instance.LoadScene(sceneName);
     }
 }

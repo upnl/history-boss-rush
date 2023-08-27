@@ -24,7 +24,7 @@ public class Surtr : Boss
         bookDB = BookManager.Instance.bookDB;
         playerController = player.GetComponent<PlayerController>();
         pattern += UseAPattern;
-        cooltime = Random.Range(1.5f, 3f);
+        cooltime = Random.Range(1.2f, 2f);
         currentGauge = 0f;
         isBusy = false;
     }
@@ -132,11 +132,14 @@ public class Surtr : Boss
         yield return rotateTween.WaitForCompletion();
         swordAnimator.SetTrigger("Swipe");
 
+        AudioManager.Instance.PlaySfx(7);
         yield return new WaitForSeconds(0.5f - effect1);
         _Warner.InstantiateHitFan60(transform.position, player.transform.position, 10f);
+
         yield return new WaitForSeconds(effect1);
         _Warner.RemoveAllHitArea();
 
+        
         Instantiate(effectPrefabs[0], surtrSword.transform.position, surtrSword.rotation);
         Instantiate(effectPrefabs[2], surtrSword.transform.position, surtrSword.rotation);
 
@@ -168,12 +171,15 @@ public class Surtr : Boss
 
 
         GameObject[] flameList = new GameObject[6];
+        AudioManager.Instance.PlaySfx(7);
         yield return new WaitForSeconds(0.5f - effect1);
         for (int i = 0; i < 6; i++)
         {
             flameList[i] = Instantiate(effectPrefabs[4], new Vector3(Random.Range(-9.5f, 9.5f), Random.Range(-9.5f, 9.5f), 0), Quaternion.identity);
             _Warner.InstantiateHitCircle(flameList[i].transform.position + new Vector3(0, -2f, 0), 1f);
         }
+
+        
         yield return new WaitForSeconds(effect1);
         swordAnimator.SetTrigger("SetUp");
         _Warner.RemoveAllHitArea();
@@ -212,10 +218,13 @@ public class Surtr : Boss
         Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
 
         yield return new WaitForSeconds(1f - effect1);
+        AudioManager.Instance.PlaySfx(7);
         _Warner.InstantiateHitBox(surtrSword.position, cachedPlayerPosition, 3f);
         yield return new WaitForSeconds(effect1);
 
         _Warner.RemoveAllHitArea();
+
+        
         var magmaPool = Instantiate(effectPrefabs[5], surtrSword.position + (cachedPlayerPosition - surtrSword.position).normalized * 2f, Quaternion.identity);
         MagmaPool magmaPoolScript = magmaPool.GetComponent<MagmaPool>();
         magmaPoolScript.SetDirection((cachedPlayerPosition - surtrSword.position).normalized);
@@ -247,12 +256,15 @@ public class Surtr : Boss
         var rotateTween = surtrSword.DORotate(new Vector3(0, 0, originalRotation), 0.5f);
         yield return rotateTween.WaitForCompletion();
 
+        AudioManager.Instance.PlaySfx(7);
         yield return new WaitForSeconds(0.5f - effect1);
         _Warner.InstantiateHitBox(surtrSword.position, cachedPlayerPosition, 1f);
         Instantiate(effectPrefabs[6], surtrSword.position, Quaternion.identity);
         yield return new WaitForSeconds(effect1);
 
         _Warner.RemoveAllHitArea();
+
+        
         Instantiate(effectPrefabs[7], surtrSword.position, surtrSword.rotation);
 
         yield return new WaitForSeconds(1f);
@@ -285,11 +297,14 @@ public class Surtr : Boss
         swordAnimator.SetTrigger("SetDown");
 
         yield return new WaitForSeconds(0.5f - effect1);
+        AudioManager.Instance.PlaySfx(7);
         _Warner.InstantiateHitCircle(surtrSword.position + new Vector3(0, -2f, 0), 8f);
         Instantiate(effectPrefabs[6], surtrSword.position + new Vector3(0, -2f, 0), Quaternion.identity);
         yield return new WaitForSeconds(effect1);
 
         Instantiate(effectPrefabs[8], surtrSword.position + new Vector3(0, -2f, 0), Quaternion.identity);
+        
+
         _Warner.RemoveAllHitArea();
         swordAnimator.SetTrigger("SetUp");
 

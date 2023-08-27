@@ -16,6 +16,7 @@ public class TitleSceneMover : MonoBehaviour
     {
         if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
         {
+            
             if (Story.activeSelf == false)
             {
 
@@ -50,6 +51,7 @@ public class TitleSceneMover : MonoBehaviour
         var tweening = SceneLoader.Instance.canvasGroup.DOFade(1f, 0.5f);
         yield return tweening.WaitForCompletion();
         Story.SetActive(true);
+        AudioManager.Instance.PlaySfx(8);
         tweening = SceneLoader.Instance.canvasGroup.DOFade(0f, 0.5f);
         yield return tweening.WaitForCompletion();
         SceneLoader.Instance.BlackScreen.SetActive(false);
@@ -61,6 +63,7 @@ public class TitleSceneMover : MonoBehaviour
         var tweening = SceneLoader.Instance.canvasGroup.DOFade(1f, 0.5f);
         yield return tweening.WaitForCompletion();
         Tutorial1.SetActive(true);
+        AudioManager.Instance.PlaySfx(8);
         tweening = SceneLoader.Instance.canvasGroup.DOFade(0f, 0.5f);
         yield return tweening.WaitForCompletion();
         SceneLoader.Instance.BlackScreen.SetActive(false);
@@ -72,6 +75,7 @@ public class TitleSceneMover : MonoBehaviour
         var tweening = SceneLoader.Instance.canvasGroup.DOFade(1f, 0.5f);
         yield return tweening.WaitForCompletion();
         Tutorial2.SetActive(true);
+        AudioManager.Instance.PlaySfx(8);
         tweening = SceneLoader.Instance.canvasGroup.DOFade(0f, 0.5f);
         yield return tweening.WaitForCompletion();
         SceneLoader.Instance.BlackScreen.SetActive(false);

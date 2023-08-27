@@ -65,7 +65,7 @@ public class Thor : Boss
             if (currentGauge >= cooltime)
             {
                 currentGauge = 0f;
-                cooltime = Random.Range(1.5f, 3f);
+                cooltime = Random.Range(1.5f, 2f);
                 pattern();
             }
         }
@@ -196,7 +196,7 @@ public class Thor : Boss
             mjolnir.position = mjolnir.transform.position + mjolnirSpeed * Time.deltaTime * velocity;
             if (mjolnir.GetComponent<Collider2D>().IsTouching(playerCollider))
             {
-                AudioManager.Instance.PlaySfx(3);
+                // AudioManager.Instance.PlaySfx(3);
                 // playerBehaviour.GetDamaged();
             }
         }
@@ -351,7 +351,7 @@ public class Thor : Boss
         ThorSpriteRenderer.sprite = thorSpriteList[1];
         MoveToPosition(mjolnir, transform.position + new Vector3(0f, 2f, 0f));
 
-        yield return new WaitForSeconds(1f - effect1);
+        yield return new WaitForSeconds(0.5f - effect1);
 
         _Warner.InstantiateHitFan60(transform.position, playerPos, 28.4f);
 
