@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
 {
     private static SceneLoader _Instance;
     public GameObject BlackScreen;
-    private CanvasGroup canvasGroup;
+    public CanvasGroup canvasGroup;
 
     void Awake()
     {

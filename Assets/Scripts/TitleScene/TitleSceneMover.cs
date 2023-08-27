@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+
 public class TitleSceneMover : MonoBehaviour
 {
     public GameObject Story;
@@ -16,14 +18,15 @@ public class TitleSceneMover : MonoBehaviour
         {
             if (Story.activeSelf == false)
             {
-                Story.SetActive(true);
+
+                StartCoroutine(MoveToStory());
             }
 
             else if (Tutorial1.activeSelf == false)
             {
                 if (StoryEnd == true)
                 {
-                    Tutorial1.SetActive(true);
+                    StartCoroutine(MoveToTutorial1());
                 }
             }
 
@@ -31,13 +34,46 @@ public class TitleSceneMover : MonoBehaviour
             {
                 if (Tutorial2.activeSelf == false)
                 {
-                    Tutorial2.SetActive(true);
+                    StartCoroutine(MoveToTutorial2());
                 }
                 else
                 {
-                    SceneManager.LoadScene("StoreScene");
+                    SceneLoader.Instance.LoadStoreScene();
                 }
             }
         }
+    }
+
+    IEnumerator MoveToStory()
+    {
+        SceneLoader.Instance.BlackScreen.SetActive(true);
+        var tweening = SceneLoader.Instance.canvasGroup.DOFade(1f, 0.5f);
+        yield return tweening.WaitForCompletion();
+        Story.SetActive(true);
+        tweening = SceneLoader.Instance.canvasGroup.DOFade(0f, 0.5f);
+        yield return tweening.WaitForCompletion();
+        SceneLoader.Instance.BlackScreen.SetActive(false);
+    }
+
+    IEnumerator MoveToTutorial1()
+    {
+        SceneLoader.Instance.BlackScreen.SetActive(true);
+        var tweening = SceneLoader.Instance.canvasGroup.DOFade(1f, 0.5f);
+        yield return tweening.WaitForCompletion();
+        Tutorial1.SetActive(true);
+        tweening = SceneLoader.Instance.canvasGroup.DOFade(0f, 0.5f);
+        yield return tweening.WaitForCompletion();
+        SceneLoader.Instance.BlackScreen.SetActive(false);
+    }
+
+    IEnumerator MoveToTutorial2()
+    {
+        SceneLoader.Instance.BlackScreen.SetActive(true);
+        var tweening = SceneLoader.Instance.canvasGroup.DOFade(1f, 0.5f);
+        yield return tweening.WaitForCompletion();
+        Tutorial2.SetActive(true);
+        tweening = SceneLoader.Instance.canvasGroup.DOFade(0f, 0.5f);
+        yield return tweening.WaitForCompletion();
+        SceneLoader.Instance.BlackScreen.SetActive(false);
     }
 }
