@@ -2036,9 +2036,15 @@ MonoBehaviour:
   God44:
   - {fileID: 0}
   - {fileID: 0}
-  Cha: []
-  Ten: []
-  Ale: []
+  Cha:
+  - {fileID: 90031873893405567, guid: a139b0703771b284ea7bef0595206f48, type: 3}
+  - {fileID: 90031873893405567, guid: b2981c7df12ab6844a1c3d2df66434f3, type: 3}
+  Ten:
+  - {fileID: 90031873893405567, guid: fa1bf5cd9da7cf44c87836004f1fa5ab, type: 3}
+  - {fileID: 90031873893405567, guid: 881e0a7c7218f9f408e1aae2cca0b495, type: 3}
+  Ale:
+  - {fileID: 90031873893405567, guid: 7b811128a0063514c9fa238c6a18784f, type: 3}
+  - {fileID: 90031873893405567, guid: edab460822efa574d8dcf58659ae51f0, type: 3}
 --- !u!1 &1200368261
 GameObject:
   m_ObjectHideFlags: 0
