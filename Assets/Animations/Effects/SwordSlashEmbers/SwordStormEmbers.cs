@@ -14,6 +14,11 @@ public class SwordStormEmbers : MonoBehaviour
         StartCoroutine(EmberSpawnCoroutine());
     }
 
+    private void Update()
+    {
+        transform.Rotate(0, 0, 60f * Time.deltaTime);
+    }
+
     private IEnumerator EmberSpawnCoroutine()
     {
         float originalRotation = transform.rotation.eulerAngles.z + Random.Range(0, 60);
@@ -30,7 +35,8 @@ public class SwordStormEmbers : MonoBehaviour
                 float targetRotation = originalRotation + (j) * 60f + 30f * Mathf.Sin((float)i / (float)emberCount * Mathf.PI);
                 // Debug.Log(targetRotation);
                 Vector3 direction = new Vector3(Mathf.Cos(targetRotation * Mathf.Deg2Rad), Mathf.Sin(targetRotation * Mathf.Deg2Rad));
-                Instantiate(emberPrefab, transform.position + distance * (direction), Quaternion.identity);
+                var ember = Instantiate(emberPrefab, transform.position + distance * (direction), Quaternion.identity);
+                ember.transform.SetParent(transform);
             }
             yield return new WaitForSeconds(0.08f);
         }

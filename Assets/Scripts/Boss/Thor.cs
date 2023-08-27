@@ -150,7 +150,7 @@ public class Thor : Boss
             mjolnir.transform.position = mjolnir.transform.position + mjolnirSpeed * Time.deltaTime * velocity;
             if (mjolnirCollider.IsTouching(playerCollider))
             {
-                AudioManager.Instance.PlaySfx(3);
+                // AudioManager.Instance.PlaySfx(3);
                 // playerBehaviour.GetDamaged();
             }
         }

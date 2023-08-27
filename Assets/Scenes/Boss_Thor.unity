@@ -2744,7 +2744,7 @@ MonoBehaviour:
   _boss: {fileID: 1292728506}
   _smoothTime: 0.3
   _offset: {x: 0, y: 0, z: 0}
-  _lookAheadModifier: 0.2
+  _lookAheadModifier: 0.38
   _bossModifier: 0
   _lookAheadSpeed: 0
 --- !u!1 &849320179

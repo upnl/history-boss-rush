@@ -44,32 +44,32 @@ public class Surtr : Boss
             surtrSword.position = Vector3.SmoothDamp(surtrSword.position, player.transform.position - offset * 6f, ref _vel, smoothTime);
         }
 
-        //디버그
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("1 " + isBusy);
-            StartCoroutine(Pattern1());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("2 " + isBusy);
-            StartCoroutine(Pattern2());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("3 " + isBusy);
-            StartCoroutine(Pattern3());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("4 " + isBusy);
-            StartCoroutine(Pattern4());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("5 " + isBusy);
-            StartCoroutine(Pattern5());
-        }
+        ////디버그
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    Debug.Log("1 " + isBusy);
+        //    StartCoroutine(Pattern1());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    Debug.Log("2 " + isBusy);
+        //    StartCoroutine(Pattern2());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    Debug.Log("3 " + isBusy);
+        //    StartCoroutine(Pattern3());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    Debug.Log("4 " + isBusy);
+        //    StartCoroutine(Pattern4());
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    Debug.Log("5 " + isBusy);
+        //    StartCoroutine(Pattern5());
+        //}
 
         if (!isBusy)
         {
@@ -77,7 +77,7 @@ public class Surtr : Boss
             if (currentGauge >= cooltime)
             {
                 currentGauge = 0f;
-                cooltime = Random.Range(1.5f, 3f);
+                cooltime = Random.Range(1f, 1.5f);
                 pattern();
             }
         }
@@ -134,7 +134,7 @@ public class Surtr : Boss
 
         AudioManager.Instance.PlaySfx(7);
         yield return new WaitForSeconds(0.5f - effect1);
-        _Warner.InstantiateHitFan60(transform.position, player.transform.position, 10f);
+        _Warner.InstantiateHitFan60(surtrSword.position, player.transform.position, 10f);
 
         yield return new WaitForSeconds(effect1);
         _Warner.RemoveAllHitArea();
@@ -144,7 +144,7 @@ public class Surtr : Boss
         Instantiate(effectPrefabs[2], surtrSword.transform.position, surtrSword.rotation);
 
         isFollow = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
         isBusy = false;
 
         GameManager.Instance.QuestManager.UpPatternSeeCount(1);
@@ -183,7 +183,7 @@ public class Surtr : Boss
         yield return new WaitForSeconds(effect1);
         swordAnimator.SetTrigger("SetUp");
         _Warner.RemoveAllHitArea();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         
 
         
@@ -229,7 +229,7 @@ public class Surtr : Boss
         MagmaPool magmaPoolScript = magmaPool.GetComponent<MagmaPool>();
         magmaPoolScript.SetDirection((cachedPlayerPosition - surtrSword.position).normalized);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.3f);
 
         isBusy = false;
         isFollow = true;
@@ -267,7 +267,7 @@ public class Surtr : Boss
         
         Instantiate(effectPrefabs[7], surtrSword.position, surtrSword.rotation);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
 
         isBusy = false;
         isFollow = true;
@@ -308,7 +308,7 @@ public class Surtr : Boss
         _Warner.RemoveAllHitArea();
         swordAnimator.SetTrigger("SetUp");
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         isBusy = false;
         isFollow = true;

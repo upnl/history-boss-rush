@@ -2404,7 +2404,7 @@ MonoBehaviour:
   _boss: {fileID: 347518682}
   _smoothTime: 0.3
   _offset: {x: 0, y: 0, z: 0}
-  _lookAheadModifier: 0.2
+  _lookAheadModifier: 0.38
   _bossModifier: 0
   _lookAheadSpeed: 0
 --- !u!1 &849320179
@@ -54577,6 +54577,26 @@ PrefabInstance:
     - target: {fileID: 3699085430803711535, guid: 1df66341f9336424bbf139d783395605, type: 3}
       propertyPath: m_Name
       value: BossSurtr
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699085430830450896, guid: 1df66341f9336424bbf139d783395605, type: 3}
+      propertyPath: m_Size.x
+      value: 2.8407211
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699085430830450896, guid: 1df66341f9336424bbf139d783395605, type: 3}
+      propertyPath: m_Offset.x
+      value: 2.2247448
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699085431147600026, guid: 1df66341f9336424bbf139d783395605, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699085431147600026, guid: 1df66341f9336424bbf139d783395605, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699085431147600026, guid: 1df66341f9336424bbf139d783395605, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -728130725
       objectReference: {fileID: 0}
     - target: {fileID: 5921928671626682903, guid: 1df66341f9336424bbf139d783395605, type: 3}
       propertyPath: player

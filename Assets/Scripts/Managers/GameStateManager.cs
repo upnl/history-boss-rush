@@ -78,7 +78,7 @@ public class GameStateManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            // Pause();
         }
     }
 }
