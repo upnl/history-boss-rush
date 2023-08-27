@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &99773668
 Transform:
   m_ObjectHideFlags: 0
@@ -256,7 +256,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uBD88\uC758 \uCC38\uACA9'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &116716704
@@ -277,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &116716705
 Transform:
   m_ObjectHideFlags: 0
@@ -310,7 +312,8 @@ MonoBehaviour:
   bookPrice: 15
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC744 \uC77D\uC73C\uBA74 \uBE60\uB974\uAC8C \uC6C0\uC9C1\uC77C
+    \uC218 \uC788\uB2E4\uB124. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!60 &116716707
@@ -636,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &323196988
 Transform:
   m_ObjectHideFlags: 0
@@ -751,7 +754,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uD53C\uB8B0\uCE68 \uBC29\uC804'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &372220671
@@ -1023,7 +1029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &426171819
 Transform:
   m_ObjectHideFlags: 0
@@ -1056,7 +1062,8 @@ MonoBehaviour:
   bookPrice: 15
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC744 \uC77D\uC73C\uBA74 \uAC15\uD558\uAC8C \uACF5\uACA9\uD560
+    \uC218 \uC788\uB2E4\uB124. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!60 &426171821
@@ -1160,7 +1167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &436726208
 Transform:
   m_ObjectHideFlags: 0
@@ -1278,7 +1285,9 @@ MonoBehaviour:
   bookPrice: 25
   equipped: 0
   bookExplain:
-  - "\uC694 \uCC45\uC740 \uC5B4\uCA4C\uACE0\uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uCC9C\uB465\uC758 \uADC0\uD658'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &480931610
@@ -1299,7 +1308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &480931611
 Transform:
   m_ObjectHideFlags: 0
@@ -1434,7 +1443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &529937586
 Transform:
   m_ObjectHideFlags: 0
@@ -1467,7 +1476,8 @@ MonoBehaviour:
   bookPrice: 25
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC744 \uC77D\uC73C\uBA74 \uB9E4\uC6B0 \uAC15\uD558\uAC8C \uACF5\uACA9\uD560
+    \uC218 \uC788\uB2E4\uB124. (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!60 &529937588
@@ -2184,7 +2194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &639869214
 Transform:
   m_ObjectHideFlags: 0
@@ -2301,7 +2311,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uBD88\uC758 \uCC38\uACA9'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &651937798
@@ -2835,7 +2848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &709608764
 Transform:
   m_ObjectHideFlags: 0
@@ -2950,7 +2963,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uB9C8\uADF8\uB9C8 \uAE30\uB465'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &785697186
@@ -2971,7 +2986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &785697187
 Transform:
   m_ObjectHideFlags: 0
@@ -3087,7 +3102,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uB9C8\uADF8\uB9C8 \uAE30\uB465'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &789459651
@@ -3654,7 +3672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1037753846
 Transform:
   m_ObjectHideFlags: 0
@@ -3789,7 +3807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1052990313
 Transform:
   m_ObjectHideFlags: 0
@@ -3822,7 +3840,8 @@ MonoBehaviour:
   bookPrice: 25
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC744 \uC77D\uC73C\uBA74 \uB9E4\uC6B0 \uBE60\uB974\uAC8C \uC6C0\uC9C1\uC77C
+    \uC218 \uC788\uB2E4\uB124. (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!60 &1052990315
@@ -3928,7 +3947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1089487548
 Transform:
   m_ObjectHideFlags: 0
@@ -4042,7 +4061,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uC815\uC804\uAE30 \uD3ED\uBC1C'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1113927638
@@ -4063,7 +4084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1113927639
 Transform:
   m_ObjectHideFlags: 0
@@ -4178,7 +4199,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uBC88\uAC1C \uD761\uC218'\uB97C
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1190837915
@@ -4534,7 +4557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1279855170
 Transform:
   m_ObjectHideFlags: 0
@@ -4648,7 +4671,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uC791\uC5F4 \uAD11\uC120'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1346501988
@@ -4878,7 +4903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1424414222
 Transform:
   m_ObjectHideFlags: 0
@@ -4994,7 +5019,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uC815\uC804\uAE30 \uD3ED\uBC1C'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1458484097
@@ -5015,7 +5043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1458484098
 Transform:
   m_ObjectHideFlags: 0
@@ -5132,7 +5160,9 @@ MonoBehaviour:
   bookLevel: 1
   bookPrice: 15
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uBD88\uAF43 \uD68C\uC804'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1470975137
@@ -5192,7 +5222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1478530527
 Transform:
   m_ObjectHideFlags: 0
@@ -5309,7 +5339,8 @@ MonoBehaviour:
   bookPrice: 15
   equipped: 0
   bookExplain:
-  - "\uC774 \uCC45\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uCC9C\uB465\uC758 \uADC0\uD658'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1582613212
@@ -5330,7 +5361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1582613213
 Transform:
   m_ObjectHideFlags: 0
@@ -5443,7 +5474,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uC791\uC5F4 \uAD11\uC120'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &1582973595
@@ -6086,7 +6120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1993299307
 Transform:
   m_ObjectHideFlags: 0
@@ -6201,7 +6235,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uBD88\uC758 \uAC70\uC778\uC758 '\uBD88\uAF43 \uD68C\uC804'\uC744
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &2025004570
@@ -6222,7 +6259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2025004571
 Transform:
   m_ObjectHideFlags: 0
@@ -6339,7 +6376,8 @@ MonoBehaviour:
   bookPrice: 15
   equipped: 0
   bookExplain:
-  - "\uC774 \uB140\uC11D\uC740 \uC5B4\uCA4C\uACE0 \uC800\uCA4C\uACE0"
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uD53C\uB8B0\uCE68 \uBC29\uC804'\uC744
+    \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0. (15 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &2037732012
@@ -6360,7 +6398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2037732013
 Transform:
   m_ObjectHideFlags: 0
@@ -6475,7 +6513,10 @@ MonoBehaviour:
   bookLevel: 2
   bookPrice: 25
   equipped: 0
-  bookExplain: []
+  bookExplain:
+  - "\uC774 \uCC45\uC740 \uCC9C\uB465\uC758 \uC2E0\uC758 '\uBC88\uAC1C \uD761\uC218'\uB97C
+    \uB9E4\uC6B0 \uC798 \uD68C\uD53C\uD560 \uC218 \uC788\uAC8C \uD574\uC8FC\uC9C0.
+    (25 \uC131\uD608)"
   textObj: {fileID: 1190837917}
   textBox: {fileID: 708734394}
 --- !u!1 &2088039640
