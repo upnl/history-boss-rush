@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private float dashCoolTime = 0.75f;
 
     [SerializeField] private GameObject dashDummy;
-    private float dashStartUpTime = 0.1f;
+    private float dashStartUpTime = 0.5f;
     private float dashInvulnTime = 0.2f;
 
 
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         GameObject dashDummyObject = Instantiate(dashDummy, transform.position, Quaternion.identity);
         JustDashDummy dashDummyComponent = dashDummyObject.GetComponent<JustDashDummy>();
-        dashDummyComponent.StartUp(dashStartUpTime, dashInvulnTime, this);
+        dashDummyComponent.StartUp(dashStartUpTime / 2f, dashInvulnTime * 2f, this);
         Vector3 dashDirection = new Vector3(cachedPlayerDirection.x, cachedPlayerDirection.y, 0f);
         elapsedTime = 0f;
         while (elapsedTime < dashTime)
