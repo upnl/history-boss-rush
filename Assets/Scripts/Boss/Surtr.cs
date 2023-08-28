@@ -147,7 +147,7 @@ public class Surtr : Boss
         yield return new WaitForSeconds(0.5f);
         isBusy = false;
 
-        GameManager.Instance.QuestManager.UpPatternSeeCount(1);
+        GameManager.Instance.QuestManager.UpPatternSeeCount(0);
     }
     // ¸¶±×¸¶ ±âµÕ
     public IEnumerator Pattern2()
@@ -194,7 +194,7 @@ public class Surtr : Boss
         isFollow = true;
         isBusy = false;
 
-        GameManager.Instance.QuestManager.UpPatternSeeCount(2);
+        GameManager.Instance.QuestManager.UpPatternSeeCount(1);
     }
 
     // ºÒ²É È¸Àü
@@ -235,7 +235,7 @@ public class Surtr : Boss
         isFollow = true;
         yield return null;
 
-        GameManager.Instance.QuestManager.UpPatternSeeCount(3);
+        GameManager.Instance.QuestManager.UpPatternSeeCount(2);
     }
 
     // ÀÛ¿­ ±¤¼±
@@ -273,7 +273,7 @@ public class Surtr : Boss
         isFollow = true;
         yield return null;
 
-        GameManager.Instance.QuestManager.UpPatternSeeCount(4);
+        GameManager.Instance.QuestManager.UpPatternSeeCount(3);
     }
 
     // È­¿° ÆøÇ³
