@@ -351,7 +351,7 @@ public class Thor : Boss
         ThorSpriteRenderer.sprite = thorSpriteList[1];
         MoveToPosition(mjolnir, transform.position + new Vector3(0f, 2f, 0f));
 
-        yield return new WaitForSeconds(0.5f - effect1);
+        yield return new WaitForSeconds(0.8f - effect1);
 
         _Warner.InstantiateHitFan60(transform.position, playerPos, 28.4f);
 

@@ -183,8 +183,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private float dashCoolTime = 0.75f;
 
     [SerializeField] private GameObject dashDummy;
-    private float dashStartUpTime = 0.5f;
-    private float dashInvulnTime = 0.2f;
+    private float dashStartUpTime = 0.0f;
+    private float dashInvulnTime = 0.25f;
 
 
     private void HandleDashing()
