@@ -296,9 +296,10 @@ public class Surtr : Boss
         yield return moveTween.WaitForCompletion();
         swordAnimator.SetTrigger("SetDown");
 
-        yield return new WaitForSeconds(0.5f - effect1);
-        AudioManager.Instance.PlaySfx(7);
         _Warner.InstantiateHitCircle(surtrSword.position + new Vector3(0, -2f, 0), 8f);
+        yield return new WaitForSeconds(1.0f - effect1);
+        AudioManager.Instance.PlaySfx(7);
+        
         Instantiate(effectPrefabs[6], surtrSword.position + new Vector3(0, -2f, 0), Quaternion.identity);
         yield return new WaitForSeconds(effect1);
 
@@ -308,7 +309,7 @@ public class Surtr : Boss
         _Warner.RemoveAllHitArea();
         swordAnimator.SetTrigger("SetUp");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         isBusy = false;
         isFollow = true;

@@ -28,7 +28,7 @@ public class SwordStormEmbers : MonoBehaviour
 
         for (int i = 0; i < emberCount; i++)
         {
-            distance = maxDistance / emberCount * (emberCount - i);
+            distance = maxDistance / emberCount * (i);
 
             for (int j = 0; j < 6; j++)
             {
