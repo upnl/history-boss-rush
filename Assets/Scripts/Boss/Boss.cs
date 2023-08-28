@@ -43,7 +43,7 @@ public class Boss : MonoBehaviour
             e => e[BookManager.Instance.bookDB.GetHeaderIndex("title")].Equals("Challenge") &&
             int.Parse(e[BookManager.Instance.bookDB.GetHeaderIndex("level")]) == historyLevel)[BookManager.Instance.bookDB.GetHeaderIndex("effect1")]);
 
-        nowHP -= normalDamage * effect1 / 100f;
+        nowHP -= normalDamage * effect1 / 100f * 1.5f;
         BookManager.Instance.AddBlood(10);
         hpSlider.value = nowHP/maxHP;
         GameManager.Instance.QuestManager.CheckAttackPercent();
