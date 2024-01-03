@@ -5,42 +5,84 @@ using UnityEngine;
 
 public class EarthAnimation : MonoBehaviour
 {
-    private Animator animator;
-    private int before = 0;
-    private int current = 0;
+    [SerializeField] GameObject Field;
+
+    public static int Before = 0;
+    public static int Current = 0;
+    public static bool FieldOpen = false;
+
+    public float EarthStartPosition = 0f;
+    public float EarthMovedPosition = -4.5f;
+    public float EarthMovingSpeed = 1.0f;
+
+    private Animator _animator;
+    private Animator _fieldAnimator;
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
+        _fieldAnimator = Field.GetComponent<Animator>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
 
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        Vector3 position = gameObject.transform.position;
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !FieldOpen)
         {
-            if (current != 2)
+            RightMoving();
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && !FieldOpen)
+        {
+            LeftMoving();
+        }
+        if (FieldOpen && !Field.gameObject.activeSelf)
+        {
+            if (position.x > EarthMovedPosition)
             {
-                before = current;
-                current++;
-                animator.SetInteger("before", before);
-                animator.SetInteger("current", current);
+                position.x = position.x - Time.deltaTime * EarthMovingSpeed;
+                gameObject.transform.position = position;
+            }
+            else
+            {
+                Field.gameObject.SetActive(true);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+    }
+
+    public void RightMoving()
+    {
+        if (Current != 2)
         {
-            if (current != 0)
-            {
-                before = current;
-                current--;
-                animator.SetInteger("before", before);
-                animator.SetInteger("current", current);
-            }
+            Before = Current;
+            Current++;
+            _animator.SetInteger("before", Before);
+            _animator.SetInteger("current", Current);
+        }
+    }
+
+    public void LeftMoving()
+    {
+        if (Current != 0)
+        {
+            Before = Current;
+            Current--;
+            _animator.SetInteger("before", Before);
+            _animator.SetInteger("current", Current);
+        }
+    }
+
+    public void OnMouseDown()
+    {
+        if (!FieldOpen)
+        {
+            FieldOpen = true;
+            gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            gameObject.GetComponent<Animator>().enabled = false;
         }
     }
 }
