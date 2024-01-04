@@ -518,7 +518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &505083001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -800,9 +800,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Field: {fileID: 419504988}
+  LeftArrow: {fileID: 505083000}
+  RightArrow: {fileID: 1691175874}
   EarthStartPosition: 0
   EarthMovedPosition: -4.5
-  EarthMovingSpeed: 5
+  EarthMovingSpeed: 7
 --- !u!58 &1011665117
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -972,7 +974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1691175875
 RectTransform:
   m_ObjectHideFlags: 0

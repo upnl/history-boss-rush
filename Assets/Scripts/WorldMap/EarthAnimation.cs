@@ -6,6 +6,8 @@ using UnityEngine;
 public class EarthAnimation : MonoBehaviour
 {
     [SerializeField] GameObject Field;
+    [SerializeField] GameObject LeftArrow;
+    [SerializeField] GameObject RightArrow;
 
     public static int Before = 0;
     public static int Current = 0;
@@ -52,6 +54,32 @@ public class EarthAnimation : MonoBehaviour
                 Field.gameObject.SetActive(true);
             }
         }
+        else if (!FieldOpen)
+        {
+            if (Field.gameObject.activeSelf && _fieldAnimator.GetCurrentAnimatorStateInfo(0).IsName("FieldClose") && 
+                _fieldAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f
+            )
+            {
+                Field.gameObject.SetActive(false);
+            }
+            else if (!Field.gameObject.activeSelf)
+            {
+                if (position.x < EarthStartPosition)
+                {
+                    position.x = position.x + Time.deltaTime * EarthMovingSpeed;
+                    gameObject.transform.position = position;
+                }
+                else
+                {
+                    position.x = 0f;
+                    position.y = 0f;
+                    gameObject.transform.position = position;
+                    gameObject.GetComponent<Animator>().enabled = true;
+                    LeftArrow.gameObject.SetActive(true);
+                    RightArrow.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 
     public void RightMoving()
@@ -81,8 +109,31 @@ public class EarthAnimation : MonoBehaviour
         if (!FieldOpen)
         {
             FieldOpen = true;
+            _fieldAnimator.SetBool("FieldOpen", true);
             gameObject.GetComponent<Renderer>().material.color = Color.grey;
             gameObject.GetComponent<Animator>().enabled = false;
+        }
+        else
+        {
+            FieldOpen = false;
+            _fieldAnimator.SetBool("FieldOpen", false);
+        }
+    }
+
+    public void OnMouseOver()
+    {
+        gameObject.GetComponent<Renderer>().material.color = new Color(179 / 255f, 179 / 255f, 179 / 255f);
+    }
+
+    public void OnMouseExit()
+    {
+        if (FieldOpen)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.grey;
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 }

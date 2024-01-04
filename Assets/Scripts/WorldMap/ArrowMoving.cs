@@ -49,10 +49,6 @@ public class ArrowMoving : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             gameObject.SetActive(false);
         }
-        else if (!EarthAnimation.FieldOpen && !gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
     }
     
     public void OnPointerDown(PointerEventData eventData)
