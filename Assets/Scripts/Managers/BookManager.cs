@@ -9,13 +9,14 @@ public class BookManager : MonoBehaviour
     public string roomTypeSetting;
 
 #region Book List Declaration
-    public List<string> TotalBookList;
-    public Dictionary<string, List<string>> EuropeBookList;
-    public Dictionary<string, List<string>> AsiaBookList;
-    public Dictionary<string, List<string>> NorthAmericaBookList;
-    public Dictionary<string, List<string>> SouthAmericaBookList;
-    public Dictionary<string, List<string>> AfricaBookList;
-    public Dictionary<string, List<string>> AustraliaBookList;
+    public List<string> TotalBookList = new List<string>();
+    public Dictionary<string, List<string>> PassiveBookList = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> EuropeBookList = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> AsiaBookList = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> NorthAmericaBookList = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> SouthAmericaBookList = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> AfricaBookList = new Dictionary<string, List<string>>();
+    public Dictionary<string, List<string>> AustraliaBookList = new Dictionary<string, List<string>>();
 #endregion
 
     private BookData _bookData = new BookData();

@@ -6,10 +6,15 @@ public class StorePortal : MonoBehaviour
 {
     [SerializeField] private string destination;
 
-    private void OnCollisionStay2D(Collision2D other){
-        if(other.gameObject.tag == "Player"){
+    private bool inPortal = false;
+
+    private void Update(){
+        if(inPortal){
             if(Input.GetKeyDown(KeyCode.E)){
                 switch(destination){
+                    case "Passive":
+                        BookManager.Instance.SetRoomPassive();
+                        break;
                     case "Europe":
                         BookManager.Instance.SetRoomEurope();
                         break;
@@ -35,4 +40,14 @@ public class StorePortal : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag.Equals("Player")){
+            inPortal = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.tag.Equals("Player")){
+            inPortal = false;
+        }
+    }    
 }
