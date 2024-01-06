@@ -6,6 +6,8 @@ public class BookManager : MonoBehaviour
 {
     public static BookManager Instance { get; private set; }
 
+    public string roomTypeSetting;
+
     public string[] bookList;
     private BookData _bookData = new BookData();
 
@@ -51,6 +53,8 @@ public class BookManager : MonoBehaviour
         bookDescription = "";
     }
 
+
+#region Book Unlock / Equip
     public int CheckBookUnlocked(string bookName)
     {
         try
@@ -131,6 +135,10 @@ public class BookManager : MonoBehaviour
         }
     }
     
+#endregion
+
+
+#region Blood
     public void AddBlood(int amount)
     {
         if (Blood < maxBlood)
@@ -142,8 +150,10 @@ public class BookManager : MonoBehaviour
             Blood = maxBlood;
         }
     }
-    
+#endregion    
 
+
+#region Boss Defeat
     public void BossDefeated(string bossName)
     {
         if (bossName == "Thor")
@@ -226,4 +236,6 @@ public class BookManager : MonoBehaviour
             return 0;
         }
     }
+#endregion
+
 }
