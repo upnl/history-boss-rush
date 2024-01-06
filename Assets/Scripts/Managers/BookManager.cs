@@ -6,7 +6,18 @@ public class BookManager : MonoBehaviour
 {
     public static BookManager Instance { get; private set; }
 
-    public string[] bookList;
+    public string roomTypeSetting;
+
+#region Book List Declaration
+    public List<string> TotalBookList;
+    public Dictionary<string, List<string>> EuropeBookList;
+    public Dictionary<string, List<string>> AsiaBookList;
+    public Dictionary<string, List<string>> NorthAmericaBookList;
+    public Dictionary<string, List<string>> SouthAmericaBookList;
+    public Dictionary<string, List<string>> AfricaBookList;
+    public Dictionary<string, List<string>> AustraliaBookList;
+#endregion
+
     private BookData _bookData = new BookData();
 
     public int Blood = 0;
@@ -42,7 +53,10 @@ public class BookManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(this.gameObject);
-        bookList = new string[] {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4"};
+        TotalBookList = new List<string> {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5", "Thor1", "Thor2", "Thor3", "Thor4"};
+
+        EuropeBookList["Surtr"] = new List<string> {"Surtr1", "Surtr2", "Surtr3", "Surtr4", "Surtr5"};
+        EuropeBookList["Thor"] = new List<string> {"Thor1", "Thor2", "Thor3", "Thor4"};
 
         bookDB = new CSVReader(_bookDB, true, '\t');
         dialogueDB = new CSVReader(_dialogueDB, true, ',');
@@ -51,6 +65,35 @@ public class BookManager : MonoBehaviour
         bookDescription = "";
     }
 
+#region Room Setting
+    public void SetRoomPassive(){
+        roomTypeSetting = "Passive";
+    }
+    public void SetRoomEurope(){
+        roomTypeSetting = "Europe";
+    }
+    public void SetRoomAsia(){
+        roomTypeSetting = "Asia";
+    }
+    public void SetRoomNorthAmerica(){
+        roomTypeSetting = "NorthAmerica";
+    }
+    public void SetRoomSouthAmerica(){
+        roomTypeSetting = "SouthAmerica";
+    }
+    public void SetRoomAfrica(){
+        roomTypeSetting = "Africa";
+    }
+    public void SetRoomAustralia(){
+        roomTypeSetting = "Australia";
+    }
+    
+
+
+#endregion
+
+
+#region Book Unlock / Equip
     public int CheckBookUnlocked(string bookName)
     {
         try
@@ -117,7 +160,7 @@ public class BookManager : MonoBehaviour
 
     public void ResetBookUnlocked()
     {
-        foreach(string bookName in bookList)
+        foreach(string bookName in TotalBookList)
         {
             _bookData.bookUnlocked[bookName] = 0;
         }
@@ -125,12 +168,16 @@ public class BookManager : MonoBehaviour
 
     public void ResetBookEquipped()
     {
-        foreach(string bookName in bookList)
+        foreach(string bookName in TotalBookList)
         {
             _bookData.bookEquipped[bookName] = 0;
         }
     }
     
+#endregion
+
+
+#region Blood
     public void AddBlood(int amount)
     {
         if (Blood < maxBlood)
@@ -142,8 +189,10 @@ public class BookManager : MonoBehaviour
             Blood = maxBlood;
         }
     }
-    
+#endregion    
 
+
+#region Boss Defeat
     public void BossDefeated(string bossName)
     {
         if (bossName == "Thor")
@@ -226,4 +275,6 @@ public class BookManager : MonoBehaviour
             return 0;
         }
     }
+#endregion
+
 }
