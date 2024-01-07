@@ -4,8 +4,30 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
 
+
+[System.Serializable]
+// [CustomPropertyDrawer()]
+public class BookObjects : SerializableDictionary<string, GameObject[]>{}
 public class BookActivation : MonoBehaviour
 {
+    [Header("Book Objects Dictionary")]
+    public List<GameObject> PassiveBookObjects = new List<GameObject>();
+    public BookObjects EuropeBookObjects = new BookObjects();
+    public BookObjects AsiaBookObjects = new BookObjects();
+    public BookObjects NorthAmericaBookObjects = new BookObjects();
+    public BookObjects SouthAmericaBookObjects = new BookObjects();
+    public BookObjects AfricaBookObjects = new BookObjects();
+    public BookObjects AustraliaBookObjects = new BookObjects();
+
+    [Header("Boss List")]
+    public List<string> EuropeBoss = new List<string>();
+    public List<string> AsiaBoss = new List<string>();
+    public List<string> NorthAmericaBoss = new List<string>();
+    public List<string> SouthAmerica = new List<string>();
+    public List<string> AfricaBoss = new List<string>();
+    public List<string> AustraliaBoss = new List<string>();
+
+    [Header("Legacy")]
     public GameObject[] Thor1;
     public GameObject[] Thor2;
     public GameObject[] Thor3;
@@ -33,6 +55,9 @@ public class BookActivation : MonoBehaviour
     void Start()
     {
         ActivateBook();
+        EuropeBookObjects.Add("Thor", null);
+        EuropeBookObjects["Thor"] = new GameObject[100];
+        EuropeBookObjects.Add("Surtur", null);
     }
 
     private void ActivateBook()
