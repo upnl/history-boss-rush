@@ -52,7 +52,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadStoreScene()
     {
-        StartCoroutine(LoadSceneAsync("StoreScene"));
+        StartCoroutine(LoadSceneAsync("StoreSceneNew"));
     }
 
     public void LoadFieldScene()

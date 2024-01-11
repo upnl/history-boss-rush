@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8147060072770350754}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,11 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c16eb0e973e4449c8905bb7e5cd8f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bookList:
-  - judgment
-  - challenge
-  - tenacity
-  - alertness
+  roomTypeSetting: 
+  PassiveList:
+  - Alertness
+  - Challenge
+  - Tenacity
+  TotalBookList: []
+  TotalBoss: []
+  EuropeBoss:
+  - Thor
+  - Surtur
+  AsiaBoss: []
+  NorthAmericaBoss: []
+  SouthAmericaBoss: []
+  AfricaBoss: []
+  AustraliaBoss: []
   Blood: 0
   maxBlood: 200
   iteration: 0

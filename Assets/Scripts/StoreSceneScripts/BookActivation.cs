@@ -86,13 +86,22 @@ public class BookActivation : MonoBehaviour
     private void ActivateBook()
     {
         location = gameObject.transform.Find(BookManager.Instance.roomTypeSetting).gameObject;
+
+        foreach (string Book in BookManager.Instance.TotalBookList){
+            GameObject.Find(Book).SetActive(false);
+        }
+
         switch (BookManager.Instance.roomTypeSetting){
             case "Europe":
                 foreach(string Boss in BookManager.Instance.EuropeBoss){
                     foreach(string Book in BookManager.Instance.EuropeBookList[Boss]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        EuropeBookObjects[Boss].Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }
@@ -101,8 +110,12 @@ public class BookActivation : MonoBehaviour
                 foreach(string Boss in BookManager.Instance.AsiaBoss){
                     foreach(string Book in BookManager.Instance.AsiaBookList[Boss]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        AsiaBookObjects[Boss].Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }
@@ -111,8 +124,12 @@ public class BookActivation : MonoBehaviour
                 foreach(string Boss in BookManager.Instance.NorthAmericaBoss){
                     foreach(string Book in BookManager.Instance.NorthAmericaBookList[Boss]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        NorthAmericaBookObjects[Boss].Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }
@@ -121,8 +138,12 @@ public class BookActivation : MonoBehaviour
                 foreach(string Boss in BookManager.Instance.SouthAmericaBoss){
                     foreach(string Book in BookManager.Instance.SouthAmericaBookList[Boss]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        SouthAmericaBookObjects[Boss].Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }
@@ -131,8 +152,12 @@ public class BookActivation : MonoBehaviour
                 foreach(string Boss in BookManager.Instance.AfricaBoss){
                     foreach(string Book in BookManager.Instance.AfricaBookList[Boss]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        AfricaBookObjects[Boss].Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }
@@ -141,8 +166,12 @@ public class BookActivation : MonoBehaviour
                 foreach(string Boss in BookManager.Instance.AustraliaBoss){
                     foreach(string Book in BookManager.Instance.AustraliaBookList[Boss]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        AustraliaBookObjects[Boss].Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }
@@ -151,8 +180,12 @@ public class BookActivation : MonoBehaviour
                 foreach(string Passive in BookManager.Instance.PassiveList){
                     foreach(string Book in BookManager.Instance.PassiveBookList[Passive]){
                         bookObject = location.transform.Find(Book).gameObject;
+                        PassiveBookObjects.Add(bookObject);
                         if(BookManager.Instance.CheckBookUnlocked(Book) > 0){
                             bookObject.SetActive(true);
+                        }
+                        else{
+                            bookObject.SetActive(false);
                         }
                     }
                 }

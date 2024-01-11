@@ -9,9 +9,9 @@ public class BookManager : MonoBehaviour
     public string roomTypeSetting;
 
 #region Book List Declaration
-    public List<string> PassiveList = new List<string>{};
-
     public List<string> TotalBookList = new List<string> {};
+
+    public List<string> PassiveList = new List<string>{};
     public Dictionary<string, List<string>> PassiveBookList = new Dictionary<string, List<string>>();
     public Dictionary<string, List<string>> EuropeBookList = new Dictionary<string, List<string>>();
     public Dictionary<string, List<string>> AsiaBookList = new Dictionary<string, List<string>>();
