@@ -7,7 +7,6 @@ using UnityEngine;
 
 
 [System.Serializable]
-// [CustomPropertyDrawer()]
 public class BookObjects : SerializableDictionary<string, List<GameObject>>{}
 public class BookActivation : MonoBehaviour
 {
@@ -82,7 +81,8 @@ public class BookActivation : MonoBehaviour
         }
     }
 
-    private GameObject location, bookObject;
+    [SerializeField] private GameObject location;
+    [SerializeField] private GameObject bookObject;
     private void ActivateBook()
     {
         location = gameObject.transform.Find(BookManager.Instance.roomTypeSetting).gameObject;

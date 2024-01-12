@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public class BookList : SerializableDictionary<string, List<String>>{}
 public class BookManager : MonoBehaviour
 {
     public static BookManager Instance { get; private set; }
@@ -9,16 +13,17 @@ public class BookManager : MonoBehaviour
     public string roomTypeSetting;
 
 #region Book List Declaration
+    [Header("Book List")]
     public List<string> TotalBookList = new List<string> {};
 
     public List<string> PassiveList = new List<string>{};
-    public Dictionary<string, List<string>> PassiveBookList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> EuropeBookList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> AsiaBookList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> NorthAmericaBookList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> SouthAmericaBookList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> AfricaBookList = new Dictionary<string, List<string>>();
-    public Dictionary<string, List<string>> AustraliaBookList = new Dictionary<string, List<string>>();
+    public BookList PassiveBookList = new BookList();
+    public BookList EuropeBookList = new BookList();
+    public BookList AsiaBookList = new BookList();
+    public BookList NorthAmericaBookList = new BookList();
+    public BookList SouthAmericaBookList = new BookList();
+    public BookList AfricaBookList = new BookList();
+    public BookList AustraliaBookList = new BookList();
 #endregion
 
 #region Boss List Declaration
